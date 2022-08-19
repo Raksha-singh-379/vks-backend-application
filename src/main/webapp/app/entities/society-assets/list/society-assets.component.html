@@ -1,0 +1,153 @@
+<div>
+  <h2 id="page-heading" data-cy="SocietyAssetsHeading">
+    <span jhiTranslate="vksApplicationApp.societyAssets.home.title">Society Assets</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.societyAssets.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-society-assets"
+        [routerLink]="['/society-assets/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.societyAssets.home.createLabel"> Create a new Society Assets </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters" (filterChange)="navigateToWithComponentValues()"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="societyAssets?.length === 0">
+    <span jhiTranslate="vksApplicationApp.societyAssets.home.notFound">No Society Assets found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="societyAssets && societyAssets.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="societyAssetsName">
+            <span jhiTranslate="vksApplicationApp.societyAssets.societyAssetsName">Society Assets Name</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="type">
+            <span jhiTranslate="vksApplicationApp.societyAssets.type">Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="category">
+            <span jhiTranslate="vksApplicationApp.societyAssets.category">Category</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="depreciation">
+            <span jhiTranslate="vksApplicationApp.societyAssets.depreciation">Depreciation</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="vksApplicationApp.societyAssets.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="vksApplicationApp.societyAssets.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="vksApplicationApp.societyAssets.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdOn">
+            <span jhiTranslate="vksApplicationApp.societyAssets.createdOn">Created On</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isDeleted">
+            <span jhiTranslate="vksApplicationApp.societyAssets.isDeleted">Is Deleted</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <span jhiTranslate="vksApplicationApp.societyAssets.freeField1">Free Field 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField2">
+            <span jhiTranslate="vksApplicationApp.societyAssets.freeField2">Free Field 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField3">
+            <span jhiTranslate="vksApplicationApp.societyAssets.freeField3">Free Field 3</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="society.id">
+            <span jhiTranslate="vksApplicationApp.societyAssets.society">Society</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let societyAssets of societyAssets; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/society-assets', societyAssets.id, 'view']">{{ societyAssets.id }}</a>
+          </td>
+          <td>{{ societyAssets.societyAssetsName }}</td>
+          <td jhiTranslate="{{ 'vksApplicationApp.SocietyAssetsType.' + societyAssets.type }}">{{ societyAssets.type }}</td>
+          <td>{{ societyAssets.category }}</td>
+          <td>{{ societyAssets.depreciation }}</td>
+          <td>{{ societyAssets.lastModified | formatMediumDatetime }}</td>
+          <td>{{ societyAssets.lastModifiedBy }}</td>
+          <td>{{ societyAssets.createdBy }}</td>
+          <td>{{ societyAssets.createdOn | formatMediumDatetime }}</td>
+          <td>{{ societyAssets.isDeleted }}</td>
+          <td>{{ societyAssets.freeField1 }}</td>
+          <td>{{ societyAssets.freeField2 }}</td>
+          <td>{{ societyAssets.freeField3 }}</td>
+          <td>
+            <div *ngIf="societyAssets.society">
+              <a [routerLink]="['/society', societyAssets.society.id, 'view']">{{ societyAssets.society?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/society-assets', societyAssets.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/society-assets', societyAssets.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(societyAssets)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="societyAssets && societyAssets.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

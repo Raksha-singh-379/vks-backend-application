@@ -1,0 +1,37 @@
+{
+  "vksApplicationApp": {
+    "societyCropRegistration": {
+      "home": {
+        "title": "Society Crop Registrations",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Society Crop Registration",
+        "createOrEditLabel": "Create or edit a Society Crop Registration",
+        "notFound": "No Society Crop Registrations found"
+      },
+      "created": "A new Society Crop Registration is created with identifier {{ param }}",
+      "updated": "A Society Crop Registration is updated with identifier {{ param }}",
+      "deleted": "A Society Crop Registration is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Society Crop Registration {{ id }}?"
+      },
+      "detail": {
+        "title": "Society Crop Registration"
+      },
+      "id": "ID",
+      "cropName": "Crop Name",
+      "monthDuration": "Month Duration",
+      "season": "Season",
+      "cropLimit": "Crop Limit",
+      "year": "Year",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "createdBy": "Created By",
+      "createdOn": "Created On",
+      "isDeleted": "Is Deleted",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "freeField3": "Free Field 3",
+      "society": "Society"
+    }
+  }
+}

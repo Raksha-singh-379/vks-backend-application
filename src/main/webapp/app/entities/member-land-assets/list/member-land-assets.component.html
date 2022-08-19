@@ -1,0 +1,174 @@
+<div>
+  <h2 id="page-heading" data-cy="MemberLandAssetsHeading">
+    <span jhiTranslate="vksApplicationApp.memberLandAssets.home.title">Member Land Assets</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.memberLandAssets.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-member-land-assets"
+        [routerLink]="['/member-land-assets/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.memberLandAssets.home.createLabel"> Create a new Member Land Assets </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters" (filterChange)="navigateToWithComponentValues()"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="memberLandAssets?.length === 0">
+    <span jhiTranslate="vksApplicationApp.memberLandAssets.home.notFound">No Member Land Assets found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="memberLandAssets && memberLandAssets.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="landType">
+            <span jhiTranslate="vksApplicationApp.memberLandAssets.landType">Land Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="landGatNo">
+            <span jhiTranslate="vksApplicationApp.memberLandAssets.landGatNo">Land Gat No</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="landAreaInHector">
+            <span jhiTranslate="vksApplicationApp.memberLandAssets.landAreaInHector">Land Area In Hector</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="jindagiPatrakNo">
+            <span jhiTranslate="vksApplicationApp.memberLandAssets.jindagiPatrakNo">Jindagi Patrak No</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="jindagiAmount">
+            <span jhiTranslate="vksApplicationApp.memberLandAssets.jindagiAmount">Jindagi Amount</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="assetLandAddress">
+            <span jhiTranslate="vksApplicationApp.memberLandAssets.assetLandAddress">Asset Land Address</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="valueOfLand">
+            <span jhiTranslate="vksApplicationApp.memberLandAssets.valueOfLand">Value Of Land</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="assigneeOfLand">
+            <span jhiTranslate="vksApplicationApp.memberLandAssets.assigneeOfLand">Assignee Of Land</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isDeleted">
+            <span jhiTranslate="vksApplicationApp.memberLandAssets.isDeleted">Is Deleted</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="mLLoanNo">
+            <span jhiTranslate="vksApplicationApp.memberLandAssets.mLLoanNo">M L Loan No</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="vksApplicationApp.memberLandAssets.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="vksApplicationApp.memberLandAssets.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="vksApplicationApp.memberLandAssets.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdOn">
+            <span jhiTranslate="vksApplicationApp.memberLandAssets.createdOn">Created On</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <span jhiTranslate="vksApplicationApp.memberLandAssets.freeField1">Free Field 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField2">
+            <span jhiTranslate="vksApplicationApp.memberLandAssets.freeField2">Free Field 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField3">
+            <span jhiTranslate="vksApplicationApp.memberLandAssets.freeField3">Free Field 3</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="member.id">
+            <span jhiTranslate="vksApplicationApp.memberLandAssets.member">Member</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let memberLandAssets of memberLandAssets; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/member-land-assets', memberLandAssets.id, 'view']">{{ memberLandAssets.id }}</a>
+          </td>
+          <td>{{ memberLandAssets.landType }}</td>
+          <td>{{ memberLandAssets.landGatNo }}</td>
+          <td>{{ memberLandAssets.landAreaInHector }}</td>
+          <td>{{ memberLandAssets.jindagiPatrakNo }}</td>
+          <td>{{ memberLandAssets.jindagiAmount }}</td>
+          <td>{{ memberLandAssets.assetLandAddress }}</td>
+          <td>{{ memberLandAssets.valueOfLand }}</td>
+          <td>{{ memberLandAssets.assigneeOfLand }}</td>
+          <td>{{ memberLandAssets.isDeleted }}</td>
+          <td>{{ memberLandAssets.mLLoanNo }}</td>
+          <td>{{ memberLandAssets.lastModified | formatMediumDatetime }}</td>
+          <td>{{ memberLandAssets.lastModifiedBy }}</td>
+          <td>{{ memberLandAssets.createdBy }}</td>
+          <td>{{ memberLandAssets.createdOn | formatMediumDatetime }}</td>
+          <td>{{ memberLandAssets.freeField1 }}</td>
+          <td>{{ memberLandAssets.freeField2 }}</td>
+          <td>{{ memberLandAssets.freeField3 }}</td>
+          <td>
+            <div *ngIf="memberLandAssets.member">
+              <a [routerLink]="['/member', memberLandAssets.member.id, 'view']">{{ memberLandAssets.member?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/member-land-assets', memberLandAssets.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/member-land-assets', memberLandAssets.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(memberLandAssets)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="memberLandAssets && memberLandAssets.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

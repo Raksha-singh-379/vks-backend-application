@@ -1,0 +1,94 @@
+{
+  "applications": "*",
+  "changelogDate": "20220819050830",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "loan_demand",
+  "fields": [
+    {
+      "fieldName": "loanDemandAmount",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "maxAllowedAmount",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "adjustedDemand",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "annualIncome",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "costOfInvestment",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "demandedLandAreaInHector",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "LoanStatus",
+      "fieldValues": "APPLIED (Applied),PENDING (Pending),CHART_GENRATED (Chart_Genrated),APPROVED (Approved),DISBURSED (Disbursed),ACTIVE (Active),CLOSED (Closed)"
+    },
+    {
+      "fieldName": "seasonOfCropLoan",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "year",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField3",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "LoanDemand",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "member",
+      "relationshipName": "member",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "societyLoanProduct",
+      "relationshipName": "societyLoanProduct",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "memberLandAssets",
+      "relationshipName": "memberLandAssets",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "societyCropRegistration",
+      "relationshipName": "societyCropRegistration",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

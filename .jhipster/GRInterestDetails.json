@@ -1,0 +1,126 @@
+{
+  "applications": "*",
+  "changelogDate": "20220819050822",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "gr_interest_details",
+  "fields": [
+    {
+      "fieldName": "loanGrName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "criteria",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "productType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isActivated",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "borrowingInterestRate",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "interestOnLoan",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "penaltyInterest",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "surcharge",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "loanDuration",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "numberOFInstallment",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "extendedInterstRate",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "centralGovSubsidyInterest",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "distBankSubsidyInterest",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "borrowerInterest",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "stateGovSubsidyInterest",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "year",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdOn",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "isDeleted",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "freeField1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField3",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "GRInterestDetails",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "society",
+      "relationshipName": "society",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

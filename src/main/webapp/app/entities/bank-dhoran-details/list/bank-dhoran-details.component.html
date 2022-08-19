@@ -1,0 +1,144 @@
+<div>
+  <h2 id="page-heading" data-cy="BankDhoranDetailsHeading">
+    <span jhiTranslate="vksApplicationApp.bankDhoranDetails.home.title">Bank Dhoran Details</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.bankDhoranDetails.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-bank-dhoran-details"
+        [routerLink]="['/bank-dhoran-details/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.bankDhoranDetails.home.createLabel"> Create a new Bank Dhoran Details </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters" (filterChange)="navigateToWithComponentValues()"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="bankDhoranDetails?.length === 0">
+    <span jhiTranslate="vksApplicationApp.bankDhoranDetails.home.notFound">No Bank Dhoran Details found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="bankDhoranDetails && bankDhoranDetails.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dhoranName">
+            <span jhiTranslate="vksApplicationApp.bankDhoranDetails.dhoranName">Dhoran Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="startDate">
+            <span jhiTranslate="vksApplicationApp.bankDhoranDetails.startDate">Start Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="endDate">
+            <span jhiTranslate="vksApplicationApp.bankDhoranDetails.endDate">End Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="year">
+            <span jhiTranslate="vksApplicationApp.bankDhoranDetails.year">Year</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isActivate">
+            <span jhiTranslate="vksApplicationApp.bankDhoranDetails.isActivate">Is Activate</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="vksApplicationApp.bankDhoranDetails.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="vksApplicationApp.bankDhoranDetails.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <span jhiTranslate="vksApplicationApp.bankDhoranDetails.freeField1">Free Field 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField2">
+            <span jhiTranslate="vksApplicationApp.bankDhoranDetails.freeField2">Free Field 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField3">
+            <span jhiTranslate="vksApplicationApp.bankDhoranDetails.freeField3">Free Field 3</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="society.id">
+            <span jhiTranslate="vksApplicationApp.bankDhoranDetails.society">Society</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bankDhoranDetails of bankDhoranDetails; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/bank-dhoran-details', bankDhoranDetails.id, 'view']">{{ bankDhoranDetails.id }}</a>
+          </td>
+          <td>{{ bankDhoranDetails.dhoranName }}</td>
+          <td>{{ bankDhoranDetails.startDate | formatMediumDatetime }}</td>
+          <td>{{ bankDhoranDetails.endDate | formatMediumDatetime }}</td>
+          <td>{{ bankDhoranDetails.year }}</td>
+          <td>{{ bankDhoranDetails.isActivate }}</td>
+          <td>{{ bankDhoranDetails.lastModified | formatMediumDatetime }}</td>
+          <td>{{ bankDhoranDetails.lastModifiedBy }}</td>
+          <td>{{ bankDhoranDetails.freeField1 }}</td>
+          <td>{{ bankDhoranDetails.freeField2 }}</td>
+          <td>{{ bankDhoranDetails.freeField3 }}</td>
+          <td>
+            <div *ngIf="bankDhoranDetails.society">
+              <a [routerLink]="['/society', bankDhoranDetails.society.id, 'view']">{{ bankDhoranDetails.society?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/bank-dhoran-details', bankDhoranDetails.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/bank-dhoran-details', bankDhoranDetails.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(bankDhoranDetails)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="bankDhoranDetails && bankDhoranDetails.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

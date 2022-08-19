@@ -1,0 +1,128 @@
+{
+  "applications": "*",
+  "changelogDate": "20220819050804",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "society",
+  "fields": [
+    {
+      "fieldName": "societyName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "village",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tahsil",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "state",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "district",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "registrationNumber",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "gstinNumber",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "panNumber",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "tanNumber",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "phoneNumber",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "emailAddress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pinCode",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "createdOn",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isActivate",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField2",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Society",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "village",
+      "ownerSide": true,
+      "relationshipName": "city",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "state",
+      "relationshipName": "state",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "district",
+      "relationshipName": "district",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "taluka",
+      "relationshipName": "taluka",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "society",
+      "relationshipName": "society",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

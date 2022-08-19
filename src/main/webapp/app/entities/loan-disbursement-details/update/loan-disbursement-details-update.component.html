@@ -1,0 +1,220 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-loan-disbursement-details-heading"
+        data-cy="LoanDisbursementDetailsCreateUpdateHeading"
+        jhiTranslate="vksApplicationApp.loanDisbursementDetails.home.createOrEditLabel"
+      >
+        Create or edit a Loan Disbursement Details
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDisbursementDetails.disbursementDate" for="field_disbursementDate"
+            >Disbursement Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_disbursementDate"
+              data-cy="disbursementDate"
+              type="datetime-local"
+              class="form-control"
+              name="disbursementDate"
+              formControlName="disbursementDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="vksApplicationApp.loanDisbursementDetails.disbursementAmount"
+            for="field_disbursementAmount"
+            >Disbursement Amount</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="disbursementAmount"
+            id="field_disbursementAmount"
+            data-cy="disbursementAmount"
+            formControlName="disbursementAmount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="vksApplicationApp.loanDisbursementDetails.disbursementNumber"
+            for="field_disbursementNumber"
+            >Disbursement Number</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="disbursementNumber"
+            id="field_disbursementNumber"
+            data-cy="disbursementNumber"
+            formControlName="disbursementNumber"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="vksApplicationApp.loanDisbursementDetails.disbursementStatus"
+            for="field_disbursementStatus"
+            >Disbursement Status</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="disbursementStatus"
+            id="field_disbursementStatus"
+            data-cy="disbursementStatus"
+            formControlName="disbursementStatus"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDisbursementDetails.paymentMode" for="field_paymentMode"
+            >Payment Mode</label
+          >
+          <select class="form-control" name="paymentMode" formControlName="paymentMode" id="field_paymentMode" data-cy="paymentMode">
+            <option [ngValue]="null">{{ 'vksApplicationApp.PaymentMode.null' | translate }}</option>
+            <option *ngFor="let paymentMode of paymentModeValues" [value]="paymentMode">
+              {{ 'vksApplicationApp.PaymentMode.' + paymentMode | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDisbursementDetails.type" for="field_type">Type</label>
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null">{{ 'vksApplicationApp.LoanType.null' | translate }}</option>
+            <option *ngFor="let loanType of loanTypeValues" [value]="loanType">
+              {{ 'vksApplicationApp.LoanType.' + loanType | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDisbursementDetails.lastModified" for="field_lastModified"
+            >Last Modified</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_lastModified"
+              data-cy="lastModified"
+              type="datetime-local"
+              class="form-control"
+              name="lastModified"
+              formControlName="lastModified"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDisbursementDetails.lastModifiedBy" for="field_lastModifiedBy"
+            >Last Modified By</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDisbursementDetails.freeField1" for="field_freeField1"
+            >Free Field 1</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="freeField1"
+            id="field_freeField1"
+            data-cy="freeField1"
+            formControlName="freeField1"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDisbursementDetails.freeField2" for="field_freeField2"
+            >Free Field 2</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="freeField2"
+            id="field_freeField2"
+            data-cy="freeField2"
+            formControlName="freeField2"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDisbursementDetails.freeField3" for="field_freeField3"
+            >Free Field 3</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="freeField3"
+            id="field_freeField3"
+            data-cy="freeField3"
+            formControlName="freeField3"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDisbursementDetails.loanDetails" for="field_loanDetails"
+            >Loan Details</label
+          >
+          <select
+            class="form-control"
+            id="field_loanDetails"
+            data-cy="loanDetails"
+            name="loanDetails"
+            formControlName="loanDetails"
+            [compareWith]="compareLoanDetails"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="loanDetailsOption" *ngFor="let loanDetailsOption of loanDetailsSharedCollection">
+              {{ loanDetailsOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

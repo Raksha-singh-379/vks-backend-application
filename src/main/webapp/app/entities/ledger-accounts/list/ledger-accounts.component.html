@@ -1,0 +1,187 @@
+<div>
+  <h2 id="page-heading" data-cy="LedgerAccountsHeading">
+    <span jhiTranslate="vksApplicationApp.ledgerAccounts.home.title">Ledger Accounts</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.ledgerAccounts.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-ledger-accounts"
+        [routerLink]="['/ledger-accounts/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.ledgerAccounts.home.createLabel"> Create a new Ledger Accounts </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters" (filterChange)="navigateToWithComponentValues()"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="ledgerAccounts?.length === 0">
+    <span jhiTranslate="vksApplicationApp.ledgerAccounts.home.notFound">No Ledger Accounts found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="ledgerAccounts && ledgerAccounts.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="accountNo">
+            <span jhiTranslate="vksApplicationApp.ledgerAccounts.accountNo">Account No</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="accountName">
+            <span jhiTranslate="vksApplicationApp.ledgerAccounts.accountName">Account Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="accBalance">
+            <span jhiTranslate="vksApplicationApp.ledgerAccounts.accBalance">Acc Balance</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="accHeadCode">
+            <span jhiTranslate="vksApplicationApp.ledgerAccounts.accHeadCode">Acc Head Code</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="ledgerCode">
+            <span jhiTranslate="vksApplicationApp.ledgerAccounts.ledgerCode">Ledger Code</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="appCode">
+            <span jhiTranslate="vksApplicationApp.ledgerAccounts.appCode">App Code</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="ledgerClassification">
+            <span jhiTranslate="vksApplicationApp.ledgerAccounts.ledgerClassification">Ledger Classification</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="category">
+            <span jhiTranslate="vksApplicationApp.ledgerAccounts.category">Category</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="level">
+            <span jhiTranslate="vksApplicationApp.ledgerAccounts.level">Level</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="year">
+            <span jhiTranslate="vksApplicationApp.ledgerAccounts.year">Year</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="accountType">
+            <span jhiTranslate="vksApplicationApp.ledgerAccounts.accountType">Account Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="vksApplicationApp.ledgerAccounts.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="vksApplicationApp.ledgerAccounts.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="vksApplicationApp.ledgerAccounts.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdOn">
+            <span jhiTranslate="vksApplicationApp.ledgerAccounts.createdOn">Created On</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isDeleted">
+            <span jhiTranslate="vksApplicationApp.ledgerAccounts.isDeleted">Is Deleted</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <span jhiTranslate="vksApplicationApp.ledgerAccounts.freeField1">Free Field 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField2">
+            <span jhiTranslate="vksApplicationApp.ledgerAccounts.freeField2">Free Field 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="society.id">
+            <span jhiTranslate="vksApplicationApp.ledgerAccounts.society">Society</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="ledgerAccounts.id">
+            <span jhiTranslate="vksApplicationApp.ledgerAccounts.ledgerAccounts">Ledger Accounts</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ledgerAccounts of ledgerAccounts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/ledger-accounts', ledgerAccounts.id, 'view']">{{ ledgerAccounts.id }}</a>
+          </td>
+          <td>{{ ledgerAccounts.accountNo }}</td>
+          <td>{{ ledgerAccounts.accountName }}</td>
+          <td>{{ ledgerAccounts.accBalance }}</td>
+          <td>{{ ledgerAccounts.accHeadCode }}</td>
+          <td>{{ ledgerAccounts.ledgerCode }}</td>
+          <td>{{ ledgerAccounts.appCode }}</td>
+          <td jhiTranslate="{{ 'vksApplicationApp.LedgerClassification.' + ledgerAccounts.ledgerClassification }}">
+            {{ ledgerAccounts.ledgerClassification }}
+          </td>
+          <td>{{ ledgerAccounts.category }}</td>
+          <td>{{ ledgerAccounts.level }}</td>
+          <td>{{ ledgerAccounts.year }}</td>
+          <td>{{ ledgerAccounts.accountType }}</td>
+          <td>{{ ledgerAccounts.lastModified | formatMediumDatetime }}</td>
+          <td>{{ ledgerAccounts.lastModifiedBy }}</td>
+          <td>{{ ledgerAccounts.createdBy }}</td>
+          <td>{{ ledgerAccounts.createdOn | formatMediumDatetime }}</td>
+          <td>{{ ledgerAccounts.isDeleted }}</td>
+          <td>{{ ledgerAccounts.freeField1 }}</td>
+          <td>{{ ledgerAccounts.freeField2 }}</td>
+          <td>
+            <div *ngIf="ledgerAccounts.society">
+              <a [routerLink]="['/society', ledgerAccounts.society.id, 'view']">{{ ledgerAccounts.society?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="ledgerAccounts.ledgerAccounts">
+              <a [routerLink]="['/ledger-accounts', ledgerAccounts.ledgerAccounts.id, 'view']">{{ ledgerAccounts.ledgerAccounts?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/ledger-accounts', ledgerAccounts.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/ledger-accounts', ledgerAccounts.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(ledgerAccounts)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="ledgerAccounts && ledgerAccounts.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

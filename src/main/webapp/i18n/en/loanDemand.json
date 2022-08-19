@@ -1,0 +1,41 @@
+{
+  "vksApplicationApp": {
+    "loanDemand": {
+      "home": {
+        "title": "Loan Demands",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Loan Demand",
+        "createOrEditLabel": "Create or edit a Loan Demand",
+        "notFound": "No Loan Demands found"
+      },
+      "created": "A new Loan Demand is created with identifier {{ param }}",
+      "updated": "A Loan Demand is updated with identifier {{ param }}",
+      "deleted": "A Loan Demand is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Loan Demand {{ id }}?"
+      },
+      "detail": {
+        "title": "Loan Demand"
+      },
+      "id": "ID",
+      "loanDemandAmount": "Loan Demand Amount",
+      "maxAllowedAmount": "Max Allowed Amount",
+      "adjustedDemand": "Adjusted Demand",
+      "annualIncome": "Annual Income",
+      "costOfInvestment": "Cost Of Investment",
+      "demandedLandAreaInHector": "Demanded Land Area In Hector",
+      "status": "Status",
+      "seasonOfCropLoan": "Season Of Crop Loan",
+      "year": "Year",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "freeField3": "Free Field 3",
+      "member": "Member",
+      "societyLoanProduct": "Society Loan Product",
+      "memberLandAssets": "Member Land Assets",
+      "societyCropRegistration": "Society Crop Registration"
+    }
+  }
+}

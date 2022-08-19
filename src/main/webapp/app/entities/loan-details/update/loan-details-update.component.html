@@ -1,0 +1,510 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-loan-details-heading"
+        data-cy="LoanDetailsCreateUpdateHeading"
+        jhiTranslate="vksApplicationApp.loanDetails.home.createOrEditLabel"
+      >
+        Create or edit a Loan Details
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.loanAmount" for="field_loanAmount">Loan Amount</label>
+          <input
+            type="number"
+            class="form-control"
+            name="loanAmount"
+            id="field_loanAmount"
+            data-cy="loanAmount"
+            formControlName="loanAmount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.loanAccountNo" for="field_loanAccountNo"
+            >Loan Account No</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="loanAccountNo"
+            id="field_loanAccountNo"
+            data-cy="loanAccountNo"
+            formControlName="loanAccountNo"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.loanType" for="field_loanType">Loan Type</label>
+          <select class="form-control" name="loanType" formControlName="loanType" id="field_loanType" data-cy="loanType">
+            <option [ngValue]="null">{{ 'vksApplicationApp.LoanType.null' | translate }}</option>
+            <option *ngFor="let loanType of loanTypeValues" [value]="loanType">
+              {{ 'vksApplicationApp.LoanType.' + loanType | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.status" for="field_status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'vksApplicationApp.LoanStatus.null' | translate }}</option>
+            <option *ngFor="let loanStatus of loanStatusValues" [value]="loanStatus">
+              {{ 'vksApplicationApp.LoanStatus.' + loanStatus | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.loanStartDate" for="field_loanStartDate"
+            >Loan Start Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_loanStartDate"
+              data-cy="loanStartDate"
+              type="datetime-local"
+              class="form-control"
+              name="loanStartDate"
+              formControlName="loanStartDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.loanEndDate" for="field_loanEndDate">Loan End Date</label>
+          <div class="d-flex">
+            <input
+              id="field_loanEndDate"
+              data-cy="loanEndDate"
+              type="datetime-local"
+              class="form-control"
+              name="loanEndDate"
+              formControlName="loanEndDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.loanPlannedClosureDate" for="field_loanPlannedClosureDate"
+            >Loan Planned Closure Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_loanPlannedClosureDate"
+              data-cy="loanPlannedClosureDate"
+              type="datetime-local"
+              class="form-control"
+              name="loanPlannedClosureDate"
+              formControlName="loanPlannedClosureDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.loanCloserDate" for="field_loanCloserDate"
+            >Loan Closer Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_loanCloserDate"
+              data-cy="loanCloserDate"
+              type="datetime-local"
+              class="form-control"
+              name="loanCloserDate"
+              formControlName="loanCloserDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.loanEffectiveDate" for="field_loanEffectiveDate"
+            >Loan Effective Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_loanEffectiveDate"
+              data-cy="loanEffectiveDate"
+              type="datetime-local"
+              class="form-control"
+              name="loanEffectiveDate"
+              formControlName="loanEffectiveDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.loanClassification" for="field_loanClassification"
+            >Loan Classification</label
+          >
+          <select
+            class="form-control"
+            name="loanClassification"
+            formControlName="loanClassification"
+            id="field_loanClassification"
+            data-cy="loanClassification"
+          >
+            <option [ngValue]="null">{{ 'vksApplicationApp.NpaClassification.null' | translate }}</option>
+            <option *ngFor="let npaClassification of npaClassificationValues" [value]="npaClassification">
+              {{ 'vksApplicationApp.NpaClassification.' + npaClassification | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.resolutionNo" for="field_resolutionNo">Resolution No</label>
+          <input
+            type="text"
+            class="form-control"
+            name="resolutionNo"
+            id="field_resolutionNo"
+            data-cy="resolutionNo"
+            formControlName="resolutionNo"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.resolutionDate" for="field_resolutionDate"
+            >Resolution Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_resolutionDate"
+              data-cy="resolutionDate"
+              type="datetime-local"
+              class="form-control"
+              name="resolutionDate"
+              formControlName="resolutionDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.costOfInvestment" for="field_costOfInvestment"
+            >Cost Of Investment</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="costOfInvestment"
+            id="field_costOfInvestment"
+            data-cy="costOfInvestment"
+            formControlName="costOfInvestment"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.loanBenefitingArea" for="field_loanBenefitingArea"
+            >Loan Benefiting Area</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="loanBenefitingArea"
+            id="field_loanBenefitingArea"
+            data-cy="loanBenefitingArea"
+            formControlName="loanBenefitingArea"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.dccbLoanNo" for="field_dccbLoanNo">Dccb Loan No</label>
+          <input
+            type="number"
+            class="form-control"
+            name="dccbLoanNo"
+            id="field_dccbLoanNo"
+            data-cy="dccbLoanNo"
+            formControlName="dccbLoanNo"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.mortgageDeedNo" for="field_mortgageDeedNo"
+            >Mortgage Deed No</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="mortgageDeedNo"
+            id="field_mortgageDeedNo"
+            data-cy="mortgageDeedNo"
+            formControlName="mortgageDeedNo"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.mortgageDate" for="field_mortgageDate">Mortgage Date</label>
+          <div class="d-flex">
+            <input
+              id="field_mortgageDate"
+              data-cy="mortgageDate"
+              type="datetime-local"
+              class="form-control"
+              name="mortgageDate"
+              formControlName="mortgageDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.extentMorgageValue" for="field_extentMorgageValue"
+            >Extent Morgage Value</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="extentMorgageValue"
+            id="field_extentMorgageValue"
+            data-cy="extentMorgageValue"
+            formControlName="extentMorgageValue"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.parentAccHeadCode" for="field_parentAccHeadCode"
+            >Parent Acc Head Code</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="parentAccHeadCode"
+            id="field_parentAccHeadCode"
+            data-cy="parentAccHeadCode"
+            formControlName="parentAccHeadCode"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.loanAccountName" for="field_loanAccountName"
+            >Loan Account Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="loanAccountName"
+            id="field_loanAccountName"
+            data-cy="loanAccountName"
+            formControlName="loanAccountName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.disbursementAmt" for="field_disbursementAmt"
+            >Disbursement Amt</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="disbursementAmt"
+            id="field_disbursementAmt"
+            data-cy="disbursementAmt"
+            formControlName="disbursementAmt"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.disbursementStatus" for="field_disbursementStatus"
+            >Disbursement Status</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="disbursementStatus"
+            id="field_disbursementStatus"
+            data-cy="disbursementStatus"
+            formControlName="disbursementStatus"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.year" for="field_year">Year</label>
+          <input type="text" class="form-control" name="year" id="field_year" data-cy="year" formControlName="year" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.lastModified" for="field_lastModified">Last Modified</label>
+          <div class="d-flex">
+            <input
+              id="field_lastModified"
+              data-cy="lastModified"
+              type="datetime-local"
+              class="form-control"
+              name="lastModified"
+              formControlName="lastModified"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.lastModifiedBy" for="field_lastModifiedBy"
+            >Last Modified By</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.freeField1" for="field_freeField1">Free Field 1</label>
+          <input
+            type="text"
+            class="form-control"
+            name="freeField1"
+            id="field_freeField1"
+            data-cy="freeField1"
+            formControlName="freeField1"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.freeField2" for="field_freeField2">Free Field 2</label>
+          <input
+            type="text"
+            class="form-control"
+            name="freeField2"
+            id="field_freeField2"
+            data-cy="freeField2"
+            formControlName="freeField2"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.freeField3" for="field_freeField3">Free Field 3</label>
+          <input
+            type="text"
+            class="form-control"
+            name="freeField3"
+            id="field_freeField3"
+            data-cy="freeField3"
+            formControlName="freeField3"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.loanDemand" for="field_loanDemand">Loan Demand</label>
+          <select
+            class="form-control"
+            id="field_loanDemand"
+            data-cy="loanDemand"
+            name="loanDemand"
+            formControlName="loanDemand"
+            [compareWith]="compareLoanDemand"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="loanDemandOption" *ngFor="let loanDemandOption of loanDemandsSharedCollection">
+              {{ loanDemandOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.member" for="field_member">Member</label>
+          <select
+            class="form-control"
+            id="field_member"
+            data-cy="member"
+            name="member"
+            formControlName="member"
+            [compareWith]="compareMember"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="memberOption" *ngFor="let memberOption of membersSharedCollection">{{ memberOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.loanDemand" for="field_loanDemand">Loan Demand</label>
+          <select
+            class="form-control"
+            id="field_loanDemand"
+            data-cy="loanDemand"
+            name="loanDemand"
+            formControlName="loanDemand"
+            [compareWith]="compareLoanDemand"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="loanDemandOption" *ngFor="let loanDemandOption of loanDemandsSharedCollection">
+              {{ loanDemandOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.societyLoanProduct" for="field_societyLoanProduct"
+            >Society Loan Product</label
+          >
+          <select
+            class="form-control"
+            id="field_societyLoanProduct"
+            data-cy="societyLoanProduct"
+            name="societyLoanProduct"
+            formControlName="societyLoanProduct"
+            [compareWith]="compareSocietyLoanProduct"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="societyLoanProductOption" *ngFor="let societyLoanProductOption of societyLoanProductsSharedCollection">
+              {{ societyLoanProductOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDetails.bankDhoranDetails" for="field_bankDhoranDetails"
+            >Bank Dhoran Details</label
+          >
+          <select
+            class="form-control"
+            id="field_bankDhoranDetails"
+            data-cy="bankDhoranDetails"
+            name="bankDhoranDetails"
+            formControlName="bankDhoranDetails"
+            [compareWith]="compareBankDhoranDetails"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="bankDhoranDetailsOption" *ngFor="let bankDhoranDetailsOption of bankDhoranDetailsSharedCollection">
+              {{ bankDhoranDetailsOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

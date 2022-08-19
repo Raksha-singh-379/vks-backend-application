@@ -1,0 +1,75 @@
+{
+  "applications": "*",
+  "changelogDate": "20220819050814",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "society_prerequisite",
+  "fields": [
+    {
+      "fieldName": "docType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "documentDesc",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "documentName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "loanType",
+      "fieldType": "LoanType",
+      "fieldValues": "SHORT_TERM (Short_term_loan),MID_TERM (Mid_term_loan),LONG_TERM (Long_term_loan)"
+    },
+    {
+      "fieldName": "mandatory",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdOn",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "isDeleted",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "freeField1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField3",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "SocietyPrerequisite",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "society",
+      "relationshipName": "society",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

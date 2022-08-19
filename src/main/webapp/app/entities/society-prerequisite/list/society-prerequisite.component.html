@@ -1,0 +1,157 @@
+<div>
+  <h2 id="page-heading" data-cy="SocietyPrerequisiteHeading">
+    <span jhiTranslate="vksApplicationApp.societyPrerequisite.home.title">Society Prerequisites</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.societyPrerequisite.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-society-prerequisite"
+        [routerLink]="['/society-prerequisite/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.societyPrerequisite.home.createLabel"> Create a new Society Prerequisite </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters" (filterChange)="navigateToWithComponentValues()"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="societyPrerequisites?.length === 0">
+    <span jhiTranslate="vksApplicationApp.societyPrerequisite.home.notFound">No Society Prerequisites found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="societyPrerequisites && societyPrerequisites.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="docType">
+            <span jhiTranslate="vksApplicationApp.societyPrerequisite.docType">Doc Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="documentDesc">
+            <span jhiTranslate="vksApplicationApp.societyPrerequisite.documentDesc">Document Desc</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="documentName">
+            <span jhiTranslate="vksApplicationApp.societyPrerequisite.documentName">Document Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="loanType">
+            <span jhiTranslate="vksApplicationApp.societyPrerequisite.loanType">Loan Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="mandatory">
+            <span jhiTranslate="vksApplicationApp.societyPrerequisite.mandatory">Mandatory</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="vksApplicationApp.societyPrerequisite.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="vksApplicationApp.societyPrerequisite.lastModifiedBy">Last Modified By</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="vksApplicationApp.societyPrerequisite.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdOn">
+            <span jhiTranslate="vksApplicationApp.societyPrerequisite.createdOn">Created On</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isDeleted">
+            <span jhiTranslate="vksApplicationApp.societyPrerequisite.isDeleted">Is Deleted</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <span jhiTranslate="vksApplicationApp.societyPrerequisite.freeField1">Free Field 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField2">
+            <span jhiTranslate="vksApplicationApp.societyPrerequisite.freeField2">Free Field 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField3">
+            <span jhiTranslate="vksApplicationApp.societyPrerequisite.freeField3">Free Field 3</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="society.id">
+            <span jhiTranslate="vksApplicationApp.societyPrerequisite.society">Society</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let societyPrerequisite of societyPrerequisites; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/society-prerequisite', societyPrerequisite.id, 'view']">{{ societyPrerequisite.id }}</a>
+          </td>
+          <td>{{ societyPrerequisite.docType }}</td>
+          <td>{{ societyPrerequisite.documentDesc }}</td>
+          <td>{{ societyPrerequisite.documentName }}</td>
+          <td jhiTranslate="{{ 'vksApplicationApp.LoanType.' + societyPrerequisite.loanType }}">{{ societyPrerequisite.loanType }}</td>
+          <td>{{ societyPrerequisite.mandatory }}</td>
+          <td>{{ societyPrerequisite.lastModified | formatMediumDatetime }}</td>
+          <td>{{ societyPrerequisite.lastModifiedBy }}</td>
+          <td>{{ societyPrerequisite.createdBy }}</td>
+          <td>{{ societyPrerequisite.createdOn | formatMediumDatetime }}</td>
+          <td>{{ societyPrerequisite.isDeleted }}</td>
+          <td>{{ societyPrerequisite.freeField1 }}</td>
+          <td>{{ societyPrerequisite.freeField2 }}</td>
+          <td>{{ societyPrerequisite.freeField3 }}</td>
+          <td>
+            <div *ngIf="societyPrerequisite.society">
+              <a [routerLink]="['/society', societyPrerequisite.society.id, 'view']">{{ societyPrerequisite.society?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/society-prerequisite', societyPrerequisite.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/society-prerequisite', societyPrerequisite.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(societyPrerequisite)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="societyPrerequisites && societyPrerequisites.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,163 @@
+<div>
+  <h2 id="page-heading" data-cy="SocietyNpaSettingHeading">
+    <span jhiTranslate="vksApplicationApp.societyNpaSetting.home.title">Society Npa Settings</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.societyNpaSetting.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-society-npa-setting"
+        [routerLink]="['/society-npa-setting/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.societyNpaSetting.home.createLabel"> Create a new Society Npa Setting </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters" (filterChange)="navigateToWithComponentValues()"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="societyNpaSettings?.length === 0">
+    <span jhiTranslate="vksApplicationApp.societyNpaSetting.home.notFound">No Society Npa Settings found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="societyNpaSettings && societyNpaSettings.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="npaClassification">
+            <span jhiTranslate="vksApplicationApp.societyNpaSetting.npaClassification">Npa Classification</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="durationStart">
+            <span jhiTranslate="vksApplicationApp.societyNpaSetting.durationStart">Duration Start</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="durationEnd">
+            <span jhiTranslate="vksApplicationApp.societyNpaSetting.durationEnd">Duration End</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="provision">
+            <span jhiTranslate="vksApplicationApp.societyNpaSetting.provision">Provision</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="year">
+            <span jhiTranslate="vksApplicationApp.societyNpaSetting.year">Year</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="interestRate">
+            <span jhiTranslate="vksApplicationApp.societyNpaSetting.interestRate">Interest Rate</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="vksApplicationApp.societyNpaSetting.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="vksApplicationApp.societyNpaSetting.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="vksApplicationApp.societyNpaSetting.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdOn">
+            <span jhiTranslate="vksApplicationApp.societyNpaSetting.createdOn">Created On</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isDeleted">
+            <span jhiTranslate="vksApplicationApp.societyNpaSetting.isDeleted">Is Deleted</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <span jhiTranslate="vksApplicationApp.societyNpaSetting.freeField1">Free Field 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField2">
+            <span jhiTranslate="vksApplicationApp.societyNpaSetting.freeField2">Free Field 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField3">
+            <span jhiTranslate="vksApplicationApp.societyNpaSetting.freeField3">Free Field 3</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="society.id">
+            <span jhiTranslate="vksApplicationApp.societyNpaSetting.society">Society</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let societyNpaSetting of societyNpaSettings; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/society-npa-setting', societyNpaSetting.id, 'view']">{{ societyNpaSetting.id }}</a>
+          </td>
+          <td jhiTranslate="{{ 'vksApplicationApp.NpaClassification.' + societyNpaSetting.npaClassification }}">
+            {{ societyNpaSetting.npaClassification }}
+          </td>
+          <td>{{ societyNpaSetting.durationStart }}</td>
+          <td>{{ societyNpaSetting.durationEnd }}</td>
+          <td>{{ societyNpaSetting.provision }}</td>
+          <td>{{ societyNpaSetting.year }}</td>
+          <td>{{ societyNpaSetting.interestRate }}</td>
+          <td>{{ societyNpaSetting.lastModified | formatMediumDatetime }}</td>
+          <td>{{ societyNpaSetting.lastModifiedBy }}</td>
+          <td>{{ societyNpaSetting.createdBy }}</td>
+          <td>{{ societyNpaSetting.createdOn | formatMediumDatetime }}</td>
+          <td>{{ societyNpaSetting.isDeleted }}</td>
+          <td>{{ societyNpaSetting.freeField1 }}</td>
+          <td>{{ societyNpaSetting.freeField2 }}</td>
+          <td>{{ societyNpaSetting.freeField3 }}</td>
+          <td>
+            <div *ngIf="societyNpaSetting.society">
+              <a [routerLink]="['/society', societyNpaSetting.society.id, 'view']">{{ societyNpaSetting.society?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/society-npa-setting', societyNpaSetting.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/society-npa-setting', societyNpaSetting.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(societyNpaSetting)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="societyNpaSettings && societyNpaSettings.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

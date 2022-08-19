@@ -1,0 +1,34 @@
+{
+  "vksApplicationApp": {
+    "bankDhoranDetails": {
+      "home": {
+        "title": "Bank Dhoran Details",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Bank Dhoran Details",
+        "createOrEditLabel": "Create or edit a Bank Dhoran Details",
+        "notFound": "No Bank Dhoran Details found"
+      },
+      "created": "A new Bank Dhoran Details is created with identifier {{ param }}",
+      "updated": "A Bank Dhoran Details is updated with identifier {{ param }}",
+      "deleted": "A Bank Dhoran Details is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Bank Dhoran Details {{ id }}?"
+      },
+      "detail": {
+        "title": "Bank Dhoran Details"
+      },
+      "id": "ID",
+      "dhoranName": "Dhoran Name",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "year": "Year",
+      "isActivate": "Is Activate",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "freeField3": "Free Field 3",
+      "society": "Society"
+    }
+  }
+}

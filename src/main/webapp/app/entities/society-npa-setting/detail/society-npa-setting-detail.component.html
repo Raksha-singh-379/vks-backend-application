@@ -1,0 +1,94 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="societyNpaSetting">
+      <h2 data-cy="societyNpaSettingDetailsHeading">
+        <span jhiTranslate="vksApplicationApp.societyNpaSetting.detail.title">Society Npa Setting</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ societyNpaSetting.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyNpaSetting.npaClassification">Npa Classification</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vksApplicationApp.NpaClassification.' + societyNpaSetting.npaClassification }}">{{
+            societyNpaSetting.npaClassification
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyNpaSetting.durationStart">Duration Start</span></dt>
+        <dd>
+          <span>{{ societyNpaSetting.durationStart }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyNpaSetting.durationEnd">Duration End</span></dt>
+        <dd>
+          <span>{{ societyNpaSetting.durationEnd }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyNpaSetting.provision">Provision</span></dt>
+        <dd>
+          <span>{{ societyNpaSetting.provision }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyNpaSetting.year">Year</span></dt>
+        <dd>
+          <span>{{ societyNpaSetting.year }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyNpaSetting.interestRate">Interest Rate</span></dt>
+        <dd>
+          <span>{{ societyNpaSetting.interestRate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyNpaSetting.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ societyNpaSetting.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyNpaSetting.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ societyNpaSetting.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyNpaSetting.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ societyNpaSetting.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyNpaSetting.createdOn">Created On</span></dt>
+        <dd>
+          <span>{{ societyNpaSetting.createdOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyNpaSetting.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ societyNpaSetting.isDeleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyNpaSetting.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ societyNpaSetting.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyNpaSetting.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ societyNpaSetting.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyNpaSetting.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ societyNpaSetting.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyNpaSetting.society">Society</span></dt>
+        <dd>
+          <div *ngIf="societyNpaSetting.society">
+            <a [routerLink]="['/society', societyNpaSetting.society.id, 'view']">{{ societyNpaSetting.society?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/society-npa-setting', societyNpaSetting.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,292 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-loan-demand-heading"
+        data-cy="LoanDemandCreateUpdateHeading"
+        jhiTranslate="vksApplicationApp.loanDemand.home.createOrEditLabel"
+      >
+        Create or edit a Loan Demand
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDemand.loanDemandAmount" for="field_loanDemandAmount"
+            >Loan Demand Amount</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="loanDemandAmount"
+            id="field_loanDemandAmount"
+            data-cy="loanDemandAmount"
+            formControlName="loanDemandAmount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDemand.maxAllowedAmount" for="field_maxAllowedAmount"
+            >Max Allowed Amount</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="maxAllowedAmount"
+            id="field_maxAllowedAmount"
+            data-cy="maxAllowedAmount"
+            formControlName="maxAllowedAmount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDemand.adjustedDemand" for="field_adjustedDemand"
+            >Adjusted Demand</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="adjustedDemand"
+            id="field_adjustedDemand"
+            data-cy="adjustedDemand"
+            formControlName="adjustedDemand"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDemand.annualIncome" for="field_annualIncome">Annual Income</label>
+          <input
+            type="number"
+            class="form-control"
+            name="annualIncome"
+            id="field_annualIncome"
+            data-cy="annualIncome"
+            formControlName="annualIncome"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDemand.costOfInvestment" for="field_costOfInvestment"
+            >Cost Of Investment</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="costOfInvestment"
+            id="field_costOfInvestment"
+            data-cy="costOfInvestment"
+            formControlName="costOfInvestment"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="vksApplicationApp.loanDemand.demandedLandAreaInHector"
+            for="field_demandedLandAreaInHector"
+            >Demanded Land Area In Hector</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="demandedLandAreaInHector"
+            id="field_demandedLandAreaInHector"
+            data-cy="demandedLandAreaInHector"
+            formControlName="demandedLandAreaInHector"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDemand.status" for="field_status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'vksApplicationApp.LoanStatus.null' | translate }}</option>
+            <option *ngFor="let loanStatus of loanStatusValues" [value]="loanStatus">
+              {{ 'vksApplicationApp.LoanStatus.' + loanStatus | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDemand.seasonOfCropLoan" for="field_seasonOfCropLoan"
+            >Season Of Crop Loan</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="seasonOfCropLoan"
+            id="field_seasonOfCropLoan"
+            data-cy="seasonOfCropLoan"
+            formControlName="seasonOfCropLoan"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDemand.year" for="field_year">Year</label>
+          <input type="text" class="form-control" name="year" id="field_year" data-cy="year" formControlName="year" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDemand.lastModified" for="field_lastModified">Last Modified</label>
+          <div class="d-flex">
+            <input
+              id="field_lastModified"
+              data-cy="lastModified"
+              type="datetime-local"
+              class="form-control"
+              name="lastModified"
+              formControlName="lastModified"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDemand.lastModifiedBy" for="field_lastModifiedBy"
+            >Last Modified By</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDemand.freeField1" for="field_freeField1">Free Field 1</label>
+          <input
+            type="text"
+            class="form-control"
+            name="freeField1"
+            id="field_freeField1"
+            data-cy="freeField1"
+            formControlName="freeField1"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDemand.freeField2" for="field_freeField2">Free Field 2</label>
+          <input
+            type="text"
+            class="form-control"
+            name="freeField2"
+            id="field_freeField2"
+            data-cy="freeField2"
+            formControlName="freeField2"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDemand.freeField3" for="field_freeField3">Free Field 3</label>
+          <input
+            type="text"
+            class="form-control"
+            name="freeField3"
+            id="field_freeField3"
+            data-cy="freeField3"
+            formControlName="freeField3"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDemand.member" for="field_member">Member</label>
+          <select
+            class="form-control"
+            id="field_member"
+            data-cy="member"
+            name="member"
+            formControlName="member"
+            [compareWith]="compareMember"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="memberOption" *ngFor="let memberOption of membersSharedCollection">{{ memberOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDemand.societyLoanProduct" for="field_societyLoanProduct"
+            >Society Loan Product</label
+          >
+          <select
+            class="form-control"
+            id="field_societyLoanProduct"
+            data-cy="societyLoanProduct"
+            name="societyLoanProduct"
+            formControlName="societyLoanProduct"
+            [compareWith]="compareSocietyLoanProduct"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="societyLoanProductOption" *ngFor="let societyLoanProductOption of societyLoanProductsSharedCollection">
+              {{ societyLoanProductOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDemand.memberLandAssets" for="field_memberLandAssets"
+            >Member Land Assets</label
+          >
+          <select
+            class="form-control"
+            id="field_memberLandAssets"
+            data-cy="memberLandAssets"
+            name="memberLandAssets"
+            formControlName="memberLandAssets"
+            [compareWith]="compareMemberLandAssets"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="memberLandAssetsOption" *ngFor="let memberLandAssetsOption of memberLandAssetsSharedCollection">
+              {{ memberLandAssetsOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanDemand.societyCropRegistration" for="field_societyCropRegistration"
+            >Society Crop Registration</label
+          >
+          <select
+            class="form-control"
+            id="field_societyCropRegistration"
+            data-cy="societyCropRegistration"
+            name="societyCropRegistration"
+            formControlName="societyCropRegistration"
+            [compareWith]="compareSocietyCropRegistration"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="societyCropRegistrationOption"
+              *ngFor="let societyCropRegistrationOption of societyCropRegistrationsSharedCollection"
+            >
+              {{ societyCropRegistrationOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

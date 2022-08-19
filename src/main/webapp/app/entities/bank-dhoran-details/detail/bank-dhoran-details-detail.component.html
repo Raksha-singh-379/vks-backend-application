@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="bankDhoranDetails">
+      <h2 data-cy="bankDhoranDetailsDetailsHeading">
+        <span jhiTranslate="vksApplicationApp.bankDhoranDetails.detail.title">Bank Dhoran Details</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ bankDhoranDetails.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.bankDhoranDetails.dhoranName">Dhoran Name</span></dt>
+        <dd>
+          <span>{{ bankDhoranDetails.dhoranName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.bankDhoranDetails.startDate">Start Date</span></dt>
+        <dd>
+          <span>{{ bankDhoranDetails.startDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.bankDhoranDetails.endDate">End Date</span></dt>
+        <dd>
+          <span>{{ bankDhoranDetails.endDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.bankDhoranDetails.year">Year</span></dt>
+        <dd>
+          <span>{{ bankDhoranDetails.year }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.bankDhoranDetails.isActivate">Is Activate</span></dt>
+        <dd>
+          <span>{{ bankDhoranDetails.isActivate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.bankDhoranDetails.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ bankDhoranDetails.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.bankDhoranDetails.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ bankDhoranDetails.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.bankDhoranDetails.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ bankDhoranDetails.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.bankDhoranDetails.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ bankDhoranDetails.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.bankDhoranDetails.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ bankDhoranDetails.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.bankDhoranDetails.society">Society</span></dt>
+        <dd>
+          <div *ngIf="bankDhoranDetails.society">
+            <a [routerLink]="['/society', bankDhoranDetails.society.id, 'view']">{{ bankDhoranDetails.society?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/bank-dhoran-details', bankDhoranDetails.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

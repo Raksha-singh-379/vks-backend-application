@@ -1,0 +1,176 @@
+<div>
+  <h2 id="page-heading" data-cy="AmortizationDetailsHeading">
+    <span jhiTranslate="vksApplicationApp.amortizationDetails.home.title">Amortization Details</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.amortizationDetails.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-amortization-details"
+        [routerLink]="['/amortization-details/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.amortizationDetails.home.createLabel"> Create a new Amortization Details </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters" (filterChange)="navigateToWithComponentValues()"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="amortizationDetails?.length === 0">
+    <span jhiTranslate="vksApplicationApp.amortizationDetails.home.notFound">No Amortization Details found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="amortizationDetails && amortizationDetails.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="installmentDate">
+            <span jhiTranslate="vksApplicationApp.amortizationDetails.installmentDate">Installment Date</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="totalOutstandingPrincipleAmt">
+            <span jhiTranslate="vksApplicationApp.amortizationDetails.totalOutstandingPrincipleAmt">Total Outstanding Principle Amt</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="totalOutstandngInterestAmt">
+            <span jhiTranslate="vksApplicationApp.amortizationDetails.totalOutstandngInterestAmt">Total Outstandng Interest Amt</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="paidPrincipleAmt">
+            <span jhiTranslate="vksApplicationApp.amortizationDetails.paidPrincipleAmt">Paid Principle Amt</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="paidInterestAmt">
+            <span jhiTranslate="vksApplicationApp.amortizationDetails.paidInterestAmt">Paid Interest Amt</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="balPrincipleAmt">
+            <span jhiTranslate="vksApplicationApp.amortizationDetails.balPrincipleAmt">Bal Principle Amt</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="balInterestAmt">
+            <span jhiTranslate="vksApplicationApp.amortizationDetails.balInterestAmt">Bal Interest Amt</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="loanEmiAmt">
+            <span jhiTranslate="vksApplicationApp.amortizationDetails.loanEmiAmt">Loan Emi Amt</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="principleEMI">
+            <span jhiTranslate="vksApplicationApp.amortizationDetails.principleEMI">Principle EMI</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="paymentStatus">
+            <span jhiTranslate="vksApplicationApp.amortizationDetails.paymentStatus">Payment Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="year">
+            <span jhiTranslate="vksApplicationApp.amortizationDetails.year">Year</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="vksApplicationApp.amortizationDetails.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="vksApplicationApp.amortizationDetails.lastModifiedBy">Last Modified By</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <span jhiTranslate="vksApplicationApp.amortizationDetails.freeField1">Free Field 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField2">
+            <span jhiTranslate="vksApplicationApp.amortizationDetails.freeField2">Free Field 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField3">
+            <span jhiTranslate="vksApplicationApp.amortizationDetails.freeField3">Free Field 3</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="loanDetails.id">
+            <span jhiTranslate="vksApplicationApp.amortizationDetails.loanDetails">Loan Details</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let amortizationDetails of amortizationDetails; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/amortization-details', amortizationDetails.id, 'view']">{{ amortizationDetails.id }}</a>
+          </td>
+          <td>{{ amortizationDetails.installmentDate | formatMediumDatetime }}</td>
+          <td>{{ amortizationDetails.totalOutstandingPrincipleAmt }}</td>
+          <td>{{ amortizationDetails.totalOutstandngInterestAmt }}</td>
+          <td>{{ amortizationDetails.paidPrincipleAmt }}</td>
+          <td>{{ amortizationDetails.paidInterestAmt }}</td>
+          <td>{{ amortizationDetails.balPrincipleAmt }}</td>
+          <td>{{ amortizationDetails.balInterestAmt }}</td>
+          <td>{{ amortizationDetails.loanEmiAmt }}</td>
+          <td>{{ amortizationDetails.principleEMI }}</td>
+          <td>{{ amortizationDetails.paymentStatus }}</td>
+          <td>{{ amortizationDetails.year }}</td>
+          <td>{{ amortizationDetails.lastModified | formatMediumDatetime }}</td>
+          <td>{{ amortizationDetails.lastModifiedBy }}</td>
+          <td>{{ amortizationDetails.freeField1 }}</td>
+          <td>{{ amortizationDetails.freeField2 }}</td>
+          <td>{{ amortizationDetails.freeField3 }}</td>
+          <td>
+            <div *ngIf="amortizationDetails.loanDetails">
+              <a [routerLink]="['/loan-details', amortizationDetails.loanDetails.id, 'view']">{{ amortizationDetails.loanDetails?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/amortization-details', amortizationDetails.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/amortization-details', amortizationDetails.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(amortizationDetails)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="amortizationDetails && amortizationDetails.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

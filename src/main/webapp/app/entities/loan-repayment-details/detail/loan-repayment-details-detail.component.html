@@ -1,0 +1,102 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="loanRepaymentDetails">
+      <h2 data-cy="loanRepaymentDetailsDetailsHeading">
+        <span jhiTranslate="vksApplicationApp.loanRepaymentDetails.detail.title">Loan Repayment Details</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ loanRepaymentDetails.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanRepaymentDetails.repaymentDate">Repayment Date</span></dt>
+        <dd>
+          <span>{{ loanRepaymentDetails.repaymentDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanRepaymentDetails.totalRepaymentAmt">Total Repayment Amt</span></dt>
+        <dd>
+          <span>{{ loanRepaymentDetails.totalRepaymentAmt }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanRepaymentDetails.installmentNumber">Installment Number</span></dt>
+        <dd>
+          <span>{{ loanRepaymentDetails.installmentNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanRepaymentDetails.principlePaidAmt">Principle Paid Amt</span></dt>
+        <dd>
+          <span>{{ loanRepaymentDetails.principlePaidAmt }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanRepaymentDetails.interestPaidAmt">Interest Paid Amt</span></dt>
+        <dd>
+          <span>{{ loanRepaymentDetails.interestPaidAmt }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanRepaymentDetails.surChargeAmt">Sur Charge Amt</span></dt>
+        <dd>
+          <span>{{ loanRepaymentDetails.surChargeAmt }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanRepaymentDetails.overDueAmt">Over Due Amt</span></dt>
+        <dd>
+          <span>{{ loanRepaymentDetails.overDueAmt }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanRepaymentDetails.balanceInterestAmt">Balance Interest Amt</span></dt>
+        <dd>
+          <span>{{ loanRepaymentDetails.balanceInterestAmt }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanRepaymentDetails.balancePrincipleAmt">Balance Principle Amt</span></dt>
+        <dd>
+          <span>{{ loanRepaymentDetails.balancePrincipleAmt }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanRepaymentDetails.paymentMode">Payment Mode</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vksApplicationApp.PaymentMode.' + loanRepaymentDetails.paymentMode }}">{{
+            loanRepaymentDetails.paymentMode
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanRepaymentDetails.foreClosureChargeAmt">Fore Closure Charge Amt</span></dt>
+        <dd>
+          <span>{{ loanRepaymentDetails.foreClosureChargeAmt }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanRepaymentDetails.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ loanRepaymentDetails.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanRepaymentDetails.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ loanRepaymentDetails.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanRepaymentDetails.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ loanRepaymentDetails.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanRepaymentDetails.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ loanRepaymentDetails.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanRepaymentDetails.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ loanRepaymentDetails.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanRepaymentDetails.loanDetails">Loan Details</span></dt>
+        <dd>
+          <div *ngIf="loanRepaymentDetails.loanDetails">
+            <a [routerLink]="['/loan-details', loanRepaymentDetails.loanDetails.id, 'view']">{{ loanRepaymentDetails.loanDetails?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/loan-repayment-details', loanRepaymentDetails.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+{
+  "applications": "*",
+  "changelogDate": "20220819050816",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "account_mapping",
+  "fields": [
+    {
+      "fieldName": "type",
+      "fieldType": "MappingType",
+      "fieldValues": "HEADOFFICE (HeadOffice),SHARE (Share),MEMBER (Member),LOAN (Loan),SUNDRY (Sundry),PURCHASE (Purchase),SALES (Sales),LOANPRODUCT (LoanProduct),DEPOSIT (Deposit),BORROWING (Borrowing),INVESTMENT (Investment)"
+    },
+    {
+      "fieldName": "mappingName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ledgerAccHeadCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ledgerAccountId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdOn",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "isDeleted",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "freeField1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField3",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "AccountMapping",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "ledgerAccounts",
+      "relationshipName": "accountMapping",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

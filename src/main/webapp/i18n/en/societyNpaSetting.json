@@ -1,0 +1,38 @@
+{
+  "vksApplicationApp": {
+    "societyNpaSetting": {
+      "home": {
+        "title": "Society Npa Settings",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Society Npa Setting",
+        "createOrEditLabel": "Create or edit a Society Npa Setting",
+        "notFound": "No Society Npa Settings found"
+      },
+      "created": "A new Society Npa Setting is created with identifier {{ param }}",
+      "updated": "A Society Npa Setting is updated with identifier {{ param }}",
+      "deleted": "A Society Npa Setting is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Society Npa Setting {{ id }}?"
+      },
+      "detail": {
+        "title": "Society Npa Setting"
+      },
+      "id": "ID",
+      "npaClassification": "Npa Classification",
+      "durationStart": "Duration Start",
+      "durationEnd": "Duration End",
+      "provision": "Provision",
+      "year": "Year",
+      "interestRate": "Interest Rate",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "createdBy": "Created By",
+      "createdOn": "Created On",
+      "isDeleted": "Is Deleted",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "freeField3": "Free Field 3",
+      "society": "Society"
+    }
+  }
+}

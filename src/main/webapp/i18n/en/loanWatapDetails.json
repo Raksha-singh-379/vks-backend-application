@@ -1,0 +1,37 @@
+{
+  "vksApplicationApp": {
+    "loanWatapDetails": {
+      "home": {
+        "title": "Loan Watap Details",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Loan Watap Details",
+        "createOrEditLabel": "Create or edit a Loan Watap Details",
+        "notFound": "No Loan Watap Details found"
+      },
+      "created": "A new Loan Watap Details is created with identifier {{ param }}",
+      "updated": "A Loan Watap Details is updated with identifier {{ param }}",
+      "deleted": "A Loan Watap Details is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Loan Watap Details {{ id }}?"
+      },
+      "detail": {
+        "title": "Loan Watap Details"
+      },
+      "id": "ID",
+      "loanWatapDate": "Loan Watap Date",
+      "cropLandInHector": "Crop Land In Hector",
+      "slotNumber": "Slot Number",
+      "loanAmount": "Loan Amount",
+      "season": "Season",
+      "status": "Status",
+      "year": "Year",
+      "isDeleted": "Is Deleted",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "freeField3": "Free Field 3",
+      "loanDemand": "Loan Demand"
+    }
+  }
+}

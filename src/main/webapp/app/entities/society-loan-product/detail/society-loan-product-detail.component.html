@@ -1,0 +1,168 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="societyLoanProduct">
+      <h2 data-cy="societyLoanProductDetailsHeading">
+        <span jhiTranslate="vksApplicationApp.societyLoanProduct.detail.title">Society Loan Product</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.productName">Product Name</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.productName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.accHeadCode">Acc Head Code</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.accHeadCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.borrowingInterestRate">Borrowing Interest Rate</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.borrowingInterestRate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.duration">Duration</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.duration }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.interestRate">Interest Rate</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.interestRate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.lastDateOfRepayment">Last Date Of Repayment</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.lastDateOfRepayment | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.loanNumber">Loan Number</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.loanNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.maxLoanAmt">Max Loan Amt</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.maxLoanAmt }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.noOfDisbursement">No Of Disbursement</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.noOfDisbursement }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.noOfInstallment">No Of Installment</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.noOfInstallment }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.parentAccHeadCode">Parent Acc Head Code</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.parentAccHeadCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.parentAccHeadId">Parent Acc Head Id</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.parentAccHeadId }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.penaltyInterest">Penalty Interest</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.penaltyInterest }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.productType">Product Type</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.productType }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.resolutionDate">Resolution Date</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.resolutionDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.resolutionNo">Resolution No</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.resolutionNo }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.status">Status</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.surcharge">Surcharge</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.surcharge }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.unitSize">Unit Size</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.unitSize }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.validFrom">Valid From</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.validFrom | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.validTo">Valid To</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.validTo | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.createdOn">Created On</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.createdOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.isActivate">Is Activate</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.isActivate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ societyLoanProduct.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.society">Society</span></dt>
+        <dd>
+          <div *ngIf="societyLoanProduct.society">
+            <a [routerLink]="['/society', societyLoanProduct.society.id, 'view']">{{ societyLoanProduct.society?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.bankDhoranDetails">Bank Dhoran Details</span></dt>
+        <dd>
+          <div *ngIf="societyLoanProduct.bankDhoranDetails">
+            <a [routerLink]="['/bank-dhoran-details', societyLoanProduct.bankDhoranDetails.id, 'view']">{{
+              societyLoanProduct.bankDhoranDetails?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyLoanProduct.gRInterestDetails">G R Interest Details</span></dt>
+        <dd>
+          <div *ngIf="societyLoanProduct.gRInterestDetails">
+            <a [routerLink]="['/gr-interest-details', societyLoanProduct.gRInterestDetails.id, 'view']">{{
+              societyLoanProduct.gRInterestDetails?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/society-loan-product', societyLoanProduct.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

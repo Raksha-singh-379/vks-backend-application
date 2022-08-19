@@ -1,0 +1,84 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="loanDisbursementDetails">
+      <h2 data-cy="loanDisbursementDetailsDetailsHeading">
+        <span jhiTranslate="vksApplicationApp.loanDisbursementDetails.detail.title">Loan Disbursement Details</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ loanDisbursementDetails.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDisbursementDetails.disbursementDate">Disbursement Date</span></dt>
+        <dd>
+          <span>{{ loanDisbursementDetails.disbursementDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDisbursementDetails.disbursementAmount">Disbursement Amount</span></dt>
+        <dd>
+          <span>{{ loanDisbursementDetails.disbursementAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDisbursementDetails.disbursementNumber">Disbursement Number</span></dt>
+        <dd>
+          <span>{{ loanDisbursementDetails.disbursementNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDisbursementDetails.disbursementStatus">Disbursement Status</span></dt>
+        <dd>
+          <span>{{ loanDisbursementDetails.disbursementStatus }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDisbursementDetails.paymentMode">Payment Mode</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vksApplicationApp.PaymentMode.' + loanDisbursementDetails.paymentMode }}">{{
+            loanDisbursementDetails.paymentMode
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDisbursementDetails.type">Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vksApplicationApp.LoanType.' + loanDisbursementDetails.type }}">{{ loanDisbursementDetails.type }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDisbursementDetails.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ loanDisbursementDetails.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDisbursementDetails.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ loanDisbursementDetails.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDisbursementDetails.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ loanDisbursementDetails.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDisbursementDetails.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ loanDisbursementDetails.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDisbursementDetails.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ loanDisbursementDetails.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDisbursementDetails.loanDetails">Loan Details</span></dt>
+        <dd>
+          <div *ngIf="loanDisbursementDetails.loanDetails">
+            <a [routerLink]="['/loan-details', loanDisbursementDetails.loanDetails.id, 'view']">{{
+              loanDisbursementDetails.loanDetails?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/loan-disbursement-details', loanDisbursementDetails.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

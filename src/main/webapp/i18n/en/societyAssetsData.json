@@ -1,0 +1,40 @@
+{
+  "vksApplicationApp": {
+    "societyAssetsData": {
+      "home": {
+        "title": "Society Assets Data",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Society Assets Data",
+        "createOrEditLabel": "Create or edit a Society Assets Data",
+        "notFound": "No Society Assets Data found"
+      },
+      "created": "A new Society Assets Data is created with identifier {{ param }}",
+      "updated": "A Society Assets Data is updated with identifier {{ param }}",
+      "deleted": "A Society Assets Data is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Society Assets Data {{ id }}?"
+      },
+      "detail": {
+        "title": "Society Assets Data"
+      },
+      "id": "ID",
+      "amount": "Amount",
+      "balanceQuantity": "Balance Quantity",
+      "balanceValue": "Balance Value",
+      "billNo": "Bill No",
+      "mode": "Mode",
+      "cost": "Cost",
+      "transactionType": "Transaction Type",
+      "transactionDate": "Transaction Date",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "createdBy": "Created By",
+      "createdOn": "Created On",
+      "isDeleted": "Is Deleted",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "freeField3": "Free Field 3",
+      "societyAssets": "Society Assets"
+    }
+  }
+}

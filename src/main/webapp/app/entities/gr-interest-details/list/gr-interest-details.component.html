@@ -1,0 +1,215 @@
+<div>
+  <h2 id="page-heading" data-cy="GRInterestDetailsHeading">
+    <span jhiTranslate="vksApplicationApp.gRInterestDetails.home.title">GR Interest Details</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.gRInterestDetails.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-gr-interest-details"
+        [routerLink]="['/gr-interest-details/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.gRInterestDetails.home.createLabel"> Create a new GR Interest Details </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters" (filterChange)="navigateToWithComponentValues()"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="gRInterestDetails?.length === 0">
+    <span jhiTranslate="vksApplicationApp.gRInterestDetails.home.notFound">No GR Interest Details found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="gRInterestDetails && gRInterestDetails.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="loanGrName">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.loanGrName">Loan Gr Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="criteria">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.criteria">Criteria</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="productType">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.productType">Product Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isActivated">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.isActivated">Is Activated</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="borrowingInterestRate">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.borrowingInterestRate">Borrowing Interest Rate</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="interestOnLoan">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.interestOnLoan">Interest On Loan</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="penaltyInterest">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.penaltyInterest">Penalty Interest</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="surcharge">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.surcharge">Surcharge</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="loanDuration">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.loanDuration">Loan Duration</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="numberOFInstallment">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.numberOFInstallment">Number OF Installment</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="extendedInterstRate">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.extendedInterstRate">Extended Interst Rate</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="centralGovSubsidyInterest">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.centralGovSubsidyInterest">Central Gov Subsidy Interest</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="distBankSubsidyInterest">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.distBankSubsidyInterest">Dist Bank Subsidy Interest</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="borrowerInterest">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.borrowerInterest">Borrower Interest</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="stateGovSubsidyInterest">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.stateGovSubsidyInterest">State Gov Subsidy Interest</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="year">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.year">Year</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="startDate">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.startDate">Start Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="endDate">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.endDate">End Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdOn">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.createdOn">Created On</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isDeleted">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.isDeleted">Is Deleted</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.freeField1">Free Field 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField2">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.freeField2">Free Field 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField3">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.freeField3">Free Field 3</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="society.id">
+            <span jhiTranslate="vksApplicationApp.gRInterestDetails.society">Society</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let gRInterestDetails of gRInterestDetails; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/gr-interest-details', gRInterestDetails.id, 'view']">{{ gRInterestDetails.id }}</a>
+          </td>
+          <td>{{ gRInterestDetails.loanGrName }}</td>
+          <td>{{ gRInterestDetails.criteria }}</td>
+          <td>{{ gRInterestDetails.productType }}</td>
+          <td>{{ gRInterestDetails.isActivated }}</td>
+          <td>{{ gRInterestDetails.borrowingInterestRate }}</td>
+          <td>{{ gRInterestDetails.interestOnLoan }}</td>
+          <td>{{ gRInterestDetails.penaltyInterest }}</td>
+          <td>{{ gRInterestDetails.surcharge }}</td>
+          <td>{{ gRInterestDetails.loanDuration }}</td>
+          <td>{{ gRInterestDetails.numberOFInstallment }}</td>
+          <td>{{ gRInterestDetails.extendedInterstRate }}</td>
+          <td>{{ gRInterestDetails.centralGovSubsidyInterest }}</td>
+          <td>{{ gRInterestDetails.distBankSubsidyInterest }}</td>
+          <td>{{ gRInterestDetails.borrowerInterest }}</td>
+          <td>{{ gRInterestDetails.stateGovSubsidyInterest }}</td>
+          <td>{{ gRInterestDetails.year }}</td>
+          <td>{{ gRInterestDetails.startDate | formatMediumDatetime }}</td>
+          <td>{{ gRInterestDetails.endDate | formatMediumDatetime }}</td>
+          <td>{{ gRInterestDetails.lastModified | formatMediumDatetime }}</td>
+          <td>{{ gRInterestDetails.lastModifiedBy }}</td>
+          <td>{{ gRInterestDetails.createdBy }}</td>
+          <td>{{ gRInterestDetails.createdOn | formatMediumDatetime }}</td>
+          <td>{{ gRInterestDetails.isDeleted }}</td>
+          <td>{{ gRInterestDetails.freeField1 }}</td>
+          <td>{{ gRInterestDetails.freeField2 }}</td>
+          <td>{{ gRInterestDetails.freeField3 }}</td>
+          <td>
+            <div *ngIf="gRInterestDetails.society">
+              <a [routerLink]="['/society', gRInterestDetails.society.id, 'view']">{{ gRInterestDetails.society?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/gr-interest-details', gRInterestDetails.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/gr-interest-details', gRInterestDetails.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(gRInterestDetails)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="gRInterestDetails && gRInterestDetails.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

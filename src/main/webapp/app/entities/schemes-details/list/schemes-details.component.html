@@ -1,0 +1,160 @@
+<div>
+  <h2 id="page-heading" data-cy="SchemesDetailsHeading">
+    <span jhiTranslate="vksApplicationApp.schemesDetails.home.title">Schemes Details</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.schemesDetails.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-schemes-details"
+        [routerLink]="['/schemes-details/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.schemesDetails.home.createLabel"> Create a new Schemes Details </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters" (filterChange)="navigateToWithComponentValues()"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="schemesDetails?.length === 0">
+    <span jhiTranslate="vksApplicationApp.schemesDetails.home.notFound">No Schemes Details found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="schemesDetails && schemesDetails.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="fdDurationDays">
+            <span jhiTranslate="vksApplicationApp.schemesDetails.fdDurationDays">Fd Duration Days</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="interest">
+            <span jhiTranslate="vksApplicationApp.schemesDetails.interest">Interest</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lockInPeriod">
+            <span jhiTranslate="vksApplicationApp.schemesDetails.lockInPeriod">Lock In Period</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="schemeName">
+            <span jhiTranslate="vksApplicationApp.schemesDetails.schemeName">Scheme Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="rdDurationMonths">
+            <span jhiTranslate="vksApplicationApp.schemesDetails.rdDurationMonths">Rd Duration Months</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="reinvestInterest">
+            <span jhiTranslate="vksApplicationApp.schemesDetails.reinvestInterest">Reinvest Interest</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="vksApplicationApp.schemesDetails.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="vksApplicationApp.schemesDetails.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="vksApplicationApp.schemesDetails.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdOn">
+            <span jhiTranslate="vksApplicationApp.schemesDetails.createdOn">Created On</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isDeleted">
+            <span jhiTranslate="vksApplicationApp.schemesDetails.isDeleted">Is Deleted</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <span jhiTranslate="vksApplicationApp.schemesDetails.freeField1">Free Field 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField2">
+            <span jhiTranslate="vksApplicationApp.schemesDetails.freeField2">Free Field 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField3">
+            <span jhiTranslate="vksApplicationApp.schemesDetails.freeField3">Free Field 3</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="society.id">
+            <span jhiTranslate="vksApplicationApp.schemesDetails.society">Society</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let schemesDetails of schemesDetails; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/schemes-details', schemesDetails.id, 'view']">{{ schemesDetails.id }}</a>
+          </td>
+          <td>{{ schemesDetails.fdDurationDays }}</td>
+          <td>{{ schemesDetails.interest }}</td>
+          <td>{{ schemesDetails.lockInPeriod }}</td>
+          <td>{{ schemesDetails.schemeName }}</td>
+          <td>{{ schemesDetails.rdDurationMonths }}</td>
+          <td>{{ schemesDetails.reinvestInterest }}</td>
+          <td>{{ schemesDetails.lastModified | formatMediumDatetime }}</td>
+          <td>{{ schemesDetails.lastModifiedBy }}</td>
+          <td>{{ schemesDetails.createdBy }}</td>
+          <td>{{ schemesDetails.createdOn | formatMediumDatetime }}</td>
+          <td>{{ schemesDetails.isDeleted }}</td>
+          <td>{{ schemesDetails.freeField1 }}</td>
+          <td>{{ schemesDetails.freeField2 }}</td>
+          <td>{{ schemesDetails.freeField3 }}</td>
+          <td>
+            <div *ngIf="schemesDetails.society">
+              <a [routerLink]="['/society', schemesDetails.society.id, 'view']">{{ schemesDetails.society?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/schemes-details', schemesDetails.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/schemes-details', schemesDetails.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(schemesDetails)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="schemesDetails && schemesDetails.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

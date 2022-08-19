@@ -1,0 +1,100 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="societyBanksDetails">
+      <h2 data-cy="societyBanksDetailsDetailsHeading">
+        <span jhiTranslate="vksApplicationApp.societyBanksDetails.detail.title">Society Banks Details</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ societyBanksDetails.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyBanksDetails.bankName">Bank Name</span></dt>
+        <dd>
+          <span>{{ societyBanksDetails.bankName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyBanksDetails.ifsccode">Ifsccode</span></dt>
+        <dd>
+          <span>{{ societyBanksDetails.ifsccode }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyBanksDetails.branchName">Branch Name</span></dt>
+        <dd>
+          <span>{{ societyBanksDetails.branchName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyBanksDetails.accountNumber">Account Number</span></dt>
+        <dd>
+          <span>{{ societyBanksDetails.accountNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyBanksDetails.isActive">Is Active</span></dt>
+        <dd>
+          <span>{{ societyBanksDetails.isActive }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyBanksDetails.accountType">Account Type</span></dt>
+        <dd>
+          <span>{{ societyBanksDetails.accountType }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyBanksDetails.accHeadCode">Acc Head Code</span></dt>
+        <dd>
+          <span>{{ societyBanksDetails.accHeadCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyBanksDetails.parentAccHeadCode">Parent Acc Head Code</span></dt>
+        <dd>
+          <span>{{ societyBanksDetails.parentAccHeadCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyBanksDetails.accountName">Account Name</span></dt>
+        <dd>
+          <span>{{ societyBanksDetails.accountName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyBanksDetails.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ societyBanksDetails.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyBanksDetails.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ societyBanksDetails.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyBanksDetails.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ societyBanksDetails.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyBanksDetails.createdOn">Created On</span></dt>
+        <dd>
+          <span>{{ societyBanksDetails.createdOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyBanksDetails.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ societyBanksDetails.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyBanksDetails.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ societyBanksDetails.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyBanksDetails.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ societyBanksDetails.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyBanksDetails.society">Society</span></dt>
+        <dd>
+          <div *ngIf="societyBanksDetails.society">
+            <a [routerLink]="['/society', societyBanksDetails.society.id, 'view']">{{ societyBanksDetails.society?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/society-banks-details', societyBanksDetails.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
