@@ -1,0 +1,116 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="ledgerAccounts">
+      <h2 data-cy="ledgerAccountsDetailsHeading">
+        <span jhiTranslate="vksApplicationApp.ledgerAccounts.detail.title">Ledger Accounts</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ ledgerAccounts.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.ledgerAccounts.accountNo">Account No</span></dt>
+        <dd>
+          <span>{{ ledgerAccounts.accountNo }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.ledgerAccounts.accountName">Account Name</span></dt>
+        <dd>
+          <span>{{ ledgerAccounts.accountName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.ledgerAccounts.accBalance">Acc Balance</span></dt>
+        <dd>
+          <span>{{ ledgerAccounts.accBalance }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.ledgerAccounts.accHeadCode">Acc Head Code</span></dt>
+        <dd>
+          <span>{{ ledgerAccounts.accHeadCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.ledgerAccounts.ledgerCode">Ledger Code</span></dt>
+        <dd>
+          <span>{{ ledgerAccounts.ledgerCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.ledgerAccounts.appCode">App Code</span></dt>
+        <dd>
+          <span>{{ ledgerAccounts.appCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.ledgerAccounts.ledgerClassification">Ledger Classification</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vksApplicationApp.LedgerClassification.' + ledgerAccounts.ledgerClassification }}">{{
+            ledgerAccounts.ledgerClassification
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.ledgerAccounts.category">Category</span></dt>
+        <dd>
+          <span>{{ ledgerAccounts.category }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.ledgerAccounts.level">Level</span></dt>
+        <dd>
+          <span>{{ ledgerAccounts.level }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.ledgerAccounts.year">Year</span></dt>
+        <dd>
+          <span>{{ ledgerAccounts.year }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.ledgerAccounts.accountType">Account Type</span></dt>
+        <dd>
+          <span>{{ ledgerAccounts.accountType }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.ledgerAccounts.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ ledgerAccounts.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.ledgerAccounts.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ ledgerAccounts.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.ledgerAccounts.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ ledgerAccounts.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.ledgerAccounts.createdOn">Created On</span></dt>
+        <dd>
+          <span>{{ ledgerAccounts.createdOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.ledgerAccounts.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ ledgerAccounts.isDeleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.ledgerAccounts.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ ledgerAccounts.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.ledgerAccounts.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ ledgerAccounts.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.ledgerAccounts.society">Society</span></dt>
+        <dd>
+          <div *ngIf="ledgerAccounts.society">
+            <a [routerLink]="['/society', ledgerAccounts.society.id, 'view']">{{ ledgerAccounts.society?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.ledgerAccounts.ledgerAccounts">Ledger Accounts</span></dt>
+        <dd>
+          <div *ngIf="ledgerAccounts.ledgerAccounts">
+            <a [routerLink]="['/ledger-accounts', ledgerAccounts.ledgerAccounts.id, 'view']">{{ ledgerAccounts.ledgerAccounts?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/ledger-accounts', ledgerAccounts.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

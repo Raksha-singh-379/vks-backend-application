@@ -1,0 +1,170 @@
+<div>
+  <h2 id="page-heading" data-cy="SocietyAssetsDataHeading">
+    <span jhiTranslate="vksApplicationApp.societyAssetsData.home.title">Society Assets Data</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.societyAssetsData.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-society-assets-data"
+        [routerLink]="['/society-assets-data/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.societyAssetsData.home.createLabel"> Create a new Society Assets Data </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters" (filterChange)="navigateToWithComponentValues()"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="societyAssetsData?.length === 0">
+    <span jhiTranslate="vksApplicationApp.societyAssetsData.home.notFound">No Society Assets Data found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="societyAssetsData && societyAssetsData.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="amount">
+            <span jhiTranslate="vksApplicationApp.societyAssetsData.amount">Amount</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="balanceQuantity">
+            <span jhiTranslate="vksApplicationApp.societyAssetsData.balanceQuantity">Balance Quantity</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="balanceValue">
+            <span jhiTranslate="vksApplicationApp.societyAssetsData.balanceValue">Balance Value</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="billNo">
+            <span jhiTranslate="vksApplicationApp.societyAssetsData.billNo">Bill No</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="mode">
+            <span jhiTranslate="vksApplicationApp.societyAssetsData.mode">Mode</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="cost">
+            <span jhiTranslate="vksApplicationApp.societyAssetsData.cost">Cost</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="transactionType">
+            <span jhiTranslate="vksApplicationApp.societyAssetsData.transactionType">Transaction Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="transactionDate">
+            <span jhiTranslate="vksApplicationApp.societyAssetsData.transactionDate">Transaction Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="vksApplicationApp.societyAssetsData.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="vksApplicationApp.societyAssetsData.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="vksApplicationApp.societyAssetsData.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdOn">
+            <span jhiTranslate="vksApplicationApp.societyAssetsData.createdOn">Created On</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isDeleted">
+            <span jhiTranslate="vksApplicationApp.societyAssetsData.isDeleted">Is Deleted</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <span jhiTranslate="vksApplicationApp.societyAssetsData.freeField1">Free Field 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField2">
+            <span jhiTranslate="vksApplicationApp.societyAssetsData.freeField2">Free Field 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField3">
+            <span jhiTranslate="vksApplicationApp.societyAssetsData.freeField3">Free Field 3</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="societyAssets.id">
+            <span jhiTranslate="vksApplicationApp.societyAssetsData.societyAssets">Society Assets</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let societyAssetsData of societyAssetsData; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/society-assets-data', societyAssetsData.id, 'view']">{{ societyAssetsData.id }}</a>
+          </td>
+          <td>{{ societyAssetsData.amount }}</td>
+          <td>{{ societyAssetsData.balanceQuantity }}</td>
+          <td>{{ societyAssetsData.balanceValue }}</td>
+          <td>{{ societyAssetsData.billNo }}</td>
+          <td>{{ societyAssetsData.mode }}</td>
+          <td>{{ societyAssetsData.cost }}</td>
+          <td>{{ societyAssetsData.transactionType }}</td>
+          <td>{{ societyAssetsData.transactionDate | formatMediumDatetime }}</td>
+          <td>{{ societyAssetsData.lastModified | formatMediumDatetime }}</td>
+          <td>{{ societyAssetsData.lastModifiedBy }}</td>
+          <td>{{ societyAssetsData.createdBy }}</td>
+          <td>{{ societyAssetsData.createdOn | formatMediumDatetime }}</td>
+          <td>{{ societyAssetsData.isDeleted }}</td>
+          <td>{{ societyAssetsData.freeField1 }}</td>
+          <td>{{ societyAssetsData.freeField2 }}</td>
+          <td>{{ societyAssetsData.freeField3 }}</td>
+          <td>
+            <div *ngIf="societyAssetsData.societyAssets">
+              <a [routerLink]="['/society-assets', societyAssetsData.societyAssets.id, 'view']">{{
+                societyAssetsData.societyAssets?.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/society-assets-data', societyAssetsData.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/society-assets-data', societyAssetsData.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(societyAssetsData)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="societyAssetsData && societyAssetsData.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

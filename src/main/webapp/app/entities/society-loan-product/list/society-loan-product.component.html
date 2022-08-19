@@ -1,0 +1,249 @@
+<div>
+  <h2 id="page-heading" data-cy="SocietyLoanProductHeading">
+    <span jhiTranslate="vksApplicationApp.societyLoanProduct.home.title">Society Loan Products</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.societyLoanProduct.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-society-loan-product"
+        [routerLink]="['/society-loan-product/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.societyLoanProduct.home.createLabel"> Create a new Society Loan Product </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters" (filterChange)="navigateToWithComponentValues()"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="societyLoanProducts?.length === 0">
+    <span jhiTranslate="vksApplicationApp.societyLoanProduct.home.notFound">No Society Loan Products found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="societyLoanProducts && societyLoanProducts.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="productName">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.productName">Product Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="accHeadCode">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.accHeadCode">Acc Head Code</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="borrowingInterestRate">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.borrowingInterestRate">Borrowing Interest Rate</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="duration">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.duration">Duration</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="interestRate">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.interestRate">Interest Rate</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastDateOfRepayment">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.lastDateOfRepayment">Last Date Of Repayment</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="loanNumber">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.loanNumber">Loan Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="maxLoanAmt">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.maxLoanAmt">Max Loan Amt</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="noOfDisbursement">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.noOfDisbursement">No Of Disbursement</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="noOfInstallment">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.noOfInstallment">No Of Installment</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="parentAccHeadCode">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.parentAccHeadCode">Parent Acc Head Code</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="parentAccHeadId">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.parentAccHeadId">Parent Acc Head Id</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="penaltyInterest">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.penaltyInterest">Penalty Interest</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="productType">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.productType">Product Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="resolutionDate">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.resolutionDate">Resolution Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="resolutionNo">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.resolutionNo">Resolution No</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.status">Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="surcharge">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.surcharge">Surcharge</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="unitSize">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.unitSize">Unit Size</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="validFrom">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.validFrom">Valid From</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="validTo">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.validTo">Valid To</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdOn">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.createdOn">Created On</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isActivate">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.isActivate">Is Activate</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.freeField1">Free Field 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField2">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.freeField2">Free Field 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField3">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.freeField3">Free Field 3</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="society.id">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.society">Society</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="bankDhoranDetails.id">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.bankDhoranDetails">Bank Dhoran Details</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="gRInterestDetails.id">
+            <span jhiTranslate="vksApplicationApp.societyLoanProduct.gRInterestDetails">G R Interest Details</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let societyLoanProduct of societyLoanProducts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/society-loan-product', societyLoanProduct.id, 'view']">{{ societyLoanProduct.id }}</a>
+          </td>
+          <td>{{ societyLoanProduct.productName }}</td>
+          <td>{{ societyLoanProduct.accHeadCode }}</td>
+          <td>{{ societyLoanProduct.borrowingInterestRate }}</td>
+          <td>{{ societyLoanProduct.duration }}</td>
+          <td>{{ societyLoanProduct.interestRate }}</td>
+          <td>{{ societyLoanProduct.lastDateOfRepayment | formatMediumDatetime }}</td>
+          <td>{{ societyLoanProduct.loanNumber }}</td>
+          <td>{{ societyLoanProduct.maxLoanAmt }}</td>
+          <td>{{ societyLoanProduct.noOfDisbursement }}</td>
+          <td>{{ societyLoanProduct.noOfInstallment }}</td>
+          <td>{{ societyLoanProduct.parentAccHeadCode }}</td>
+          <td>{{ societyLoanProduct.parentAccHeadId }}</td>
+          <td>{{ societyLoanProduct.penaltyInterest }}</td>
+          <td>{{ societyLoanProduct.productType }}</td>
+          <td>{{ societyLoanProduct.resolutionDate | formatMediumDatetime }}</td>
+          <td>{{ societyLoanProduct.resolutionNo }}</td>
+          <td>{{ societyLoanProduct.status }}</td>
+          <td>{{ societyLoanProduct.surcharge }}</td>
+          <td>{{ societyLoanProduct.unitSize }}</td>
+          <td>{{ societyLoanProduct.validFrom | formatMediumDatetime }}</td>
+          <td>{{ societyLoanProduct.validTo | formatMediumDatetime }}</td>
+          <td>{{ societyLoanProduct.createdOn | formatMediumDatetime }}</td>
+          <td>{{ societyLoanProduct.createdBy }}</td>
+          <td>{{ societyLoanProduct.isActivate }}</td>
+          <td>{{ societyLoanProduct.lastModified | formatMediumDatetime }}</td>
+          <td>{{ societyLoanProduct.lastModifiedBy }}</td>
+          <td>{{ societyLoanProduct.freeField1 }}</td>
+          <td>{{ societyLoanProduct.freeField2 }}</td>
+          <td>{{ societyLoanProduct.freeField3 }}</td>
+          <td>
+            <div *ngIf="societyLoanProduct.society">
+              <a [routerLink]="['/society', societyLoanProduct.society.id, 'view']">{{ societyLoanProduct.society?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="societyLoanProduct.bankDhoranDetails">
+              <a [routerLink]="['/bank-dhoran-details', societyLoanProduct.bankDhoranDetails.id, 'view']">{{
+                societyLoanProduct.bankDhoranDetails?.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="societyLoanProduct.gRInterestDetails">
+              <a [routerLink]="['/gr-interest-details', societyLoanProduct.gRInterestDetails.id, 'view']">{{
+                societyLoanProduct.gRInterestDetails?.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/society-loan-product', societyLoanProduct.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/society-loan-product', societyLoanProduct.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(societyLoanProduct)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="societyLoanProducts && societyLoanProducts.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

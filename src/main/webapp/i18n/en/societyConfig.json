@@ -1,0 +1,38 @@
+{
+  "vksApplicationApp": {
+    "societyConfig": {
+      "home": {
+        "title": "Society Configs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Society Config",
+        "createOrEditLabel": "Create or edit a Society Config",
+        "notFound": "No Society Configs found"
+      },
+      "created": "A new Society Config is created with identifier {{ param }}",
+      "updated": "A Society Config is updated with identifier {{ param }}",
+      "deleted": "A Society Config is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Society Config {{ id }}?"
+      },
+      "detail": {
+        "title": "Society Config"
+      },
+      "id": "ID",
+      "configName": "Config Name",
+      "configType": "Config Type",
+      "status": "Status",
+      "value": "Value",
+      "year": "Year",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "createdBy": "Created By",
+      "createdOn": "Created On",
+      "isDeleted": "Is Deleted",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "freeField3": "Free Field 3",
+      "society": "Society",
+      "bankDhoranDetails": "Bank Dhoran Details"
+    }
+  }
+}

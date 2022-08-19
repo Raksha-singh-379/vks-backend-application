@@ -1,0 +1,88 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="societyPrerequisite">
+      <h2 data-cy="societyPrerequisiteDetailsHeading">
+        <span jhiTranslate="vksApplicationApp.societyPrerequisite.detail.title">Society Prerequisite</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ societyPrerequisite.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyPrerequisite.docType">Doc Type</span></dt>
+        <dd>
+          <span>{{ societyPrerequisite.docType }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyPrerequisite.documentDesc">Document Desc</span></dt>
+        <dd>
+          <span>{{ societyPrerequisite.documentDesc }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyPrerequisite.documentName">Document Name</span></dt>
+        <dd>
+          <span>{{ societyPrerequisite.documentName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyPrerequisite.loanType">Loan Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vksApplicationApp.LoanType.' + societyPrerequisite.loanType }}">{{ societyPrerequisite.loanType }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyPrerequisite.mandatory">Mandatory</span></dt>
+        <dd>
+          <span>{{ societyPrerequisite.mandatory }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyPrerequisite.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ societyPrerequisite.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyPrerequisite.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ societyPrerequisite.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyPrerequisite.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ societyPrerequisite.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyPrerequisite.createdOn">Created On</span></dt>
+        <dd>
+          <span>{{ societyPrerequisite.createdOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyPrerequisite.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ societyPrerequisite.isDeleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyPrerequisite.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ societyPrerequisite.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyPrerequisite.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ societyPrerequisite.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyPrerequisite.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ societyPrerequisite.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyPrerequisite.society">Society</span></dt>
+        <dd>
+          <div *ngIf="societyPrerequisite.society">
+            <a [routerLink]="['/society', societyPrerequisite.society.id, 'view']">{{ societyPrerequisite.society?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/society-prerequisite', societyPrerequisite.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

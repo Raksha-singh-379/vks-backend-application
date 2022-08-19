@@ -1,0 +1,88 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="loanWatapDetails">
+      <h2 data-cy="loanWatapDetailsDetailsHeading">
+        <span jhiTranslate="vksApplicationApp.loanWatapDetails.detail.title">Loan Watap Details</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ loanWatapDetails.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanWatapDetails.loanWatapDate">Loan Watap Date</span></dt>
+        <dd>
+          <span>{{ loanWatapDetails.loanWatapDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanWatapDetails.cropLandInHector">Crop Land In Hector</span></dt>
+        <dd>
+          <span>{{ loanWatapDetails.cropLandInHector }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanWatapDetails.slotNumber">Slot Number</span></dt>
+        <dd>
+          <span>{{ loanWatapDetails.slotNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanWatapDetails.loanAmount">Loan Amount</span></dt>
+        <dd>
+          <span>{{ loanWatapDetails.loanAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanWatapDetails.season">Season</span></dt>
+        <dd>
+          <span>{{ loanWatapDetails.season }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanWatapDetails.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vksApplicationApp.LoanStatus.' + loanWatapDetails.status }}">{{ loanWatapDetails.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanWatapDetails.year">Year</span></dt>
+        <dd>
+          <span>{{ loanWatapDetails.year }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanWatapDetails.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ loanWatapDetails.isDeleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanWatapDetails.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ loanWatapDetails.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanWatapDetails.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ loanWatapDetails.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanWatapDetails.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ loanWatapDetails.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanWatapDetails.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ loanWatapDetails.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanWatapDetails.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ loanWatapDetails.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanWatapDetails.loanDemand">Loan Demand</span></dt>
+        <dd>
+          <div *ngIf="loanWatapDetails.loanDemand">
+            <a [routerLink]="['/loan-demand', loanWatapDetails.loanDemand.id, 'view']">{{ loanWatapDetails.loanDemand?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/loan-watap-details', loanWatapDetails.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity SocietyLoanProduct.
+    -->
+    <changeSet id="20220819050821-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="society_id"
+                                 baseTableName="society_loan_product"
+                                 constraintName="fk_society_loan_product__society_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="society"/>
+
+        <addForeignKeyConstraint baseColumnNames="bank_dhoran_details_id"
+                                 baseTableName="society_loan_product"
+                                 constraintName="fk_society_loan_product__bank_dhoran_details_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bank_dhoran_details"/>
+
+        <addForeignKeyConstraint baseColumnNames="grinterest_details_id"
+                                 baseTableName="society_loan_product"
+                                 constraintName="fk_society_loan_product__grinterest_details_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="gr_interest_details"/>
+    </changeSet>
+</databaseChangeLog>

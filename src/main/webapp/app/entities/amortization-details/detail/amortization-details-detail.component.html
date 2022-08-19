@@ -1,0 +1,102 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="amortizationDetails">
+      <h2 data-cy="amortizationDetailsDetailsHeading">
+        <span jhiTranslate="vksApplicationApp.amortizationDetails.detail.title">Amortization Details</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ amortizationDetails.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.amortizationDetails.installmentDate">Installment Date</span></dt>
+        <dd>
+          <span>{{ amortizationDetails.installmentDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="vksApplicationApp.amortizationDetails.totalOutstandingPrincipleAmt">Total Outstanding Principle Amt</span>
+        </dt>
+        <dd>
+          <span>{{ amortizationDetails.totalOutstandingPrincipleAmt }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.amortizationDetails.totalOutstandngInterestAmt">Total Outstandng Interest Amt</span></dt>
+        <dd>
+          <span>{{ amortizationDetails.totalOutstandngInterestAmt }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.amortizationDetails.paidPrincipleAmt">Paid Principle Amt</span></dt>
+        <dd>
+          <span>{{ amortizationDetails.paidPrincipleAmt }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.amortizationDetails.paidInterestAmt">Paid Interest Amt</span></dt>
+        <dd>
+          <span>{{ amortizationDetails.paidInterestAmt }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.amortizationDetails.balPrincipleAmt">Bal Principle Amt</span></dt>
+        <dd>
+          <span>{{ amortizationDetails.balPrincipleAmt }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.amortizationDetails.balInterestAmt">Bal Interest Amt</span></dt>
+        <dd>
+          <span>{{ amortizationDetails.balInterestAmt }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.amortizationDetails.loanEmiAmt">Loan Emi Amt</span></dt>
+        <dd>
+          <span>{{ amortizationDetails.loanEmiAmt }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.amortizationDetails.principleEMI">Principle EMI</span></dt>
+        <dd>
+          <span>{{ amortizationDetails.principleEMI }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.amortizationDetails.paymentStatus">Payment Status</span></dt>
+        <dd>
+          <span>{{ amortizationDetails.paymentStatus }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.amortizationDetails.year">Year</span></dt>
+        <dd>
+          <span>{{ amortizationDetails.year }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.amortizationDetails.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ amortizationDetails.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.amortizationDetails.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ amortizationDetails.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.amortizationDetails.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ amortizationDetails.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.amortizationDetails.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ amortizationDetails.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.amortizationDetails.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ amortizationDetails.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.amortizationDetails.loanDetails">Loan Details</span></dt>
+        <dd>
+          <div *ngIf="amortizationDetails.loanDetails">
+            <a [routerLink]="['/loan-details', amortizationDetails.loanDetails.id, 'view']">{{ amortizationDetails.loanDetails?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/amortization-details', amortizationDetails.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

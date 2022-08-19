@@ -1,0 +1,170 @@
+<div>
+  <h2 id="page-heading" data-cy="SocietyBanksDetailsHeading">
+    <span jhiTranslate="vksApplicationApp.societyBanksDetails.home.title">Society Banks Details</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.societyBanksDetails.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-society-banks-details"
+        [routerLink]="['/society-banks-details/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.societyBanksDetails.home.createLabel"> Create a new Society Banks Details </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters" (filterChange)="navigateToWithComponentValues()"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="societyBanksDetails?.length === 0">
+    <span jhiTranslate="vksApplicationApp.societyBanksDetails.home.notFound">No Society Banks Details found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="societyBanksDetails && societyBanksDetails.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="bankName">
+            <span jhiTranslate="vksApplicationApp.societyBanksDetails.bankName">Bank Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="ifsccode">
+            <span jhiTranslate="vksApplicationApp.societyBanksDetails.ifsccode">Ifsccode</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="branchName">
+            <span jhiTranslate="vksApplicationApp.societyBanksDetails.branchName">Branch Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="accountNumber">
+            <span jhiTranslate="vksApplicationApp.societyBanksDetails.accountNumber">Account Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isActive">
+            <span jhiTranslate="vksApplicationApp.societyBanksDetails.isActive">Is Active</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="accountType">
+            <span jhiTranslate="vksApplicationApp.societyBanksDetails.accountType">Account Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="accHeadCode">
+            <span jhiTranslate="vksApplicationApp.societyBanksDetails.accHeadCode">Acc Head Code</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="parentAccHeadCode">
+            <span jhiTranslate="vksApplicationApp.societyBanksDetails.parentAccHeadCode">Parent Acc Head Code</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="accountName">
+            <span jhiTranslate="vksApplicationApp.societyBanksDetails.accountName">Account Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="vksApplicationApp.societyBanksDetails.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="vksApplicationApp.societyBanksDetails.lastModifiedBy">Last Modified By</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="vksApplicationApp.societyBanksDetails.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdOn">
+            <span jhiTranslate="vksApplicationApp.societyBanksDetails.createdOn">Created On</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <span jhiTranslate="vksApplicationApp.societyBanksDetails.freeField1">Free Field 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField2">
+            <span jhiTranslate="vksApplicationApp.societyBanksDetails.freeField2">Free Field 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField3">
+            <span jhiTranslate="vksApplicationApp.societyBanksDetails.freeField3">Free Field 3</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="society.id">
+            <span jhiTranslate="vksApplicationApp.societyBanksDetails.society">Society</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let societyBanksDetails of societyBanksDetails; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/society-banks-details', societyBanksDetails.id, 'view']">{{ societyBanksDetails.id }}</a>
+          </td>
+          <td>{{ societyBanksDetails.bankName }}</td>
+          <td>{{ societyBanksDetails.ifsccode }}</td>
+          <td>{{ societyBanksDetails.branchName }}</td>
+          <td>{{ societyBanksDetails.accountNumber }}</td>
+          <td>{{ societyBanksDetails.isActive }}</td>
+          <td>{{ societyBanksDetails.accountType }}</td>
+          <td>{{ societyBanksDetails.accHeadCode }}</td>
+          <td>{{ societyBanksDetails.parentAccHeadCode }}</td>
+          <td>{{ societyBanksDetails.accountName }}</td>
+          <td>{{ societyBanksDetails.lastModified | formatMediumDatetime }}</td>
+          <td>{{ societyBanksDetails.lastModifiedBy }}</td>
+          <td>{{ societyBanksDetails.createdBy }}</td>
+          <td>{{ societyBanksDetails.createdOn | formatMediumDatetime }}</td>
+          <td>{{ societyBanksDetails.freeField1 }}</td>
+          <td>{{ societyBanksDetails.freeField2 }}</td>
+          <td>{{ societyBanksDetails.freeField3 }}</td>
+          <td>
+            <div *ngIf="societyBanksDetails.society">
+              <a [routerLink]="['/society', societyBanksDetails.society.id, 'view']">{{ societyBanksDetails.society?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/society-banks-details', societyBanksDetails.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/society-banks-details', societyBanksDetails.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(societyBanksDetails)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="societyBanksDetails && societyBanksDetails.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

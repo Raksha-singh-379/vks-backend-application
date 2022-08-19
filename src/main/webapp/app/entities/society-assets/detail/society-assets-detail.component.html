@@ -1,0 +1,82 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="societyAssets">
+      <h2 data-cy="societyAssetsDetailsHeading"><span jhiTranslate="vksApplicationApp.societyAssets.detail.title">Society Assets</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ societyAssets.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyAssets.societyAssetsName">Society Assets Name</span></dt>
+        <dd>
+          <span>{{ societyAssets.societyAssetsName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyAssets.type">Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vksApplicationApp.SocietyAssetsType.' + societyAssets.type }}">{{ societyAssets.type }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyAssets.category">Category</span></dt>
+        <dd>
+          <span>{{ societyAssets.category }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyAssets.depreciation">Depreciation</span></dt>
+        <dd>
+          <span>{{ societyAssets.depreciation }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyAssets.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ societyAssets.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyAssets.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ societyAssets.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyAssets.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ societyAssets.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyAssets.createdOn">Created On</span></dt>
+        <dd>
+          <span>{{ societyAssets.createdOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyAssets.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ societyAssets.isDeleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyAssets.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ societyAssets.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyAssets.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ societyAssets.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyAssets.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ societyAssets.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyAssets.society">Society</span></dt>
+        <dd>
+          <div *ngIf="societyAssets.society">
+            <a [routerLink]="['/society', societyAssets.society.id, 'view']">{{ societyAssets.society?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/society-assets', societyAssets.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

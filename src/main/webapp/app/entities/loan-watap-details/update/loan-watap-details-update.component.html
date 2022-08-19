@@ -1,0 +1,202 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-loan-watap-details-heading"
+        data-cy="LoanWatapDetailsCreateUpdateHeading"
+        jhiTranslate="vksApplicationApp.loanWatapDetails.home.createOrEditLabel"
+      >
+        Create or edit a Loan Watap Details
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanWatapDetails.loanWatapDate" for="field_loanWatapDate"
+            >Loan Watap Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_loanWatapDate"
+              data-cy="loanWatapDate"
+              type="datetime-local"
+              class="form-control"
+              name="loanWatapDate"
+              formControlName="loanWatapDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanWatapDetails.cropLandInHector" for="field_cropLandInHector"
+            >Crop Land In Hector</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="cropLandInHector"
+            id="field_cropLandInHector"
+            data-cy="cropLandInHector"
+            formControlName="cropLandInHector"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanWatapDetails.slotNumber" for="field_slotNumber">Slot Number</label>
+          <input
+            type="number"
+            class="form-control"
+            name="slotNumber"
+            id="field_slotNumber"
+            data-cy="slotNumber"
+            formControlName="slotNumber"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanWatapDetails.loanAmount" for="field_loanAmount">Loan Amount</label>
+          <input
+            type="number"
+            class="form-control"
+            name="loanAmount"
+            id="field_loanAmount"
+            data-cy="loanAmount"
+            formControlName="loanAmount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanWatapDetails.season" for="field_season">Season</label>
+          <input type="text" class="form-control" name="season" id="field_season" data-cy="season" formControlName="season" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanWatapDetails.status" for="field_status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'vksApplicationApp.LoanStatus.null' | translate }}</option>
+            <option *ngFor="let loanStatus of loanStatusValues" [value]="loanStatus">
+              {{ 'vksApplicationApp.LoanStatus.' + loanStatus | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanWatapDetails.year" for="field_year">Year</label>
+          <input type="text" class="form-control" name="year" id="field_year" data-cy="year" formControlName="year" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanWatapDetails.isDeleted" for="field_isDeleted">Is Deleted</label>
+          <input type="checkbox" class="form-check" name="isDeleted" id="field_isDeleted" data-cy="isDeleted" formControlName="isDeleted" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanWatapDetails.lastModified" for="field_lastModified"
+            >Last Modified</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_lastModified"
+              data-cy="lastModified"
+              type="datetime-local"
+              class="form-control"
+              name="lastModified"
+              formControlName="lastModified"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanWatapDetails.lastModifiedBy" for="field_lastModifiedBy"
+            >Last Modified By</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanWatapDetails.freeField1" for="field_freeField1">Free Field 1</label>
+          <input
+            type="text"
+            class="form-control"
+            name="freeField1"
+            id="field_freeField1"
+            data-cy="freeField1"
+            formControlName="freeField1"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanWatapDetails.freeField2" for="field_freeField2">Free Field 2</label>
+          <input
+            type="text"
+            class="form-control"
+            name="freeField2"
+            id="field_freeField2"
+            data-cy="freeField2"
+            formControlName="freeField2"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanWatapDetails.freeField3" for="field_freeField3">Free Field 3</label>
+          <input
+            type="text"
+            class="form-control"
+            name="freeField3"
+            id="field_freeField3"
+            data-cy="freeField3"
+            formControlName="freeField3"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.loanWatapDetails.loanDemand" for="field_loanDemand">Loan Demand</label>
+          <select
+            class="form-control"
+            id="field_loanDemand"
+            data-cy="loanDemand"
+            name="loanDemand"
+            formControlName="loanDemand"
+            [compareWith]="compareLoanDemand"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="loanDemandOption" *ngFor="let loanDemandOption of loanDemandsSharedCollection">
+              {{ loanDemandOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

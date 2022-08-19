@@ -1,0 +1,35 @@
+{
+  "vksApplicationApp": {
+    "expenditureType": {
+      "home": {
+        "title": "Expenditure Types",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Expenditure Type",
+        "createOrEditLabel": "Create or edit a Expenditure Type",
+        "notFound": "No Expenditure Types found"
+      },
+      "created": "A new Expenditure Type is created with identifier {{ param }}",
+      "updated": "A Expenditure Type is updated with identifier {{ param }}",
+      "deleted": "A Expenditure Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Expenditure Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Expenditure Type"
+      },
+      "id": "ID",
+      "expenditureDesc": "Expenditure Desc",
+      "expenditureType": "Expenditure Type",
+      "expenditureCategory": "Expenditure Category",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "createdBy": "Created By",
+      "createdOn": "Created On",
+      "isDeleted": "Is Deleted",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "freeField3": "Free Field 3",
+      "society": "Society"
+    }
+  }
+}

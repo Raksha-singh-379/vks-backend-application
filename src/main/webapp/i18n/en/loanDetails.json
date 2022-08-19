@@ -1,0 +1,56 @@
+{
+  "vksApplicationApp": {
+    "loanDetails": {
+      "home": {
+        "title": "Loan Details",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Loan Details",
+        "createOrEditLabel": "Create or edit a Loan Details",
+        "notFound": "No Loan Details found"
+      },
+      "created": "A new Loan Details is created with identifier {{ param }}",
+      "updated": "A Loan Details is updated with identifier {{ param }}",
+      "deleted": "A Loan Details is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Loan Details {{ id }}?"
+      },
+      "detail": {
+        "title": "Loan Details"
+      },
+      "id": "ID",
+      "loanAmount": "Loan Amount",
+      "loanAccountNo": "Loan Account No",
+      "loanType": "Loan Type",
+      "status": "Status",
+      "loanStartDate": "Loan Start Date",
+      "loanEndDate": "Loan End Date",
+      "loanPlannedClosureDate": "Loan Planned Closure Date",
+      "loanCloserDate": "Loan Closer Date",
+      "loanEffectiveDate": "Loan Effective Date",
+      "loanClassification": "Loan Classification",
+      "resolutionNo": "Resolution No",
+      "resolutionDate": "Resolution Date",
+      "costOfInvestment": "Cost Of Investment",
+      "loanBenefitingArea": "Loan Benefiting Area",
+      "dccbLoanNo": "Dccb Loan No",
+      "mortgageDeedNo": "Mortgage Deed No",
+      "mortgageDate": "Mortgage Date",
+      "extentMorgageValue": "Extent Morgage Value",
+      "parentAccHeadCode": "Parent Acc Head Code",
+      "loanAccountName": "Loan Account Name",
+      "disbursementAmt": "Disbursement Amt",
+      "disbursementStatus": "Disbursement Status",
+      "year": "Year",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "freeField3": "Free Field 3",
+      "loanDemand": "Loan Demand",
+      "member": "Member",
+      "loanDemand": "Loan Demand",
+      "societyLoanProduct": "Society Loan Product",
+      "bankDhoranDetails": "Bank Dhoran Details"
+    }
+  }
+}

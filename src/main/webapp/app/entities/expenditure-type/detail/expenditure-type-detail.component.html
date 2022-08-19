@@ -1,0 +1,80 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="expenditureType">
+      <h2 data-cy="expenditureTypeDetailsHeading">
+        <span jhiTranslate="vksApplicationApp.expenditureType.detail.title">Expenditure Type</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ expenditureType.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.expenditureType.expenditureDesc">Expenditure Desc</span></dt>
+        <dd>
+          <span>{{ expenditureType.expenditureDesc }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.expenditureType.expenditureType">Expenditure Type</span></dt>
+        <dd>
+          <span>{{ expenditureType.expenditureType }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.expenditureType.expenditureCategory">Expenditure Category</span></dt>
+        <dd>
+          <span>{{ expenditureType.expenditureCategory }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.expenditureType.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ expenditureType.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.expenditureType.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ expenditureType.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.expenditureType.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ expenditureType.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.expenditureType.createdOn">Created On</span></dt>
+        <dd>
+          <span>{{ expenditureType.createdOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.expenditureType.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ expenditureType.isDeleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.expenditureType.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ expenditureType.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.expenditureType.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ expenditureType.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.expenditureType.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ expenditureType.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.expenditureType.society">Society</span></dt>
+        <dd>
+          <div *ngIf="expenditureType.society">
+            <a [routerLink]="['/society', expenditureType.society.id, 'view']">{{ expenditureType.society?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/expenditure-type', expenditureType.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

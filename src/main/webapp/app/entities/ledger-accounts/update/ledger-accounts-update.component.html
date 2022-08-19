@@ -1,0 +1,257 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-ledger-accounts-heading"
+        data-cy="LedgerAccountsCreateUpdateHeading"
+        jhiTranslate="vksApplicationApp.ledgerAccounts.home.createOrEditLabel"
+      >
+        Create or edit a Ledger Accounts
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.ledgerAccounts.accountNo" for="field_accountNo">Account No</label>
+          <input type="number" class="form-control" name="accountNo" id="field_accountNo" data-cy="accountNo" formControlName="accountNo" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.ledgerAccounts.accountName" for="field_accountName">Account Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="accountName"
+            id="field_accountName"
+            data-cy="accountName"
+            formControlName="accountName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.ledgerAccounts.accBalance" for="field_accBalance">Acc Balance</label>
+          <input
+            type="number"
+            class="form-control"
+            name="accBalance"
+            id="field_accBalance"
+            data-cy="accBalance"
+            formControlName="accBalance"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.ledgerAccounts.accHeadCode" for="field_accHeadCode"
+            >Acc Head Code</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="accHeadCode"
+            id="field_accHeadCode"
+            data-cy="accHeadCode"
+            formControlName="accHeadCode"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.ledgerAccounts.ledgerCode" for="field_ledgerCode">Ledger Code</label>
+          <input
+            type="text"
+            class="form-control"
+            name="ledgerCode"
+            id="field_ledgerCode"
+            data-cy="ledgerCode"
+            formControlName="ledgerCode"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.ledgerAccounts.appCode" for="field_appCode">App Code</label>
+          <input type="text" class="form-control" name="appCode" id="field_appCode" data-cy="appCode" formControlName="appCode" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.ledgerAccounts.ledgerClassification" for="field_ledgerClassification"
+            >Ledger Classification</label
+          >
+          <select
+            class="form-control"
+            name="ledgerClassification"
+            formControlName="ledgerClassification"
+            id="field_ledgerClassification"
+            data-cy="ledgerClassification"
+          >
+            <option [ngValue]="null">{{ 'vksApplicationApp.LedgerClassification.null' | translate }}</option>
+            <option *ngFor="let ledgerClassification of ledgerClassificationValues" [value]="ledgerClassification">
+              {{ 'vksApplicationApp.LedgerClassification.' + ledgerClassification | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.ledgerAccounts.category" for="field_category">Category</label>
+          <input type="text" class="form-control" name="category" id="field_category" data-cy="category" formControlName="category" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.ledgerAccounts.level" for="field_level">Level</label>
+          <input type="number" class="form-control" name="level" id="field_level" data-cy="level" formControlName="level" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.ledgerAccounts.year" for="field_year">Year</label>
+          <input type="text" class="form-control" name="year" id="field_year" data-cy="year" formControlName="year" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.ledgerAccounts.accountType" for="field_accountType">Account Type</label>
+          <input
+            type="text"
+            class="form-control"
+            name="accountType"
+            id="field_accountType"
+            data-cy="accountType"
+            formControlName="accountType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.ledgerAccounts.lastModified" for="field_lastModified"
+            >Last Modified</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_lastModified"
+              data-cy="lastModified"
+              type="datetime-local"
+              class="form-control"
+              name="lastModified"
+              formControlName="lastModified"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.ledgerAccounts.lastModifiedBy" for="field_lastModifiedBy"
+            >Last Modified By</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.ledgerAccounts.createdBy" for="field_createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.ledgerAccounts.createdOn" for="field_createdOn">Created On</label>
+          <div class="d-flex">
+            <input
+              id="field_createdOn"
+              data-cy="createdOn"
+              type="datetime-local"
+              class="form-control"
+              name="createdOn"
+              formControlName="createdOn"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.ledgerAccounts.isDeleted" for="field_isDeleted">Is Deleted</label>
+          <input type="checkbox" class="form-check" name="isDeleted" id="field_isDeleted" data-cy="isDeleted" formControlName="isDeleted" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.ledgerAccounts.freeField1" for="field_freeField1">Free Field 1</label>
+          <input
+            type="text"
+            class="form-control"
+            name="freeField1"
+            id="field_freeField1"
+            data-cy="freeField1"
+            formControlName="freeField1"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.ledgerAccounts.freeField2" for="field_freeField2">Free Field 2</label>
+          <input
+            type="text"
+            class="form-control"
+            name="freeField2"
+            id="field_freeField2"
+            data-cy="freeField2"
+            formControlName="freeField2"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.ledgerAccounts.society" for="field_society">Society</label>
+          <select
+            class="form-control"
+            id="field_society"
+            data-cy="society"
+            name="society"
+            formControlName="society"
+            [compareWith]="compareSociety"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="societyOption" *ngFor="let societyOption of societiesSharedCollection">{{ societyOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.ledgerAccounts.ledgerAccounts" for="field_ledgerAccounts"
+            >Ledger Accounts</label
+          >
+          <select
+            class="form-control"
+            id="field_ledgerAccounts"
+            data-cy="ledgerAccounts"
+            name="ledgerAccounts"
+            formControlName="ledgerAccounts"
+            [compareWith]="compareLedgerAccounts"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="ledgerAccountsOption" *ngFor="let ledgerAccountsOption of ledgerAccountsSharedCollection">
+              {{ ledgerAccountsOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="accountMapping">
+      <h2 data-cy="accountMappingDetailsHeading">
+        <span jhiTranslate="vksApplicationApp.accountMapping.detail.title">Account Mapping</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ accountMapping.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.accountMapping.type">Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vksApplicationApp.MappingType.' + accountMapping.type }}">{{ accountMapping.type }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.accountMapping.mappingName">Mapping Name</span></dt>
+        <dd>
+          <span>{{ accountMapping.mappingName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.accountMapping.ledgerAccHeadCode">Ledger Acc Head Code</span></dt>
+        <dd>
+          <span>{{ accountMapping.ledgerAccHeadCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.accountMapping.ledgerAccountId">Ledger Account Id</span></dt>
+        <dd>
+          <span>{{ accountMapping.ledgerAccountId }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.accountMapping.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ accountMapping.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.accountMapping.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ accountMapping.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.accountMapping.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ accountMapping.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.accountMapping.createdOn">Created On</span></dt>
+        <dd>
+          <span>{{ accountMapping.createdOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.accountMapping.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ accountMapping.isDeleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.accountMapping.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ accountMapping.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.accountMapping.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ accountMapping.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.accountMapping.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ accountMapping.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.accountMapping.accountMapping">Account Mapping</span></dt>
+        <dd>
+          <div *ngIf="accountMapping.accountMapping">
+            <a [routerLink]="['/ledger-accounts', accountMapping.accountMapping.id, 'view']">{{ accountMapping.accountMapping?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/account-mapping', accountMapping.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

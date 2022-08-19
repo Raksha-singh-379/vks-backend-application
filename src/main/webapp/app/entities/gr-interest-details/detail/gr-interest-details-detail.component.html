@@ -1,0 +1,140 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="gRInterestDetails">
+      <h2 data-cy="gRInterestDetailsDetailsHeading">
+        <span jhiTranslate="vksApplicationApp.gRInterestDetails.detail.title">GR Interest Details</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.loanGrName">Loan Gr Name</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.loanGrName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.criteria">Criteria</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.criteria }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.productType">Product Type</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.productType }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.isActivated">Is Activated</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.isActivated }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.borrowingInterestRate">Borrowing Interest Rate</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.borrowingInterestRate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.interestOnLoan">Interest On Loan</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.interestOnLoan }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.penaltyInterest">Penalty Interest</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.penaltyInterest }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.surcharge">Surcharge</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.surcharge }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.loanDuration">Loan Duration</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.loanDuration }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.numberOFInstallment">Number OF Installment</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.numberOFInstallment }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.extendedInterstRate">Extended Interst Rate</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.extendedInterstRate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.centralGovSubsidyInterest">Central Gov Subsidy Interest</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.centralGovSubsidyInterest }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.distBankSubsidyInterest">Dist Bank Subsidy Interest</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.distBankSubsidyInterest }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.borrowerInterest">Borrower Interest</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.borrowerInterest }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.stateGovSubsidyInterest">State Gov Subsidy Interest</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.stateGovSubsidyInterest }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.year">Year</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.year }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.startDate">Start Date</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.startDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.endDate">End Date</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.endDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.createdOn">Created On</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.createdOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.isDeleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ gRInterestDetails.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.gRInterestDetails.society">Society</span></dt>
+        <dd>
+          <div *ngIf="gRInterestDetails.society">
+            <a [routerLink]="['/society', gRInterestDetails.society.id, 'view']">{{ gRInterestDetails.society?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/gr-interest-details', gRInterestDetails.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

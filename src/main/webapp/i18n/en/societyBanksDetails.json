@@ -1,0 +1,40 @@
+{
+  "vksApplicationApp": {
+    "societyBanksDetails": {
+      "home": {
+        "title": "Society Banks Details",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Society Banks Details",
+        "createOrEditLabel": "Create or edit a Society Banks Details",
+        "notFound": "No Society Banks Details found"
+      },
+      "created": "A new Society Banks Details is created with identifier {{ param }}",
+      "updated": "A Society Banks Details is updated with identifier {{ param }}",
+      "deleted": "A Society Banks Details is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Society Banks Details {{ id }}?"
+      },
+      "detail": {
+        "title": "Society Banks Details"
+      },
+      "id": "ID",
+      "bankName": "Bank Name",
+      "ifsccode": "Ifsccode",
+      "branchName": "Branch Name",
+      "accountNumber": "Account Number",
+      "isActive": "Is Active",
+      "accountType": "Account Type",
+      "accHeadCode": "Acc Head Code",
+      "parentAccHeadCode": "Parent Acc Head Code",
+      "accountName": "Account Name",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "createdBy": "Created By",
+      "createdOn": "Created On",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "freeField3": "Free Field 3",
+      "society": "Society"
+    }
+  }
+}

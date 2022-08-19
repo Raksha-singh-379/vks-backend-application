@@ -1,0 +1,112 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="loanDemand">
+      <h2 data-cy="loanDemandDetailsHeading"><span jhiTranslate="vksApplicationApp.loanDemand.detail.title">Loan Demand</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ loanDemand.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDemand.loanDemandAmount">Loan Demand Amount</span></dt>
+        <dd>
+          <span>{{ loanDemand.loanDemandAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDemand.maxAllowedAmount">Max Allowed Amount</span></dt>
+        <dd>
+          <span>{{ loanDemand.maxAllowedAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDemand.adjustedDemand">Adjusted Demand</span></dt>
+        <dd>
+          <span>{{ loanDemand.adjustedDemand }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDemand.annualIncome">Annual Income</span></dt>
+        <dd>
+          <span>{{ loanDemand.annualIncome }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDemand.costOfInvestment">Cost Of Investment</span></dt>
+        <dd>
+          <span>{{ loanDemand.costOfInvestment }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDemand.demandedLandAreaInHector">Demanded Land Area In Hector</span></dt>
+        <dd>
+          <span>{{ loanDemand.demandedLandAreaInHector }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDemand.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vksApplicationApp.LoanStatus.' + loanDemand.status }}">{{ loanDemand.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDemand.seasonOfCropLoan">Season Of Crop Loan</span></dt>
+        <dd>
+          <span>{{ loanDemand.seasonOfCropLoan }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDemand.year">Year</span></dt>
+        <dd>
+          <span>{{ loanDemand.year }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDemand.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ loanDemand.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDemand.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ loanDemand.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDemand.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ loanDemand.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDemand.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ loanDemand.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDemand.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ loanDemand.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDemand.member">Member</span></dt>
+        <dd>
+          <div *ngIf="loanDemand.member">
+            <a [routerLink]="['/member', loanDemand.member.id, 'view']">{{ loanDemand.member?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDemand.societyLoanProduct">Society Loan Product</span></dt>
+        <dd>
+          <div *ngIf="loanDemand.societyLoanProduct">
+            <a [routerLink]="['/society-loan-product', loanDemand.societyLoanProduct.id, 'view']">{{
+              loanDemand.societyLoanProduct?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDemand.memberLandAssets">Member Land Assets</span></dt>
+        <dd>
+          <div *ngIf="loanDemand.memberLandAssets">
+            <a [routerLink]="['/member-land-assets', loanDemand.memberLandAssets.id, 'view']">{{ loanDemand.memberLandAssets?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.loanDemand.societyCropRegistration">Society Crop Registration</span></dt>
+        <dd>
+          <div *ngIf="loanDemand.societyCropRegistration">
+            <a [routerLink]="['/society-crop-registration', loanDemand.societyCropRegistration.id, 'view']">{{
+              loanDemand.societyCropRegistration?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/loan-demand', loanDemand.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

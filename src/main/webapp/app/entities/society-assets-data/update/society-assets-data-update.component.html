@@ -1,0 +1,234 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-society-assets-data-heading"
+        data-cy="SocietyAssetsDataCreateUpdateHeading"
+        jhiTranslate="vksApplicationApp.societyAssetsData.home.createOrEditLabel"
+      >
+        Create or edit a Society Assets Data
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.societyAssetsData.amount" for="field_amount">Amount</label>
+          <input type="number" class="form-control" name="amount" id="field_amount" data-cy="amount" formControlName="amount" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.societyAssetsData.balanceQuantity" for="field_balanceQuantity"
+            >Balance Quantity</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="balanceQuantity"
+            id="field_balanceQuantity"
+            data-cy="balanceQuantity"
+            formControlName="balanceQuantity"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.societyAssetsData.balanceValue" for="field_balanceValue"
+            >Balance Value</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="balanceValue"
+            id="field_balanceValue"
+            data-cy="balanceValue"
+            formControlName="balanceValue"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.societyAssetsData.billNo" for="field_billNo">Bill No</label>
+          <input type="text" class="form-control" name="billNo" id="field_billNo" data-cy="billNo" formControlName="billNo" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.societyAssetsData.mode" for="field_mode">Mode</label>
+          <input type="text" class="form-control" name="mode" id="field_mode" data-cy="mode" formControlName="mode" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.societyAssetsData.cost" for="field_cost">Cost</label>
+          <input type="number" class="form-control" name="cost" id="field_cost" data-cy="cost" formControlName="cost" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.societyAssetsData.transactionType" for="field_transactionType"
+            >Transaction Type</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="transactionType"
+            id="field_transactionType"
+            data-cy="transactionType"
+            formControlName="transactionType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.societyAssetsData.transactionDate" for="field_transactionDate"
+            >Transaction Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_transactionDate"
+              data-cy="transactionDate"
+              type="datetime-local"
+              class="form-control"
+              name="transactionDate"
+              formControlName="transactionDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.societyAssetsData.lastModified" for="field_lastModified"
+            >Last Modified</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_lastModified"
+              data-cy="lastModified"
+              type="datetime-local"
+              class="form-control"
+              name="lastModified"
+              formControlName="lastModified"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.societyAssetsData.lastModifiedBy" for="field_lastModifiedBy"
+            >Last Modified By</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.societyAssetsData.createdBy" for="field_createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.societyAssetsData.createdOn" for="field_createdOn">Created On</label>
+          <div class="d-flex">
+            <input
+              id="field_createdOn"
+              data-cy="createdOn"
+              type="datetime-local"
+              class="form-control"
+              name="createdOn"
+              formControlName="createdOn"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.societyAssetsData.isDeleted" for="field_isDeleted">Is Deleted</label>
+          <input type="checkbox" class="form-check" name="isDeleted" id="field_isDeleted" data-cy="isDeleted" formControlName="isDeleted" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.societyAssetsData.freeField1" for="field_freeField1"
+            >Free Field 1</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="freeField1"
+            id="field_freeField1"
+            data-cy="freeField1"
+            formControlName="freeField1"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.societyAssetsData.freeField2" for="field_freeField2"
+            >Free Field 2</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="freeField2"
+            id="field_freeField2"
+            data-cy="freeField2"
+            formControlName="freeField2"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.societyAssetsData.freeField3" for="field_freeField3"
+            >Free Field 3</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="freeField3"
+            id="field_freeField3"
+            data-cy="freeField3"
+            formControlName="freeField3"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.societyAssetsData.societyAssets" for="field_societyAssets"
+            >Society Assets</label
+          >
+          <select
+            class="form-control"
+            id="field_societyAssets"
+            data-cy="societyAssets"
+            name="societyAssets"
+            formControlName="societyAssets"
+            [compareWith]="compareSocietyAssets"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="societyAssetsOption" *ngFor="let societyAssetsOption of societyAssetsSharedCollection">
+              {{ societyAssetsOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

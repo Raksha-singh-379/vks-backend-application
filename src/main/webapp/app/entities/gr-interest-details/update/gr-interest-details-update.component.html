@@ -1,0 +1,390 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-gr-interest-details-heading"
+        data-cy="GRInterestDetailsCreateUpdateHeading"
+        jhiTranslate="vksApplicationApp.gRInterestDetails.home.createOrEditLabel"
+      >
+        Create or edit a GR Interest Details
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.loanGrName" for="field_loanGrName"
+            >Loan Gr Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="loanGrName"
+            id="field_loanGrName"
+            data-cy="loanGrName"
+            formControlName="loanGrName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.criteria" for="field_criteria">Criteria</label>
+          <input type="text" class="form-control" name="criteria" id="field_criteria" data-cy="criteria" formControlName="criteria" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.productType" for="field_productType"
+            >Product Type</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="productType"
+            id="field_productType"
+            data-cy="productType"
+            formControlName="productType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.isActivated" for="field_isActivated"
+            >Is Activated</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="isActivated"
+            id="field_isActivated"
+            data-cy="isActivated"
+            formControlName="isActivated"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="vksApplicationApp.gRInterestDetails.borrowingInterestRate"
+            for="field_borrowingInterestRate"
+            >Borrowing Interest Rate</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="borrowingInterestRate"
+            id="field_borrowingInterestRate"
+            data-cy="borrowingInterestRate"
+            formControlName="borrowingInterestRate"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.interestOnLoan" for="field_interestOnLoan"
+            >Interest On Loan</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="interestOnLoan"
+            id="field_interestOnLoan"
+            data-cy="interestOnLoan"
+            formControlName="interestOnLoan"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.penaltyInterest" for="field_penaltyInterest"
+            >Penalty Interest</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="penaltyInterest"
+            id="field_penaltyInterest"
+            data-cy="penaltyInterest"
+            formControlName="penaltyInterest"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.surcharge" for="field_surcharge">Surcharge</label>
+          <input type="number" class="form-control" name="surcharge" id="field_surcharge" data-cy="surcharge" formControlName="surcharge" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.loanDuration" for="field_loanDuration"
+            >Loan Duration</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="loanDuration"
+            id="field_loanDuration"
+            data-cy="loanDuration"
+            formControlName="loanDuration"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.numberOFInstallment" for="field_numberOFInstallment"
+            >Number OF Installment</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="numberOFInstallment"
+            id="field_numberOFInstallment"
+            data-cy="numberOFInstallment"
+            formControlName="numberOFInstallment"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.extendedInterstRate" for="field_extendedInterstRate"
+            >Extended Interst Rate</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="extendedInterstRate"
+            id="field_extendedInterstRate"
+            data-cy="extendedInterstRate"
+            formControlName="extendedInterstRate"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="vksApplicationApp.gRInterestDetails.centralGovSubsidyInterest"
+            for="field_centralGovSubsidyInterest"
+            >Central Gov Subsidy Interest</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="centralGovSubsidyInterest"
+            id="field_centralGovSubsidyInterest"
+            data-cy="centralGovSubsidyInterest"
+            formControlName="centralGovSubsidyInterest"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="vksApplicationApp.gRInterestDetails.distBankSubsidyInterest"
+            for="field_distBankSubsidyInterest"
+            >Dist Bank Subsidy Interest</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="distBankSubsidyInterest"
+            id="field_distBankSubsidyInterest"
+            data-cy="distBankSubsidyInterest"
+            formControlName="distBankSubsidyInterest"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.borrowerInterest" for="field_borrowerInterest"
+            >Borrower Interest</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="borrowerInterest"
+            id="field_borrowerInterest"
+            data-cy="borrowerInterest"
+            formControlName="borrowerInterest"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="vksApplicationApp.gRInterestDetails.stateGovSubsidyInterest"
+            for="field_stateGovSubsidyInterest"
+            >State Gov Subsidy Interest</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="stateGovSubsidyInterest"
+            id="field_stateGovSubsidyInterest"
+            data-cy="stateGovSubsidyInterest"
+            formControlName="stateGovSubsidyInterest"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.year" for="field_year">Year</label>
+          <input type="text" class="form-control" name="year" id="field_year" data-cy="year" formControlName="year" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.startDate" for="field_startDate">Start Date</label>
+          <div class="d-flex">
+            <input
+              id="field_startDate"
+              data-cy="startDate"
+              type="datetime-local"
+              class="form-control"
+              name="startDate"
+              formControlName="startDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.endDate" for="field_endDate">End Date</label>
+          <div class="d-flex">
+            <input
+              id="field_endDate"
+              data-cy="endDate"
+              type="datetime-local"
+              class="form-control"
+              name="endDate"
+              formControlName="endDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.lastModified" for="field_lastModified"
+            >Last Modified</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_lastModified"
+              data-cy="lastModified"
+              type="datetime-local"
+              class="form-control"
+              name="lastModified"
+              formControlName="lastModified"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.lastModifiedBy" for="field_lastModifiedBy"
+            >Last Modified By</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.createdBy" for="field_createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.createdOn" for="field_createdOn">Created On</label>
+          <div class="d-flex">
+            <input
+              id="field_createdOn"
+              data-cy="createdOn"
+              type="datetime-local"
+              class="form-control"
+              name="createdOn"
+              formControlName="createdOn"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.isDeleted" for="field_isDeleted">Is Deleted</label>
+          <input type="checkbox" class="form-check" name="isDeleted" id="field_isDeleted" data-cy="isDeleted" formControlName="isDeleted" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.freeField1" for="field_freeField1"
+            >Free Field 1</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="freeField1"
+            id="field_freeField1"
+            data-cy="freeField1"
+            formControlName="freeField1"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.freeField2" for="field_freeField2"
+            >Free Field 2</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="freeField2"
+            id="field_freeField2"
+            data-cy="freeField2"
+            formControlName="freeField2"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.freeField3" for="field_freeField3"
+            >Free Field 3</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="freeField3"
+            id="field_freeField3"
+            data-cy="freeField3"
+            formControlName="freeField3"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksApplicationApp.gRInterestDetails.society" for="field_society">Society</label>
+          <select
+            class="form-control"
+            id="field_society"
+            data-cy="society"
+            name="society"
+            formControlName="society"
+            [compareWith]="compareSociety"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="societyOption" *ngFor="let societyOption of societiesSharedCollection">{{ societyOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

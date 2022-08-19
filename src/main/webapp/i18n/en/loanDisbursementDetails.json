@@ -1,0 +1,35 @@
+{
+  "vksApplicationApp": {
+    "loanDisbursementDetails": {
+      "home": {
+        "title": "Loan Disbursement Details",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Loan Disbursement Details",
+        "createOrEditLabel": "Create or edit a Loan Disbursement Details",
+        "notFound": "No Loan Disbursement Details found"
+      },
+      "created": "A new Loan Disbursement Details is created with identifier {{ param }}",
+      "updated": "A Loan Disbursement Details is updated with identifier {{ param }}",
+      "deleted": "A Loan Disbursement Details is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Loan Disbursement Details {{ id }}?"
+      },
+      "detail": {
+        "title": "Loan Disbursement Details"
+      },
+      "id": "ID",
+      "disbursementDate": "Disbursement Date",
+      "disbursementAmount": "Disbursement Amount",
+      "disbursementNumber": "Disbursement Number",
+      "disbursementStatus": "Disbursement Status",
+      "paymentMode": "Payment Mode",
+      "type": "Type",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "freeField3": "Free Field 3",
+      "loanDetails": "Loan Details"
+    }
+  }
+}

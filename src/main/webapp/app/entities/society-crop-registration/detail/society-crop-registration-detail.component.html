@@ -1,0 +1,90 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="societyCropRegistration">
+      <h2 data-cy="societyCropRegistrationDetailsHeading">
+        <span jhiTranslate="vksApplicationApp.societyCropRegistration.detail.title">Society Crop Registration</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ societyCropRegistration.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyCropRegistration.cropName">Crop Name</span></dt>
+        <dd>
+          <span>{{ societyCropRegistration.cropName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyCropRegistration.monthDuration">Month Duration</span></dt>
+        <dd>
+          <span>{{ societyCropRegistration.monthDuration }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyCropRegistration.season">Season</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vksApplicationApp.Season.' + societyCropRegistration.season }}">{{
+            societyCropRegistration.season
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyCropRegistration.cropLimit">Crop Limit</span></dt>
+        <dd>
+          <span>{{ societyCropRegistration.cropLimit }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyCropRegistration.year">Year</span></dt>
+        <dd>
+          <span>{{ societyCropRegistration.year }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyCropRegistration.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ societyCropRegistration.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyCropRegistration.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ societyCropRegistration.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyCropRegistration.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ societyCropRegistration.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyCropRegistration.createdOn">Created On</span></dt>
+        <dd>
+          <span>{{ societyCropRegistration.createdOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyCropRegistration.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ societyCropRegistration.isDeleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyCropRegistration.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ societyCropRegistration.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyCropRegistration.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ societyCropRegistration.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyCropRegistration.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ societyCropRegistration.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyCropRegistration.society">Society</span></dt>
+        <dd>
+          <div *ngIf="societyCropRegistration.society">
+            <a [routerLink]="['/society', societyCropRegistration.society.id, 'view']">{{ societyCropRegistration.society?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/society-crop-registration', societyCropRegistration.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

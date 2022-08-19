@@ -1,0 +1,104 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="memberLandAssets">
+      <h2 data-cy="memberLandAssetsDetailsHeading">
+        <span jhiTranslate="vksApplicationApp.memberLandAssets.detail.title">Member Land Assets</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.memberLandAssets.landType">Land Type</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.landType }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.memberLandAssets.landGatNo">Land Gat No</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.landGatNo }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.memberLandAssets.landAreaInHector">Land Area In Hector</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.landAreaInHector }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.memberLandAssets.jindagiPatrakNo">Jindagi Patrak No</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.jindagiPatrakNo }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.memberLandAssets.jindagiAmount">Jindagi Amount</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.jindagiAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.memberLandAssets.assetLandAddress">Asset Land Address</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.assetLandAddress }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.memberLandAssets.valueOfLand">Value Of Land</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.valueOfLand }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.memberLandAssets.assigneeOfLand">Assignee Of Land</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.assigneeOfLand }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.memberLandAssets.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.isDeleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.memberLandAssets.mLLoanNo">M L Loan No</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.mLLoanNo }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.memberLandAssets.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.memberLandAssets.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.memberLandAssets.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.memberLandAssets.createdOn">Created On</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.createdOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.memberLandAssets.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.memberLandAssets.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.memberLandAssets.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.memberLandAssets.member">Member</span></dt>
+        <dd>
+          <div *ngIf="memberLandAssets.member">
+            <a [routerLink]="['/member', memberLandAssets.member.id, 'view']">{{ memberLandAssets.member?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/member-land-assets', memberLandAssets.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

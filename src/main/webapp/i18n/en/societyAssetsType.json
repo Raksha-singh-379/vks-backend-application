@@ -1,0 +1,9 @@
+{
+  "vksApplicationApp": {
+    "SocietyAssetsType": {
+      "null": "",
+      "EQUIPMENT": "Equipment",
+      "FURNITURE": "Furniture"
+    }
+  }
+}

@@ -1,0 +1,94 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="societyConfig">
+      <h2 data-cy="societyConfigDetailsHeading"><span jhiTranslate="vksApplicationApp.societyConfig.detail.title">Society Config</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ societyConfig.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyConfig.configName">Config Name</span></dt>
+        <dd>
+          <span>{{ societyConfig.configName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyConfig.configType">Config Type</span></dt>
+        <dd>
+          <span>{{ societyConfig.configType }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyConfig.status">Status</span></dt>
+        <dd>
+          <span>{{ societyConfig.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyConfig.value">Value</span></dt>
+        <dd>
+          <span>{{ societyConfig.value }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyConfig.year">Year</span></dt>
+        <dd>
+          <span>{{ societyConfig.year }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyConfig.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ societyConfig.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyConfig.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ societyConfig.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyConfig.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ societyConfig.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyConfig.createdOn">Created On</span></dt>
+        <dd>
+          <span>{{ societyConfig.createdOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyConfig.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ societyConfig.isDeleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyConfig.freeField1">Free Field 1</span></dt>
+        <dd>
+          <span>{{ societyConfig.freeField1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyConfig.freeField2">Free Field 2</span></dt>
+        <dd>
+          <span>{{ societyConfig.freeField2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyConfig.freeField3">Free Field 3</span></dt>
+        <dd>
+          <span>{{ societyConfig.freeField3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyConfig.society">Society</span></dt>
+        <dd>
+          <div *ngIf="societyConfig.society">
+            <a [routerLink]="['/society', societyConfig.society.id, 'view']">{{ societyConfig.society?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="vksApplicationApp.societyConfig.bankDhoranDetails">Bank Dhoran Details</span></dt>
+        <dd>
+          <div *ngIf="societyConfig.bankDhoranDetails">
+            <a [routerLink]="['/bank-dhoran-details', societyConfig.bankDhoranDetails.id, 'view']">{{
+              societyConfig.bankDhoranDetails?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/society-config', societyConfig.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,149 @@
+<div>
+  <h2 id="page-heading" data-cy="ExpenditureTypeHeading">
+    <span jhiTranslate="vksApplicationApp.expenditureType.home.title">Expenditure Types</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.expenditureType.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-expenditure-type"
+        [routerLink]="['/expenditure-type/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vksApplicationApp.expenditureType.home.createLabel"> Create a new Expenditure Type </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters" (filterChange)="navigateToWithComponentValues()"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="expenditureTypes?.length === 0">
+    <span jhiTranslate="vksApplicationApp.expenditureType.home.notFound">No Expenditure Types found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="expenditureTypes && expenditureTypes.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="expenditureDesc">
+            <span jhiTranslate="vksApplicationApp.expenditureType.expenditureDesc">Expenditure Desc</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="expenditureType">
+            <span jhiTranslate="vksApplicationApp.expenditureType.expenditureType">Expenditure Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="expenditureCategory">
+            <span jhiTranslate="vksApplicationApp.expenditureType.expenditureCategory">Expenditure Category</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="vksApplicationApp.expenditureType.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="vksApplicationApp.expenditureType.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="vksApplicationApp.expenditureType.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdOn">
+            <span jhiTranslate="vksApplicationApp.expenditureType.createdOn">Created On</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isDeleted">
+            <span jhiTranslate="vksApplicationApp.expenditureType.isDeleted">Is Deleted</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField1">
+            <span jhiTranslate="vksApplicationApp.expenditureType.freeField1">Free Field 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField2">
+            <span jhiTranslate="vksApplicationApp.expenditureType.freeField2">Free Field 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="freeField3">
+            <span jhiTranslate="vksApplicationApp.expenditureType.freeField3">Free Field 3</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="society.id">
+            <span jhiTranslate="vksApplicationApp.expenditureType.society">Society</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let expenditureType of expenditureTypes; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/expenditure-type', expenditureType.id, 'view']">{{ expenditureType.id }}</a>
+          </td>
+          <td>{{ expenditureType.expenditureDesc }}</td>
+          <td>{{ expenditureType.expenditureType }}</td>
+          <td>{{ expenditureType.expenditureCategory }}</td>
+          <td>{{ expenditureType.lastModified | formatMediumDatetime }}</td>
+          <td>{{ expenditureType.lastModifiedBy }}</td>
+          <td>{{ expenditureType.createdBy }}</td>
+          <td>{{ expenditureType.createdOn | formatMediumDatetime }}</td>
+          <td>{{ expenditureType.isDeleted }}</td>
+          <td>{{ expenditureType.freeField1 }}</td>
+          <td>{{ expenditureType.freeField2 }}</td>
+          <td>{{ expenditureType.freeField3 }}</td>
+          <td>
+            <div *ngIf="expenditureType.society">
+              <a [routerLink]="['/society', expenditureType.society.id, 'view']">{{ expenditureType.society?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/expenditure-type', expenditureType.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/expenditure-type', expenditureType.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(expenditureType)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="expenditureTypes && expenditureTypes.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

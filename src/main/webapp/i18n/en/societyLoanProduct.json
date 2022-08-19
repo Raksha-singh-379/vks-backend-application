@@ -1,0 +1,55 @@
+{
+  "vksApplicationApp": {
+    "societyLoanProduct": {
+      "home": {
+        "title": "Society Loan Products",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Society Loan Product",
+        "createOrEditLabel": "Create or edit a Society Loan Product",
+        "notFound": "No Society Loan Products found"
+      },
+      "created": "A new Society Loan Product is created with identifier {{ param }}",
+      "updated": "A Society Loan Product is updated with identifier {{ param }}",
+      "deleted": "A Society Loan Product is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Society Loan Product {{ id }}?"
+      },
+      "detail": {
+        "title": "Society Loan Product"
+      },
+      "id": "ID",
+      "productName": "Product Name",
+      "accHeadCode": "Acc Head Code",
+      "borrowingInterestRate": "Borrowing Interest Rate",
+      "duration": "Duration",
+      "interestRate": "Interest Rate",
+      "lastDateOfRepayment": "Last Date Of Repayment",
+      "loanNumber": "Loan Number",
+      "maxLoanAmt": "Max Loan Amt",
+      "noOfDisbursement": "No Of Disbursement",
+      "noOfInstallment": "No Of Installment",
+      "parentAccHeadCode": "Parent Acc Head Code",
+      "parentAccHeadId": "Parent Acc Head Id",
+      "penaltyInterest": "Penalty Interest",
+      "productType": "Product Type",
+      "resolutionDate": "Resolution Date",
+      "resolutionNo": "Resolution No",
+      "status": "Status",
+      "surcharge": "Surcharge",
+      "unitSize": "Unit Size",
+      "validFrom": "Valid From",
+      "validTo": "Valid To",
+      "createdOn": "Created On",
+      "createdBy": "Created By",
+      "isActivate": "Is Activate",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
+      "freeField3": "Free Field 3",
+      "society": "Society",
+      "bankDhoranDetails": "Bank Dhoran Details",
+      "gRInterestDetails": "G R Interest Details"
+    }
+  }
+}
