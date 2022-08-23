@@ -29,7 +29,7 @@ public class TalukaCriteria implements Serializable, Criteria {
 
     private LongFilter id;
 
-    private StringFilter name;
+    private StringFilter talukaName;
 
     private BooleanFilter deleted;
 
@@ -45,7 +45,7 @@ public class TalukaCriteria implements Serializable, Criteria {
 
     public TalukaCriteria(TalukaCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
-        this.name = other.name == null ? null : other.name.copy();
+        this.talukaName = other.talukaName == null ? null : other.talukaName.copy();
         this.deleted = other.deleted == null ? null : other.deleted.copy();
         this.lgdCode = other.lgdCode == null ? null : other.lgdCode.copy();
         this.lastModified = other.lastModified == null ? null : other.lastModified.copy();
@@ -73,19 +73,19 @@ public class TalukaCriteria implements Serializable, Criteria {
         this.id = id;
     }
 
-    public StringFilter getName() {
-        return name;
+    public StringFilter getTalukaName() {
+        return talukaName;
     }
 
-    public StringFilter name() {
-        if (name == null) {
-            name = new StringFilter();
+    public StringFilter talukaName() {
+        if (talukaName == null) {
+            talukaName = new StringFilter();
         }
-        return name;
+        return talukaName;
     }
 
-    public void setName(StringFilter name) {
-        this.name = name;
+    public void setTalukaName(StringFilter talukaName) {
+        this.talukaName = talukaName;
     }
 
     public BooleanFilter getDeleted() {
@@ -167,7 +167,7 @@ public class TalukaCriteria implements Serializable, Criteria {
         final TalukaCriteria that = (TalukaCriteria) o;
         return (
             Objects.equals(id, that.id) &&
-            Objects.equals(name, that.name) &&
+            Objects.equals(talukaName, that.talukaName) &&
             Objects.equals(deleted, that.deleted) &&
             Objects.equals(lgdCode, that.lgdCode) &&
             Objects.equals(lastModified, that.lastModified) &&
@@ -178,7 +178,7 @@ public class TalukaCriteria implements Serializable, Criteria {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, deleted, lgdCode, lastModified, lastModifiedBy, distinct);
+        return Objects.hash(id, talukaName, deleted, lgdCode, lastModified, lastModifiedBy, distinct);
     }
 
     // prettier-ignore
@@ -186,7 +186,7 @@ public class TalukaCriteria implements Serializable, Criteria {
     public String toString() {
         return "TalukaCriteria{" +
             (id != null ? "id=" + id + ", " : "") +
-            (name != null ? "name=" + name + ", " : "") +
+            (talukaName != null ? "talukaName=" + talukaName + ", " : "") +
             (deleted != null ? "deleted=" + deleted + ", " : "") +
             (lgdCode != null ? "lgdCode=" + lgdCode + ", " : "") +
             (lastModified != null ? "lastModified=" + lastModified + ", " : "") +

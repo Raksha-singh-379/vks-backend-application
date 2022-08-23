@@ -14,7 +14,8 @@ public enum ParameterLookupType {
     BELONGING("Belonging"),
     INVESTMENT("Investment"),
     MEASURING_UNIT("Measuring_Unit"),
-    ACCOUNT_TYPE("Account_Type");
+    ACCOUNT_TYPE("Account_Type"),
+    DEPOSIT_TYPE("Deposit_Type");
 
     private final String value;
 

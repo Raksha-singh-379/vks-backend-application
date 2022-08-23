@@ -63,6 +63,12 @@ class ParameterLookupResourceIT {
     private static final Boolean DEFAULT_IS_DELETED = false;
     private static final Boolean UPDATED_IS_DELETED = true;
 
+    private static final String DEFAULT_FREE_FIELD_1 = "AAAAAAAAAA";
+    private static final String UPDATED_FREE_FIELD_1 = "BBBBBBBBBB";
+
+    private static final String DEFAULT_FREE_FIELD_2 = "AAAAAAAAAA";
+    private static final String UPDATED_FREE_FIELD_2 = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/parameter-lookups";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -99,7 +105,9 @@ class ParameterLookupResourceIT {
             .lastModifiedBy(DEFAULT_LAST_MODIFIED_BY)
             .createdBy(DEFAULT_CREATED_BY)
             .createdOn(DEFAULT_CREATED_ON)
-            .isDeleted(DEFAULT_IS_DELETED);
+            .isDeleted(DEFAULT_IS_DELETED)
+            .freeField1(DEFAULT_FREE_FIELD_1)
+            .freeField2(DEFAULT_FREE_FIELD_2);
         return parameterLookup;
     }
 
@@ -119,7 +127,9 @@ class ParameterLookupResourceIT {
             .lastModifiedBy(UPDATED_LAST_MODIFIED_BY)
             .createdBy(UPDATED_CREATED_BY)
             .createdOn(UPDATED_CREATED_ON)
-            .isDeleted(UPDATED_IS_DELETED);
+            .isDeleted(UPDATED_IS_DELETED)
+            .freeField1(UPDATED_FREE_FIELD_1)
+            .freeField2(UPDATED_FREE_FIELD_2);
         return parameterLookup;
     }
 
@@ -153,6 +163,8 @@ class ParameterLookupResourceIT {
         assertThat(testParameterLookup.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
         assertThat(testParameterLookup.getCreatedOn()).isEqualTo(DEFAULT_CREATED_ON);
         assertThat(testParameterLookup.getIsDeleted()).isEqualTo(DEFAULT_IS_DELETED);
+        assertThat(testParameterLookup.getFreeField1()).isEqualTo(DEFAULT_FREE_FIELD_1);
+        assertThat(testParameterLookup.getFreeField2()).isEqualTo(DEFAULT_FREE_FIELD_2);
     }
 
     @Test
@@ -196,7 +208,9 @@ class ParameterLookupResourceIT {
             .andExpect(jsonPath("$.[*].lastModifiedBy").value(hasItem(DEFAULT_LAST_MODIFIED_BY)))
             .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY)))
             .andExpect(jsonPath("$.[*].createdOn").value(hasItem(DEFAULT_CREATED_ON.toString())))
-            .andExpect(jsonPath("$.[*].isDeleted").value(hasItem(DEFAULT_IS_DELETED.booleanValue())));
+            .andExpect(jsonPath("$.[*].isDeleted").value(hasItem(DEFAULT_IS_DELETED.booleanValue())))
+            .andExpect(jsonPath("$.[*].freeField1").value(hasItem(DEFAULT_FREE_FIELD_1)))
+            .andExpect(jsonPath("$.[*].freeField2").value(hasItem(DEFAULT_FREE_FIELD_2)));
     }
 
     @Test
@@ -219,7 +233,9 @@ class ParameterLookupResourceIT {
             .andExpect(jsonPath("$.lastModifiedBy").value(DEFAULT_LAST_MODIFIED_BY))
             .andExpect(jsonPath("$.createdBy").value(DEFAULT_CREATED_BY))
             .andExpect(jsonPath("$.createdOn").value(DEFAULT_CREATED_ON.toString()))
-            .andExpect(jsonPath("$.isDeleted").value(DEFAULT_IS_DELETED.booleanValue()));
+            .andExpect(jsonPath("$.isDeleted").value(DEFAULT_IS_DELETED.booleanValue()))
+            .andExpect(jsonPath("$.freeField1").value(DEFAULT_FREE_FIELD_1))
+            .andExpect(jsonPath("$.freeField2").value(DEFAULT_FREE_FIELD_2));
     }
 
     @Test
@@ -723,6 +739,136 @@ class ParameterLookupResourceIT {
 
     @Test
     @Transactional
+    void getAllParameterLookupsByFreeField1IsEqualToSomething() throws Exception {
+        // Initialize the database
+        parameterLookupRepository.saveAndFlush(parameterLookup);
+
+        // Get all the parameterLookupList where freeField1 equals to DEFAULT_FREE_FIELD_1
+        defaultParameterLookupShouldBeFound("freeField1.equals=" + DEFAULT_FREE_FIELD_1);
+
+        // Get all the parameterLookupList where freeField1 equals to UPDATED_FREE_FIELD_1
+        defaultParameterLookupShouldNotBeFound("freeField1.equals=" + UPDATED_FREE_FIELD_1);
+    }
+
+    @Test
+    @Transactional
+    void getAllParameterLookupsByFreeField1IsInShouldWork() throws Exception {
+        // Initialize the database
+        parameterLookupRepository.saveAndFlush(parameterLookup);
+
+        // Get all the parameterLookupList where freeField1 in DEFAULT_FREE_FIELD_1 or UPDATED_FREE_FIELD_1
+        defaultParameterLookupShouldBeFound("freeField1.in=" + DEFAULT_FREE_FIELD_1 + "," + UPDATED_FREE_FIELD_1);
+
+        // Get all the parameterLookupList where freeField1 equals to UPDATED_FREE_FIELD_1
+        defaultParameterLookupShouldNotBeFound("freeField1.in=" + UPDATED_FREE_FIELD_1);
+    }
+
+    @Test
+    @Transactional
+    void getAllParameterLookupsByFreeField1IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        parameterLookupRepository.saveAndFlush(parameterLookup);
+
+        // Get all the parameterLookupList where freeField1 is not null
+        defaultParameterLookupShouldBeFound("freeField1.specified=true");
+
+        // Get all the parameterLookupList where freeField1 is null
+        defaultParameterLookupShouldNotBeFound("freeField1.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllParameterLookupsByFreeField1ContainsSomething() throws Exception {
+        // Initialize the database
+        parameterLookupRepository.saveAndFlush(parameterLookup);
+
+        // Get all the parameterLookupList where freeField1 contains DEFAULT_FREE_FIELD_1
+        defaultParameterLookupShouldBeFound("freeField1.contains=" + DEFAULT_FREE_FIELD_1);
+
+        // Get all the parameterLookupList where freeField1 contains UPDATED_FREE_FIELD_1
+        defaultParameterLookupShouldNotBeFound("freeField1.contains=" + UPDATED_FREE_FIELD_1);
+    }
+
+    @Test
+    @Transactional
+    void getAllParameterLookupsByFreeField1NotContainsSomething() throws Exception {
+        // Initialize the database
+        parameterLookupRepository.saveAndFlush(parameterLookup);
+
+        // Get all the parameterLookupList where freeField1 does not contain DEFAULT_FREE_FIELD_1
+        defaultParameterLookupShouldNotBeFound("freeField1.doesNotContain=" + DEFAULT_FREE_FIELD_1);
+
+        // Get all the parameterLookupList where freeField1 does not contain UPDATED_FREE_FIELD_1
+        defaultParameterLookupShouldBeFound("freeField1.doesNotContain=" + UPDATED_FREE_FIELD_1);
+    }
+
+    @Test
+    @Transactional
+    void getAllParameterLookupsByFreeField2IsEqualToSomething() throws Exception {
+        // Initialize the database
+        parameterLookupRepository.saveAndFlush(parameterLookup);
+
+        // Get all the parameterLookupList where freeField2 equals to DEFAULT_FREE_FIELD_2
+        defaultParameterLookupShouldBeFound("freeField2.equals=" + DEFAULT_FREE_FIELD_2);
+
+        // Get all the parameterLookupList where freeField2 equals to UPDATED_FREE_FIELD_2
+        defaultParameterLookupShouldNotBeFound("freeField2.equals=" + UPDATED_FREE_FIELD_2);
+    }
+
+    @Test
+    @Transactional
+    void getAllParameterLookupsByFreeField2IsInShouldWork() throws Exception {
+        // Initialize the database
+        parameterLookupRepository.saveAndFlush(parameterLookup);
+
+        // Get all the parameterLookupList where freeField2 in DEFAULT_FREE_FIELD_2 or UPDATED_FREE_FIELD_2
+        defaultParameterLookupShouldBeFound("freeField2.in=" + DEFAULT_FREE_FIELD_2 + "," + UPDATED_FREE_FIELD_2);
+
+        // Get all the parameterLookupList where freeField2 equals to UPDATED_FREE_FIELD_2
+        defaultParameterLookupShouldNotBeFound("freeField2.in=" + UPDATED_FREE_FIELD_2);
+    }
+
+    @Test
+    @Transactional
+    void getAllParameterLookupsByFreeField2IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        parameterLookupRepository.saveAndFlush(parameterLookup);
+
+        // Get all the parameterLookupList where freeField2 is not null
+        defaultParameterLookupShouldBeFound("freeField2.specified=true");
+
+        // Get all the parameterLookupList where freeField2 is null
+        defaultParameterLookupShouldNotBeFound("freeField2.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllParameterLookupsByFreeField2ContainsSomething() throws Exception {
+        // Initialize the database
+        parameterLookupRepository.saveAndFlush(parameterLookup);
+
+        // Get all the parameterLookupList where freeField2 contains DEFAULT_FREE_FIELD_2
+        defaultParameterLookupShouldBeFound("freeField2.contains=" + DEFAULT_FREE_FIELD_2);
+
+        // Get all the parameterLookupList where freeField2 contains UPDATED_FREE_FIELD_2
+        defaultParameterLookupShouldNotBeFound("freeField2.contains=" + UPDATED_FREE_FIELD_2);
+    }
+
+    @Test
+    @Transactional
+    void getAllParameterLookupsByFreeField2NotContainsSomething() throws Exception {
+        // Initialize the database
+        parameterLookupRepository.saveAndFlush(parameterLookup);
+
+        // Get all the parameterLookupList where freeField2 does not contain DEFAULT_FREE_FIELD_2
+        defaultParameterLookupShouldNotBeFound("freeField2.doesNotContain=" + DEFAULT_FREE_FIELD_2);
+
+        // Get all the parameterLookupList where freeField2 does not contain UPDATED_FREE_FIELD_2
+        defaultParameterLookupShouldBeFound("freeField2.doesNotContain=" + UPDATED_FREE_FIELD_2);
+    }
+
+    @Test
+    @Transactional
     void getAllParameterLookupsBySocietyIsEqualToSomething() throws Exception {
         Society society;
         if (TestUtil.findAll(em, Society.class).isEmpty()) {
@@ -761,7 +907,9 @@ class ParameterLookupResourceIT {
             .andExpect(jsonPath("$.[*].lastModifiedBy").value(hasItem(DEFAULT_LAST_MODIFIED_BY)))
             .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY)))
             .andExpect(jsonPath("$.[*].createdOn").value(hasItem(DEFAULT_CREATED_ON.toString())))
-            .andExpect(jsonPath("$.[*].isDeleted").value(hasItem(DEFAULT_IS_DELETED.booleanValue())));
+            .andExpect(jsonPath("$.[*].isDeleted").value(hasItem(DEFAULT_IS_DELETED.booleanValue())))
+            .andExpect(jsonPath("$.[*].freeField1").value(hasItem(DEFAULT_FREE_FIELD_1)))
+            .andExpect(jsonPath("$.[*].freeField2").value(hasItem(DEFAULT_FREE_FIELD_2)));
 
         // Check, that the count call also returns 1
         restParameterLookupMockMvc
@@ -818,7 +966,9 @@ class ParameterLookupResourceIT {
             .lastModifiedBy(UPDATED_LAST_MODIFIED_BY)
             .createdBy(UPDATED_CREATED_BY)
             .createdOn(UPDATED_CREATED_ON)
-            .isDeleted(UPDATED_IS_DELETED);
+            .isDeleted(UPDATED_IS_DELETED)
+            .freeField1(UPDATED_FREE_FIELD_1)
+            .freeField2(UPDATED_FREE_FIELD_2);
         ParameterLookupDTO parameterLookupDTO = parameterLookupMapper.toDto(updatedParameterLookup);
 
         restParameterLookupMockMvc
@@ -842,6 +992,8 @@ class ParameterLookupResourceIT {
         assertThat(testParameterLookup.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);
         assertThat(testParameterLookup.getCreatedOn()).isEqualTo(UPDATED_CREATED_ON);
         assertThat(testParameterLookup.getIsDeleted()).isEqualTo(UPDATED_IS_DELETED);
+        assertThat(testParameterLookup.getFreeField1()).isEqualTo(UPDATED_FREE_FIELD_1);
+        assertThat(testParameterLookup.getFreeField2()).isEqualTo(UPDATED_FREE_FIELD_2);
     }
 
     @Test
@@ -946,6 +1098,8 @@ class ParameterLookupResourceIT {
         assertThat(testParameterLookup.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
         assertThat(testParameterLookup.getCreatedOn()).isEqualTo(DEFAULT_CREATED_ON);
         assertThat(testParameterLookup.getIsDeleted()).isEqualTo(DEFAULT_IS_DELETED);
+        assertThat(testParameterLookup.getFreeField1()).isEqualTo(DEFAULT_FREE_FIELD_1);
+        assertThat(testParameterLookup.getFreeField2()).isEqualTo(DEFAULT_FREE_FIELD_2);
     }
 
     @Test
@@ -969,7 +1123,9 @@ class ParameterLookupResourceIT {
             .lastModifiedBy(UPDATED_LAST_MODIFIED_BY)
             .createdBy(UPDATED_CREATED_BY)
             .createdOn(UPDATED_CREATED_ON)
-            .isDeleted(UPDATED_IS_DELETED);
+            .isDeleted(UPDATED_IS_DELETED)
+            .freeField1(UPDATED_FREE_FIELD_1)
+            .freeField2(UPDATED_FREE_FIELD_2);
 
         restParameterLookupMockMvc
             .perform(
@@ -992,6 +1148,8 @@ class ParameterLookupResourceIT {
         assertThat(testParameterLookup.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);
         assertThat(testParameterLookup.getCreatedOn()).isEqualTo(UPDATED_CREATED_ON);
         assertThat(testParameterLookup.getIsDeleted()).isEqualTo(UPDATED_IS_DELETED);
+        assertThat(testParameterLookup.getFreeField1()).isEqualTo(UPDATED_FREE_FIELD_1);
+        assertThat(testParameterLookup.getFreeField2()).isEqualTo(UPDATED_FREE_FIELD_2);
     }
 
     @Test

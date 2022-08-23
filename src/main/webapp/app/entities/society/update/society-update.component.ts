@@ -7,14 +7,8 @@ import { finalize, map } from 'rxjs/operators';
 import { SocietyFormService, SocietyFormGroup } from './society-form.service';
 import { ISociety } from '../society.model';
 import { SocietyService } from '../service/society.service';
-import { IVillage } from 'app/entities/village/village.model';
-import { VillageService } from 'app/entities/village/service/village.service';
-import { IState } from 'app/entities/state/state.model';
-import { StateService } from 'app/entities/state/service/state.service';
-import { IDistrict } from 'app/entities/district/district.model';
-import { DistrictService } from 'app/entities/district/service/district.service';
-import { ITaluka } from 'app/entities/taluka/taluka.model';
-import { TalukaService } from 'app/entities/taluka/service/taluka.service';
+import { IAddressDetails } from 'app/entities/address-details/address-details.model';
+import { AddressDetailsService } from 'app/entities/address-details/service/address-details.service';
 
 @Component({
   selector: 'jhi-society-update',
@@ -24,10 +18,7 @@ export class SocietyUpdateComponent implements OnInit {
   isSaving = false;
   society: ISociety | null = null;
 
-  villagesSharedCollection: IVillage[] = [];
-  statesSharedCollection: IState[] = [];
-  districtsSharedCollection: IDistrict[] = [];
-  talukasSharedCollection: ITaluka[] = [];
+  addressDetailsSharedCollection: IAddressDetails[] = [];
   societiesSharedCollection: ISociety[] = [];
 
   editForm: SocietyFormGroup = this.societyFormService.createSocietyFormGroup();
@@ -35,20 +26,12 @@ export class SocietyUpdateComponent implements OnInit {
   constructor(
     protected societyService: SocietyService,
     protected societyFormService: SocietyFormService,
-    protected villageService: VillageService,
-    protected stateService: StateService,
-    protected districtService: DistrictService,
-    protected talukaService: TalukaService,
+    protected addressDetailsService: AddressDetailsService,
     protected activatedRoute: ActivatedRoute
   ) {}
 
-  compareVillage = (o1: IVillage | null, o2: IVillage | null): boolean => this.villageService.compareVillage(o1, o2);
-
-  compareState = (o1: IState | null, o2: IState | null): boolean => this.stateService.compareState(o1, o2);
-
-  compareDistrict = (o1: IDistrict | null, o2: IDistrict | null): boolean => this.districtService.compareDistrict(o1, o2);
-
-  compareTaluka = (o1: ITaluka | null, o2: ITaluka | null): boolean => this.talukaService.compareTaluka(o1, o2);
+  compareAddressDetails = (o1: IAddressDetails | null, o2: IAddressDetails | null): boolean =>
+    this.addressDetailsService.compareAddressDetails(o1, o2);
 
   compareSociety = (o1: ISociety | null, o2: ISociety | null): boolean => this.societyService.compareSociety(o1, o2);
 
@@ -100,16 +83,10 @@ export class SocietyUpdateComponent implements OnInit {
     this.society = society;
     this.societyFormService.resetForm(this.editForm, society);
 
-    this.villagesSharedCollection = this.villageService.addVillageToCollectionIfMissing<IVillage>(
-      this.villagesSharedCollection,
-      society.city
+    this.addressDetailsSharedCollection = this.addressDetailsService.addAddressDetailsToCollectionIfMissing<IAddressDetails>(
+      this.addressDetailsSharedCollection,
+      society.addressDetails
     );
-    this.statesSharedCollection = this.stateService.addStateToCollectionIfMissing<IState>(this.statesSharedCollection, society.state);
-    this.districtsSharedCollection = this.districtService.addDistrictToCollectionIfMissing<IDistrict>(
-      this.districtsSharedCollection,
-      society.district
-    );
-    this.talukasSharedCollection = this.talukaService.addTalukaToCollectionIfMissing<ITaluka>(this.talukasSharedCollection, society.taluka);
     this.societiesSharedCollection = this.societyService.addSocietyToCollectionIfMissing<ISociety>(
       this.societiesSharedCollection,
       society.society
@@ -117,31 +94,15 @@ export class SocietyUpdateComponent implements OnInit {
   }
 
   protected loadRelationshipsOptions(): void {
-    this.villageService
+    this.addressDetailsService
       .query()
-      .pipe(map((res: HttpResponse<IVillage[]>) => res.body ?? []))
-      .pipe(map((villages: IVillage[]) => this.villageService.addVillageToCollectionIfMissing<IVillage>(villages, this.society?.city)))
-      .subscribe((villages: IVillage[]) => (this.villagesSharedCollection = villages));
-
-    this.stateService
-      .query()
-      .pipe(map((res: HttpResponse<IState[]>) => res.body ?? []))
-      .pipe(map((states: IState[]) => this.stateService.addStateToCollectionIfMissing<IState>(states, this.society?.state)))
-      .subscribe((states: IState[]) => (this.statesSharedCollection = states));
-
-    this.districtService
-      .query()
-      .pipe(map((res: HttpResponse<IDistrict[]>) => res.body ?? []))
+      .pipe(map((res: HttpResponse<IAddressDetails[]>) => res.body ?? []))
       .pipe(
-        map((districts: IDistrict[]) => this.districtService.addDistrictToCollectionIfMissing<IDistrict>(districts, this.society?.district))
+        map((addressDetails: IAddressDetails[]) =>
+          this.addressDetailsService.addAddressDetailsToCollectionIfMissing<IAddressDetails>(addressDetails, this.society?.addressDetails)
+        )
       )
-      .subscribe((districts: IDistrict[]) => (this.districtsSharedCollection = districts));
-
-    this.talukaService
-      .query()
-      .pipe(map((res: HttpResponse<ITaluka[]>) => res.body ?? []))
-      .pipe(map((talukas: ITaluka[]) => this.talukaService.addTalukaToCollectionIfMissing<ITaluka>(talukas, this.society?.taluka)))
-      .subscribe((talukas: ITaluka[]) => (this.talukasSharedCollection = talukas));
+      .subscribe((addressDetails: IAddressDetails[]) => (this.addressDetailsSharedCollection = addressDetails));
 
     this.societyService
       .query()

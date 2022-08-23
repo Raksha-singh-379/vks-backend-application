@@ -31,7 +31,7 @@ type VillageFormDefaults = Pick<NewVillage, 'id' | 'deleted' | 'lastModified'>;
 
 type VillageFormGroupContent = {
   id: FormControl<VillageFormRawValue['id'] | NewVillage['id']>;
-  name: FormControl<VillageFormRawValue['name']>;
+  villageName: FormControl<VillageFormRawValue['villageName']>;
   deleted: FormControl<VillageFormRawValue['deleted']>;
   lgdCode: FormControl<VillageFormRawValue['lgdCode']>;
   lastModified: FormControl<VillageFormRawValue['lastModified']>;
@@ -55,17 +55,13 @@ export class VillageFormService {
           validators: [Validators.required],
         }
       ),
-      name: new FormControl(villageRawValue.name, {
+      villageName: new FormControl(villageRawValue.villageName, {
         validators: [Validators.required],
       }),
       deleted: new FormControl(villageRawValue.deleted),
       lgdCode: new FormControl(villageRawValue.lgdCode),
-      lastModified: new FormControl(villageRawValue.lastModified, {
-        validators: [Validators.required],
-      }),
-      lastModifiedBy: new FormControl(villageRawValue.lastModifiedBy, {
-        validators: [Validators.required],
-      }),
+      lastModified: new FormControl(villageRawValue.lastModified),
+      lastModifiedBy: new FormControl(villageRawValue.lastModifiedBy),
     });
   }
 

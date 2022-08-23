@@ -18,7 +18,7 @@
         "title": "State"
       },
       "id": "ID",
-      "name": "Name",
+      "stateName": "State Name",
       "deleted": "Deleted",
       "lgdCode": "Lgd Code",
       "lastModified": "Last Modified",

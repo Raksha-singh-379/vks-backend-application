@@ -34,8 +34,8 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class VillageResourceIT {
 
-    private static final String DEFAULT_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_NAME = "BBBBBBBBBB";
+    private static final String DEFAULT_VILLAGE_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_VILLAGE_NAME = "BBBBBBBBBB";
 
     private static final Boolean DEFAULT_DELETED = false;
     private static final Boolean UPDATED_DELETED = true;
@@ -78,7 +78,7 @@ class VillageResourceIT {
      */
     public static Village createEntity(EntityManager em) {
         Village village = new Village()
-            .name(DEFAULT_NAME)
+            .villageName(DEFAULT_VILLAGE_NAME)
             .deleted(DEFAULT_DELETED)
             .lgdCode(DEFAULT_LGD_CODE)
             .lastModified(DEFAULT_LAST_MODIFIED)
@@ -94,7 +94,7 @@ class VillageResourceIT {
      */
     public static Village createUpdatedEntity(EntityManager em) {
         Village village = new Village()
-            .name(UPDATED_NAME)
+            .villageName(UPDATED_VILLAGE_NAME)
             .deleted(UPDATED_DELETED)
             .lgdCode(UPDATED_LGD_CODE)
             .lastModified(UPDATED_LAST_MODIFIED)
@@ -121,7 +121,7 @@ class VillageResourceIT {
         List<Village> villageList = villageRepository.findAll();
         assertThat(villageList).hasSize(databaseSizeBeforeCreate + 1);
         Village testVillage = villageList.get(villageList.size() - 1);
-        assertThat(testVillage.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testVillage.getVillageName()).isEqualTo(DEFAULT_VILLAGE_NAME);
         assertThat(testVillage.getDeleted()).isEqualTo(DEFAULT_DELETED);
         assertThat(testVillage.getLgdCode()).isEqualTo(DEFAULT_LGD_CODE);
         assertThat(testVillage.getLastModified()).isEqualTo(DEFAULT_LAST_MODIFIED);
@@ -149,46 +149,10 @@ class VillageResourceIT {
 
     @Test
     @Transactional
-    void checkNameIsRequired() throws Exception {
+    void checkVillageNameIsRequired() throws Exception {
         int databaseSizeBeforeTest = villageRepository.findAll().size();
         // set the field null
-        village.setName(null);
-
-        // Create the Village, which fails.
-        VillageDTO villageDTO = villageMapper.toDto(village);
-
-        restVillageMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(villageDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Village> villageList = villageRepository.findAll();
-        assertThat(villageList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    void checkLastModifiedIsRequired() throws Exception {
-        int databaseSizeBeforeTest = villageRepository.findAll().size();
-        // set the field null
-        village.setLastModified(null);
-
-        // Create the Village, which fails.
-        VillageDTO villageDTO = villageMapper.toDto(village);
-
-        restVillageMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(villageDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Village> villageList = villageRepository.findAll();
-        assertThat(villageList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    void checkLastModifiedByIsRequired() throws Exception {
-        int databaseSizeBeforeTest = villageRepository.findAll().size();
-        // set the field null
-        village.setLastModifiedBy(null);
+        village.setVillageName(null);
 
         // Create the Village, which fails.
         VillageDTO villageDTO = villageMapper.toDto(village);
@@ -213,7 +177,7 @@ class VillageResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(village.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
+            .andExpect(jsonPath("$.[*].villageName").value(hasItem(DEFAULT_VILLAGE_NAME)))
             .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())))
             .andExpect(jsonPath("$.[*].lgdCode").value(hasItem(DEFAULT_LGD_CODE.intValue())))
             .andExpect(jsonPath("$.[*].lastModified").value(hasItem(DEFAULT_LAST_MODIFIED.toString())))
@@ -232,7 +196,7 @@ class VillageResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(village.getId().intValue()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
+            .andExpect(jsonPath("$.villageName").value(DEFAULT_VILLAGE_NAME))
             .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()))
             .andExpect(jsonPath("$.lgdCode").value(DEFAULT_LGD_CODE.intValue()))
             .andExpect(jsonPath("$.lastModified").value(DEFAULT_LAST_MODIFIED.toString()))
@@ -259,67 +223,67 @@ class VillageResourceIT {
 
     @Test
     @Transactional
-    void getAllVillagesByNameIsEqualToSomething() throws Exception {
+    void getAllVillagesByVillageNameIsEqualToSomething() throws Exception {
         // Initialize the database
         villageRepository.saveAndFlush(village);
 
-        // Get all the villageList where name equals to DEFAULT_NAME
-        defaultVillageShouldBeFound("name.equals=" + DEFAULT_NAME);
+        // Get all the villageList where villageName equals to DEFAULT_VILLAGE_NAME
+        defaultVillageShouldBeFound("villageName.equals=" + DEFAULT_VILLAGE_NAME);
 
-        // Get all the villageList where name equals to UPDATED_NAME
-        defaultVillageShouldNotBeFound("name.equals=" + UPDATED_NAME);
+        // Get all the villageList where villageName equals to UPDATED_VILLAGE_NAME
+        defaultVillageShouldNotBeFound("villageName.equals=" + UPDATED_VILLAGE_NAME);
     }
 
     @Test
     @Transactional
-    void getAllVillagesByNameIsInShouldWork() throws Exception {
+    void getAllVillagesByVillageNameIsInShouldWork() throws Exception {
         // Initialize the database
         villageRepository.saveAndFlush(village);
 
-        // Get all the villageList where name in DEFAULT_NAME or UPDATED_NAME
-        defaultVillageShouldBeFound("name.in=" + DEFAULT_NAME + "," + UPDATED_NAME);
+        // Get all the villageList where villageName in DEFAULT_VILLAGE_NAME or UPDATED_VILLAGE_NAME
+        defaultVillageShouldBeFound("villageName.in=" + DEFAULT_VILLAGE_NAME + "," + UPDATED_VILLAGE_NAME);
 
-        // Get all the villageList where name equals to UPDATED_NAME
-        defaultVillageShouldNotBeFound("name.in=" + UPDATED_NAME);
+        // Get all the villageList where villageName equals to UPDATED_VILLAGE_NAME
+        defaultVillageShouldNotBeFound("villageName.in=" + UPDATED_VILLAGE_NAME);
     }
 
     @Test
     @Transactional
-    void getAllVillagesByNameIsNullOrNotNull() throws Exception {
+    void getAllVillagesByVillageNameIsNullOrNotNull() throws Exception {
         // Initialize the database
         villageRepository.saveAndFlush(village);
 
-        // Get all the villageList where name is not null
-        defaultVillageShouldBeFound("name.specified=true");
+        // Get all the villageList where villageName is not null
+        defaultVillageShouldBeFound("villageName.specified=true");
 
-        // Get all the villageList where name is null
-        defaultVillageShouldNotBeFound("name.specified=false");
+        // Get all the villageList where villageName is null
+        defaultVillageShouldNotBeFound("villageName.specified=false");
     }
 
     @Test
     @Transactional
-    void getAllVillagesByNameContainsSomething() throws Exception {
+    void getAllVillagesByVillageNameContainsSomething() throws Exception {
         // Initialize the database
         villageRepository.saveAndFlush(village);
 
-        // Get all the villageList where name contains DEFAULT_NAME
-        defaultVillageShouldBeFound("name.contains=" + DEFAULT_NAME);
+        // Get all the villageList where villageName contains DEFAULT_VILLAGE_NAME
+        defaultVillageShouldBeFound("villageName.contains=" + DEFAULT_VILLAGE_NAME);
 
-        // Get all the villageList where name contains UPDATED_NAME
-        defaultVillageShouldNotBeFound("name.contains=" + UPDATED_NAME);
+        // Get all the villageList where villageName contains UPDATED_VILLAGE_NAME
+        defaultVillageShouldNotBeFound("villageName.contains=" + UPDATED_VILLAGE_NAME);
     }
 
     @Test
     @Transactional
-    void getAllVillagesByNameNotContainsSomething() throws Exception {
+    void getAllVillagesByVillageNameNotContainsSomething() throws Exception {
         // Initialize the database
         villageRepository.saveAndFlush(village);
 
-        // Get all the villageList where name does not contain DEFAULT_NAME
-        defaultVillageShouldNotBeFound("name.doesNotContain=" + DEFAULT_NAME);
+        // Get all the villageList where villageName does not contain DEFAULT_VILLAGE_NAME
+        defaultVillageShouldNotBeFound("villageName.doesNotContain=" + DEFAULT_VILLAGE_NAME);
 
-        // Get all the villageList where name does not contain UPDATED_NAME
-        defaultVillageShouldBeFound("name.doesNotContain=" + UPDATED_NAME);
+        // Get all the villageList where villageName does not contain UPDATED_VILLAGE_NAME
+        defaultVillageShouldBeFound("villageName.doesNotContain=" + UPDATED_VILLAGE_NAME);
     }
 
     @Test
@@ -565,7 +529,7 @@ class VillageResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(village.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
+            .andExpect(jsonPath("$.[*].villageName").value(hasItem(DEFAULT_VILLAGE_NAME)))
             .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())))
             .andExpect(jsonPath("$.[*].lgdCode").value(hasItem(DEFAULT_LGD_CODE.intValue())))
             .andExpect(jsonPath("$.[*].lastModified").value(hasItem(DEFAULT_LAST_MODIFIED.toString())))
@@ -618,7 +582,7 @@ class VillageResourceIT {
         // Disconnect from session so that the updates on updatedVillage are not directly saved in db
         em.detach(updatedVillage);
         updatedVillage
-            .name(UPDATED_NAME)
+            .villageName(UPDATED_VILLAGE_NAME)
             .deleted(UPDATED_DELETED)
             .lgdCode(UPDATED_LGD_CODE)
             .lastModified(UPDATED_LAST_MODIFIED)
@@ -637,7 +601,7 @@ class VillageResourceIT {
         List<Village> villageList = villageRepository.findAll();
         assertThat(villageList).hasSize(databaseSizeBeforeUpdate);
         Village testVillage = villageList.get(villageList.size() - 1);
-        assertThat(testVillage.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testVillage.getVillageName()).isEqualTo(UPDATED_VILLAGE_NAME);
         assertThat(testVillage.getDeleted()).isEqualTo(UPDATED_DELETED);
         assertThat(testVillage.getLgdCode()).isEqualTo(UPDATED_LGD_CODE);
         assertThat(testVillage.getLastModified()).isEqualTo(UPDATED_LAST_MODIFIED);
@@ -722,7 +686,7 @@ class VillageResourceIT {
         partialUpdatedVillage.setId(village.getId());
 
         partialUpdatedVillage
-            .name(UPDATED_NAME)
+            .villageName(UPDATED_VILLAGE_NAME)
             .lgdCode(UPDATED_LGD_CODE)
             .lastModified(UPDATED_LAST_MODIFIED)
             .lastModifiedBy(UPDATED_LAST_MODIFIED_BY);
@@ -739,7 +703,7 @@ class VillageResourceIT {
         List<Village> villageList = villageRepository.findAll();
         assertThat(villageList).hasSize(databaseSizeBeforeUpdate);
         Village testVillage = villageList.get(villageList.size() - 1);
-        assertThat(testVillage.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testVillage.getVillageName()).isEqualTo(UPDATED_VILLAGE_NAME);
         assertThat(testVillage.getDeleted()).isEqualTo(DEFAULT_DELETED);
         assertThat(testVillage.getLgdCode()).isEqualTo(UPDATED_LGD_CODE);
         assertThat(testVillage.getLastModified()).isEqualTo(UPDATED_LAST_MODIFIED);
@@ -759,7 +723,7 @@ class VillageResourceIT {
         partialUpdatedVillage.setId(village.getId());
 
         partialUpdatedVillage
-            .name(UPDATED_NAME)
+            .villageName(UPDATED_VILLAGE_NAME)
             .deleted(UPDATED_DELETED)
             .lgdCode(UPDATED_LGD_CODE)
             .lastModified(UPDATED_LAST_MODIFIED)
@@ -777,7 +741,7 @@ class VillageResourceIT {
         List<Village> villageList = villageRepository.findAll();
         assertThat(villageList).hasSize(databaseSizeBeforeUpdate);
         Village testVillage = villageList.get(villageList.size() - 1);
-        assertThat(testVillage.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testVillage.getVillageName()).isEqualTo(UPDATED_VILLAGE_NAME);
         assertThat(testVillage.getDeleted()).isEqualTo(UPDATED_DELETED);
         assertThat(testVillage.getLgdCode()).isEqualTo(UPDATED_LGD_CODE);
         assertThat(testVillage.getLastModified()).isEqualTo(UPDATED_LAST_MODIFIED);

@@ -1,24 +1,28 @@
 {
   "applications": "*",
-  "changelogDate": "20220819050814",
+  "changelogDate": "20220823125515",
   "dto": "mapstruct",
   "embedded": false,
-  "entityTableName": "society_prerequisite",
+  "entityTableName": "loan_type",
   "fields": [
     {
-      "fieldName": "docType",
+      "fieldName": "loanName",
       "fieldType": "String"
     },
     {
-      "fieldName": "documentDesc",
+      "fieldName": "decription",
       "fieldType": "String"
     },
     {
-      "fieldName": "documentName",
+      "fieldName": "value",
       "fieldType": "String"
     },
     {
-      "fieldName": "mandatory",
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "offer",
       "fieldType": "String"
     },
     {
@@ -56,10 +60,40 @@
   ],
   "fluentMethods": true,
   "jpaMetamodelFiltering": true,
-  "name": "SocietyPrerequisite",
+  "name": "LoanType",
   "pagination": "pagination",
   "readOnly": false,
   "relationships": [
+    {
+      "otherEntityName": "societyPrerequisite",
+      "otherEntityRelationshipName": "loanType",
+      "relationshipName": "societyPrerequisite",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "societyLoanProduct",
+      "otherEntityRelationshipName": "loanType",
+      "relationshipName": "societyLoanProduct",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "loanDemand",
+      "otherEntityRelationshipName": "loanType",
+      "relationshipName": "loanDemand",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "loanDetails",
+      "otherEntityRelationshipName": "loanType",
+      "relationshipName": "loanDetails",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "loanDisbursementDetails",
+      "otherEntityRelationshipName": "loanType",
+      "relationshipName": "loanDisbursementDetails",
+      "relationshipType": "one-to-many"
+    },
     {
       "otherEntityName": "society",
       "relationshipName": "society",
@@ -67,7 +101,6 @@
     },
     {
       "otherEntityName": "loanType",
-      "otherEntityRelationshipName": "societyPrerequisite",
       "relationshipName": "loanType",
       "relationshipType": "many-to-one"
     }

@@ -11,26 +11,6 @@
       "fieldValidateRules": ["required", "unique"]
     },
     {
-      "fieldName": "address",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "village",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "tahsil",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "state",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "district",
-      "fieldType": "String"
-    },
-    {
       "fieldName": "registrationNumber",
       "fieldType": "Double"
     },
@@ -53,10 +33,6 @@
     {
       "fieldName": "emailAddress",
       "fieldType": "String"
-    },
-    {
-      "fieldName": "pinCode",
-      "fieldType": "Integer"
     },
     {
       "fieldName": "createdOn",
@@ -89,6 +65,14 @@
     {
       "fieldName": "freeField2",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField3",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField4",
+      "fieldType": "String"
     }
   ],
   "fluentMethods": true,
@@ -98,25 +82,10 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "village",
+      "otherEntityName": "addressDetails",
       "ownerSide": true,
-      "relationshipName": "city",
+      "relationshipName": "addressDetails",
       "relationshipType": "one-to-one"
-    },
-    {
-      "otherEntityName": "state",
-      "relationshipName": "state",
-      "relationshipType": "many-to-one"
-    },
-    {
-      "otherEntityName": "district",
-      "relationshipName": "district",
-      "relationshipType": "many-to-one"
-    },
-    {
-      "otherEntityName": "taluka",
-      "relationshipName": "taluka",
-      "relationshipType": "many-to-one"
     },
     {
       "otherEntityName": "society",

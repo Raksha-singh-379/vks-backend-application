@@ -29,6 +29,8 @@ describe('ParameterLookup Form Service', () => {
             createdBy: expect.any(Object),
             createdOn: expect.any(Object),
             isDeleted: expect.any(Object),
+            freeField1: expect.any(Object),
+            freeField2: expect.any(Object),
             society: expect.any(Object),
           })
         );
@@ -49,6 +51,8 @@ describe('ParameterLookup Form Service', () => {
             createdBy: expect.any(Object),
             createdOn: expect.any(Object),
             isDeleted: expect.any(Object),
+            freeField1: expect.any(Object),
+            freeField2: expect.any(Object),
             society: expect.any(Object),
           })
         );

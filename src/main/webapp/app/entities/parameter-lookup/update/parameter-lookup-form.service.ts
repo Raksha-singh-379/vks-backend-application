@@ -41,6 +41,8 @@ type ParameterLookupFormGroupContent = {
   createdBy: FormControl<ParameterLookupFormRawValue['createdBy']>;
   createdOn: FormControl<ParameterLookupFormRawValue['createdOn']>;
   isDeleted: FormControl<ParameterLookupFormRawValue['isDeleted']>;
+  freeField1: FormControl<ParameterLookupFormRawValue['freeField1']>;
+  freeField2: FormControl<ParameterLookupFormRawValue['freeField2']>;
   society: FormControl<ParameterLookupFormRawValue['society']>;
 };
 
@@ -70,6 +72,8 @@ export class ParameterLookupFormService {
       createdBy: new FormControl(parameterLookupRawValue.createdBy),
       createdOn: new FormControl(parameterLookupRawValue.createdOn),
       isDeleted: new FormControl(parameterLookupRawValue.isDeleted),
+      freeField1: new FormControl(parameterLookupRawValue.freeField1),
+      freeField2: new FormControl(parameterLookupRawValue.freeField2),
       society: new FormControl(parameterLookupRawValue.society),
     });
   }

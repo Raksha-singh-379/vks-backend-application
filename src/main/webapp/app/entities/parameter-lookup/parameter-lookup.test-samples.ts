@@ -9,24 +9,26 @@ export const sampleWithRequiredData: IParameterLookup = {
 };
 
 export const sampleWithPartialData: IParameterLookup = {
-  id: 37501,
-  description: 'metrics Customizable',
-  value: 'viral SCSI',
-  lastModified: dayjs('2022-08-18T11:51'),
-  createdOn: dayjs('2022-08-18T23:38'),
+  id: 41978,
+  description: 'compressing Soap efficient',
+  value: 'Re-contextualized Heard Triple-buffered',
+  lastModified: dayjs('2022-08-18T17:42'),
+  createdOn: dayjs('2022-08-19T03:52'),
 };
 
 export const sampleWithFullData: IParameterLookup = {
-  id: 52864,
-  type: ParameterLookupType['FARMER'],
-  name: 'Triple-buffered',
-  description: 'Cotton Movies',
-  value: 'Account recontextualize hack',
-  lastModified: dayjs('2022-08-19T02:14'),
-  lastModifiedBy: 'Berkshire',
-  createdBy: 'algorithm Small',
-  createdOn: dayjs('2022-08-18T16:58'),
+  id: 57513,
+  type: ParameterLookupType['RESOLUTION'],
+  name: 'Checking architecture Forward',
+  description: 'portal Rustic Berkshire',
+  value: 'algorithm Small',
+  lastModified: dayjs('2022-08-18T16:58'),
+  lastModifiedBy: 'Bedfordshire Toys',
+  createdBy: 'Bedfordshire Shilling front-end',
+  createdOn: dayjs('2022-08-18T13:07'),
   isDeleted: true,
+  freeField1: 'Coordinator',
+  freeField2: 'Dynamic',
 };
 
 export const sampleWithNewData: NewParameterLookup = {

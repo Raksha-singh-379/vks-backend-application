@@ -4,33 +4,27 @@ import { IState, NewState } from './state.model';
 
 export const sampleWithRequiredData: IState = {
   id: 97627,
-  name: 'Games microchip',
-  lastModified: dayjs('2022-08-18T13:50'),
-  lastModifiedBy: 'customized',
+  stateName: 'Games microchip',
 };
 
 export const sampleWithPartialData: IState = {
-  id: 14638,
-  name: 'synergies',
-  deleted: true,
-  lgdCode: 45507,
-  lastModified: dayjs('2022-08-18T08:35'),
-  lastModifiedBy: 'generate',
+  id: 35175,
+  stateName: 'Cambodia synergies Architect',
+  deleted: false,
+  lastModifiedBy: 'compressing Mill',
 };
 
 export const sampleWithFullData: IState = {
-  id: 78380,
-  name: 'Buckinghamshire green',
+  id: 35522,
+  stateName: 'Plastic',
   deleted: false,
-  lgdCode: 94671,
-  lastModified: dayjs('2022-08-18T18:34'),
-  lastModifiedBy: 'XSS',
+  lgdCode: 88604,
+  lastModified: dayjs('2022-08-18T06:35'),
+  lastModifiedBy: 'channels Meadows Distributed',
 };
 
 export const sampleWithNewData: NewState = {
-  name: 'olive Cambridgeshire',
-  lastModified: dayjs('2022-08-19T00:29'),
-  lastModifiedBy: 'Light Small',
+  stateName: 'e-commerce Sleek',
   id: null,
 };
 

@@ -18,7 +18,7 @@
         "title": "Village"
       },
       "id": "ID",
-      "name": "Name",
+      "villageName": "Village Name",
       "deleted": "Deleted",
       "lgdCode": "Lgd Code",
       "lastModified": "Last Modified",

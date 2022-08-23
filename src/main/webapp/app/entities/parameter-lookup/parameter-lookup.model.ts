@@ -13,6 +13,8 @@ export interface IParameterLookup {
   createdBy?: string | null;
   createdOn?: dayjs.Dayjs | null;
   isDeleted?: boolean | null;
+  freeField1?: string | null;
+  freeField2?: string | null;
   society?: Pick<ISociety, 'id'> | null;
 }
 

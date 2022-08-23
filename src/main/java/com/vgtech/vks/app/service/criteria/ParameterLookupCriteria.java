@@ -65,6 +65,10 @@ public class ParameterLookupCriteria implements Serializable, Criteria {
 
     private BooleanFilter isDeleted;
 
+    private StringFilter freeField1;
+
+    private StringFilter freeField2;
+
     private LongFilter societyId;
 
     private Boolean distinct;
@@ -82,6 +86,8 @@ public class ParameterLookupCriteria implements Serializable, Criteria {
         this.createdBy = other.createdBy == null ? null : other.createdBy.copy();
         this.createdOn = other.createdOn == null ? null : other.createdOn.copy();
         this.isDeleted = other.isDeleted == null ? null : other.isDeleted.copy();
+        this.freeField1 = other.freeField1 == null ? null : other.freeField1.copy();
+        this.freeField2 = other.freeField2 == null ? null : other.freeField2.copy();
         this.societyId = other.societyId == null ? null : other.societyId.copy();
         this.distinct = other.distinct;
     }
@@ -241,6 +247,36 @@ public class ParameterLookupCriteria implements Serializable, Criteria {
         this.isDeleted = isDeleted;
     }
 
+    public StringFilter getFreeField1() {
+        return freeField1;
+    }
+
+    public StringFilter freeField1() {
+        if (freeField1 == null) {
+            freeField1 = new StringFilter();
+        }
+        return freeField1;
+    }
+
+    public void setFreeField1(StringFilter freeField1) {
+        this.freeField1 = freeField1;
+    }
+
+    public StringFilter getFreeField2() {
+        return freeField2;
+    }
+
+    public StringFilter freeField2() {
+        if (freeField2 == null) {
+            freeField2 = new StringFilter();
+        }
+        return freeField2;
+    }
+
+    public void setFreeField2(StringFilter freeField2) {
+        this.freeField2 = freeField2;
+    }
+
     public LongFilter getSocietyId() {
         return societyId;
     }
@@ -284,6 +320,8 @@ public class ParameterLookupCriteria implements Serializable, Criteria {
             Objects.equals(createdBy, that.createdBy) &&
             Objects.equals(createdOn, that.createdOn) &&
             Objects.equals(isDeleted, that.isDeleted) &&
+            Objects.equals(freeField1, that.freeField1) &&
+            Objects.equals(freeField2, that.freeField2) &&
             Objects.equals(societyId, that.societyId) &&
             Objects.equals(distinct, that.distinct)
         );
@@ -302,6 +340,8 @@ public class ParameterLookupCriteria implements Serializable, Criteria {
             createdBy,
             createdOn,
             isDeleted,
+            freeField1,
+            freeField2,
             societyId,
             distinct
         );
@@ -321,6 +361,8 @@ public class ParameterLookupCriteria implements Serializable, Criteria {
             (createdBy != null ? "createdBy=" + createdBy + ", " : "") +
             (createdOn != null ? "createdOn=" + createdOn + ", " : "") +
             (isDeleted != null ? "isDeleted=" + isDeleted + ", " : "") +
+            (freeField1 != null ? "freeField1=" + freeField1 + ", " : "") +
+            (freeField2 != null ? "freeField2=" + freeField2 + ", " : "") +
             (societyId != null ? "societyId=" + societyId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";

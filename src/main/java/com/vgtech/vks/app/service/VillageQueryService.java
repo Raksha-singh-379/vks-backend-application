@@ -90,8 +90,8 @@ public class VillageQueryService extends QueryService<Village> {
             if (criteria.getId() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getId(), Village_.id));
             }
-            if (criteria.getName() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getName(), Village_.name));
+            if (criteria.getVillageName() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getVillageName(), Village_.villageName));
             }
             if (criteria.getDeleted() != null) {
                 specification = specification.and(buildSpecification(criteria.getDeleted(), Village_.deleted));

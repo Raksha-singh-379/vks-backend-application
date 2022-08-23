@@ -16,6 +16,7 @@ export interface ISocietyAssets {
   freeField1?: string | null;
   freeField2?: string | null;
   freeField3?: string | null;
+  freeField4?: string | null;
   society?: Pick<ISociety, 'id'> | null;
 }
 

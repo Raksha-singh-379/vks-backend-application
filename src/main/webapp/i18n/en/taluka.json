@@ -18,7 +18,7 @@
         "title": "Taluka"
       },
       "id": "ID",
-      "name": "Name",
+      "talukaName": "Taluka Name",
       "deleted": "Deleted",
       "lgdCode": "Lgd Code",
       "lastModified": "Last Modified",

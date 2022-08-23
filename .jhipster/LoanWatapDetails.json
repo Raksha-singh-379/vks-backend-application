@@ -28,7 +28,7 @@
     {
       "fieldName": "status",
       "fieldType": "LoanStatus",
-      "fieldValues": "APPLIED (Applied),PENDING (Pending),CHART_GENRATED (Chart_Genrated),APPROVED (Approved),DISBURSED (Disbursed),ACTIVE (Active),CLOSED (Closed)"
+      "fieldValues": "RECORDED (Recorded),APPLIED (Applied),PENDING (Pending),AWAITED (Awaited),CHART_GENRATED (Chart_Genrated),APPROVED (Approved),REJECTED (Rejected),CANCELLED (cancelled),DISBURSED (Disbursed),ACTIVE (Active),CLOSED (Closed)"
     },
     {
       "fieldName": "year",
@@ -56,6 +56,10 @@
     },
     {
       "fieldName": "freeField3",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField4",
       "fieldType": "String"
     }
   ],

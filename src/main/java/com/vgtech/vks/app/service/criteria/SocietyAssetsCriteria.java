@@ -71,6 +71,8 @@ public class SocietyAssetsCriteria implements Serializable, Criteria {
 
     private StringFilter freeField3;
 
+    private StringFilter freeField4;
+
     private LongFilter societyId;
 
     private Boolean distinct;
@@ -91,6 +93,7 @@ public class SocietyAssetsCriteria implements Serializable, Criteria {
         this.freeField1 = other.freeField1 == null ? null : other.freeField1.copy();
         this.freeField2 = other.freeField2 == null ? null : other.freeField2.copy();
         this.freeField3 = other.freeField3 == null ? null : other.freeField3.copy();
+        this.freeField4 = other.freeField4 == null ? null : other.freeField4.copy();
         this.societyId = other.societyId == null ? null : other.societyId.copy();
         this.distinct = other.distinct;
     }
@@ -295,6 +298,21 @@ public class SocietyAssetsCriteria implements Serializable, Criteria {
         this.freeField3 = freeField3;
     }
 
+    public StringFilter getFreeField4() {
+        return freeField4;
+    }
+
+    public StringFilter freeField4() {
+        if (freeField4 == null) {
+            freeField4 = new StringFilter();
+        }
+        return freeField4;
+    }
+
+    public void setFreeField4(StringFilter freeField4) {
+        this.freeField4 = freeField4;
+    }
+
     public LongFilter getSocietyId() {
         return societyId;
     }
@@ -341,6 +359,7 @@ public class SocietyAssetsCriteria implements Serializable, Criteria {
             Objects.equals(freeField1, that.freeField1) &&
             Objects.equals(freeField2, that.freeField2) &&
             Objects.equals(freeField3, that.freeField3) &&
+            Objects.equals(freeField4, that.freeField4) &&
             Objects.equals(societyId, that.societyId) &&
             Objects.equals(distinct, that.distinct)
         );
@@ -362,6 +381,7 @@ public class SocietyAssetsCriteria implements Serializable, Criteria {
             freeField1,
             freeField2,
             freeField3,
+            freeField4,
             societyId,
             distinct
         );
@@ -384,6 +404,7 @@ public class SocietyAssetsCriteria implements Serializable, Criteria {
             (freeField1 != null ? "freeField1=" + freeField1 + ", " : "") +
             (freeField2 != null ? "freeField2=" + freeField2 + ", " : "") +
             (freeField3 != null ? "freeField3=" + freeField3 + ", " : "") +
+            (freeField4 != null ? "freeField4=" + freeField4 + ", " : "") +
             (societyId != null ? "societyId=" + societyId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";

@@ -4,32 +4,27 @@ import { IVillage, NewVillage } from './village.model';
 
 export const sampleWithRequiredData: IVillage = {
   id: 90840,
-  name: 'Executive',
-  lastModified: dayjs('2022-08-18T14:10'),
-  lastModifiedBy: 'Table Pound Bedfordshire',
+  villageName: 'Executive',
 };
 
 export const sampleWithPartialData: IVillage = {
-  id: 95843,
-  name: 'transmit',
-  lgdCode: 90337,
-  lastModified: dayjs('2022-08-18T13:09'),
-  lastModifiedBy: 'Frozen Ball incentivize',
+  id: 34933,
+  villageName: 'wireless online',
+  deleted: false,
+  lgdCode: 24099,
 };
 
 export const sampleWithFullData: IVillage = {
-  id: 93861,
-  name: 'Dakota green',
-  deleted: true,
-  lgdCode: 16496,
-  lastModified: dayjs('2022-08-18T19:05'),
-  lastModifiedBy: 'plum',
+  id: 58212,
+  villageName: 'portal Underpass back-end',
+  deleted: false,
+  lgdCode: 17108,
+  lastModified: dayjs('2022-08-18T22:30'),
+  lastModifiedBy: 'incentivize Branding',
 };
 
 export const sampleWithNewData: NewVillage = {
-  name: 'Steel Tugrik Virtual',
-  lastModified: dayjs('2022-08-18T23:33'),
-  lastModifiedBy: 'seize Berkshire Crossing',
+  villageName: 'Implementation seamless',
   id: null,
 };
 

@@ -31,7 +31,7 @@ type DistrictFormDefaults = Pick<NewDistrict, 'id' | 'deleted' | 'lastModified'>
 
 type DistrictFormGroupContent = {
   id: FormControl<DistrictFormRawValue['id'] | NewDistrict['id']>;
-  name: FormControl<DistrictFormRawValue['name']>;
+  districtName: FormControl<DistrictFormRawValue['districtName']>;
   deleted: FormControl<DistrictFormRawValue['deleted']>;
   lgdCode: FormControl<DistrictFormRawValue['lgdCode']>;
   lastModified: FormControl<DistrictFormRawValue['lastModified']>;
@@ -55,17 +55,13 @@ export class DistrictFormService {
           validators: [Validators.required],
         }
       ),
-      name: new FormControl(districtRawValue.name, {
+      districtName: new FormControl(districtRawValue.districtName, {
         validators: [Validators.required],
       }),
       deleted: new FormControl(districtRawValue.deleted),
       lgdCode: new FormControl(districtRawValue.lgdCode),
-      lastModified: new FormControl(districtRawValue.lastModified, {
-        validators: [Validators.required],
-      }),
-      lastModifiedBy: new FormControl(districtRawValue.lastModifiedBy, {
-        validators: [Validators.required],
-      }),
+      lastModified: new FormControl(districtRawValue.lastModified),
+      lastModifiedBy: new FormControl(districtRawValue.lastModifiedBy),
     });
   }
 

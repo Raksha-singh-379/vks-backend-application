@@ -13,16 +13,14 @@ public class StateDTO implements Serializable {
     private Long id;
 
     @NotNull
-    private String name;
+    private String stateName;
 
     private Boolean deleted;
 
     private Long lgdCode;
 
-    @NotNull
     private Instant lastModified;
 
-    @NotNull
     private String lastModifiedBy;
 
     public Long getId() {
@@ -33,12 +31,12 @@ public class StateDTO implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getStateName() {
+        return stateName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
     }
 
     public Boolean getDeleted() {
@@ -99,7 +97,7 @@ public class StateDTO implements Serializable {
     public String toString() {
         return "StateDTO{" +
             "id=" + getId() +
-            ", name='" + getName() + "'" +
+            ", stateName='" + getStateName() + "'" +
             ", deleted='" + getDeleted() + "'" +
             ", lgdCode=" + getLgdCode() +
             ", lastModified='" + getLastModified() + "'" +

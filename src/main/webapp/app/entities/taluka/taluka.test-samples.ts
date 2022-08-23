@@ -4,31 +4,29 @@ import { ITaluka, NewTaluka } from './taluka.model';
 
 export const sampleWithRequiredData: ITaluka = {
   id: 3499,
-  name: 'Handmade quantify web-readiness',
-  lastModified: dayjs('2022-08-18T16:48'),
-  lastModifiedBy: 'Consultant Integration navigating',
+  talukaName: 'Handmade quantify web-readiness',
 };
 
 export const sampleWithPartialData: ITaluka = {
-  id: 41351,
-  name: 'Plastic Grenada payment',
-  lastModified: dayjs('2022-08-19T03:56'),
-  lastModifiedBy: 'deposit Sports',
+  id: 56140,
+  talukaName: 'Reactive engage synergize',
+  deleted: false,
+  lgdCode: 36326,
+  lastModified: dayjs('2022-08-18T14:26'),
+  lastModifiedBy: 'collaborative Missouri',
 };
 
 export const sampleWithFullData: ITaluka = {
-  id: 28509,
-  name: 'HDD',
+  id: 65445,
+  talukaName: 'Focused generating',
   deleted: false,
-  lgdCode: 46966,
-  lastModified: dayjs('2022-08-18T18:48'),
-  lastModifiedBy: 'Planner primary Keyboard',
+  lgdCode: 87017,
+  lastModified: dayjs('2022-08-18T14:52'),
+  lastModifiedBy: 'Granite mobile',
 };
 
 export const sampleWithNewData: NewTaluka = {
-  name: 'haptic',
-  lastModified: dayjs('2022-08-19T04:10'),
-  lastModifiedBy: 'Borders',
+  talukaName: 'primary Keyboard',
   id: null,
 };
 

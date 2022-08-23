@@ -127,6 +127,9 @@ public class SocietyAssetsQueryService extends QueryService<SocietyAssets> {
             if (criteria.getFreeField3() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getFreeField3(), SocietyAssets_.freeField3));
             }
+            if (criteria.getFreeField4() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getFreeField4(), SocietyAssets_.freeField4));
+            }
             if (criteria.getSocietyId() != null) {
                 specification =
                     specification.and(

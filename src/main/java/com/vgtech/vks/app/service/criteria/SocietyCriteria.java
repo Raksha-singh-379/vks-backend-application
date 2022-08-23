@@ -31,16 +31,6 @@ public class SocietyCriteria implements Serializable, Criteria {
 
     private StringFilter societyName;
 
-    private StringFilter address;
-
-    private StringFilter village;
-
-    private StringFilter tahsil;
-
-    private StringFilter state;
-
-    private StringFilter district;
-
     private DoubleFilter registrationNumber;
 
     private DoubleFilter gstinNumber;
@@ -52,8 +42,6 @@ public class SocietyCriteria implements Serializable, Criteria {
     private DoubleFilter phoneNumber;
 
     private StringFilter emailAddress;
-
-    private IntegerFilter pinCode;
 
     private InstantFilter createdOn;
 
@@ -71,13 +59,11 @@ public class SocietyCriteria implements Serializable, Criteria {
 
     private StringFilter freeField2;
 
-    private LongFilter cityId;
+    private StringFilter freeField3;
 
-    private LongFilter stateId;
+    private StringFilter freeField4;
 
-    private LongFilter districtId;
-
-    private LongFilter talukaId;
+    private LongFilter addressDetailsId;
 
     private LongFilter societyId;
 
@@ -88,18 +74,12 @@ public class SocietyCriteria implements Serializable, Criteria {
     public SocietyCriteria(SocietyCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
         this.societyName = other.societyName == null ? null : other.societyName.copy();
-        this.address = other.address == null ? null : other.address.copy();
-        this.village = other.village == null ? null : other.village.copy();
-        this.tahsil = other.tahsil == null ? null : other.tahsil.copy();
-        this.state = other.state == null ? null : other.state.copy();
-        this.district = other.district == null ? null : other.district.copy();
         this.registrationNumber = other.registrationNumber == null ? null : other.registrationNumber.copy();
         this.gstinNumber = other.gstinNumber == null ? null : other.gstinNumber.copy();
         this.panNumber = other.panNumber == null ? null : other.panNumber.copy();
         this.tanNumber = other.tanNumber == null ? null : other.tanNumber.copy();
         this.phoneNumber = other.phoneNumber == null ? null : other.phoneNumber.copy();
         this.emailAddress = other.emailAddress == null ? null : other.emailAddress.copy();
-        this.pinCode = other.pinCode == null ? null : other.pinCode.copy();
         this.createdOn = other.createdOn == null ? null : other.createdOn.copy();
         this.createdBy = other.createdBy == null ? null : other.createdBy.copy();
         this.description = other.description == null ? null : other.description.copy();
@@ -108,10 +88,9 @@ public class SocietyCriteria implements Serializable, Criteria {
         this.lastModifiedBy = other.lastModifiedBy == null ? null : other.lastModifiedBy.copy();
         this.freeField1 = other.freeField1 == null ? null : other.freeField1.copy();
         this.freeField2 = other.freeField2 == null ? null : other.freeField2.copy();
-        this.cityId = other.cityId == null ? null : other.cityId.copy();
-        this.stateId = other.stateId == null ? null : other.stateId.copy();
-        this.districtId = other.districtId == null ? null : other.districtId.copy();
-        this.talukaId = other.talukaId == null ? null : other.talukaId.copy();
+        this.freeField3 = other.freeField3 == null ? null : other.freeField3.copy();
+        this.freeField4 = other.freeField4 == null ? null : other.freeField4.copy();
+        this.addressDetailsId = other.addressDetailsId == null ? null : other.addressDetailsId.copy();
         this.societyId = other.societyId == null ? null : other.societyId.copy();
         this.distinct = other.distinct;
     }
@@ -149,81 +128,6 @@ public class SocietyCriteria implements Serializable, Criteria {
 
     public void setSocietyName(StringFilter societyName) {
         this.societyName = societyName;
-    }
-
-    public StringFilter getAddress() {
-        return address;
-    }
-
-    public StringFilter address() {
-        if (address == null) {
-            address = new StringFilter();
-        }
-        return address;
-    }
-
-    public void setAddress(StringFilter address) {
-        this.address = address;
-    }
-
-    public StringFilter getVillage() {
-        return village;
-    }
-
-    public StringFilter village() {
-        if (village == null) {
-            village = new StringFilter();
-        }
-        return village;
-    }
-
-    public void setVillage(StringFilter village) {
-        this.village = village;
-    }
-
-    public StringFilter getTahsil() {
-        return tahsil;
-    }
-
-    public StringFilter tahsil() {
-        if (tahsil == null) {
-            tahsil = new StringFilter();
-        }
-        return tahsil;
-    }
-
-    public void setTahsil(StringFilter tahsil) {
-        this.tahsil = tahsil;
-    }
-
-    public StringFilter getState() {
-        return state;
-    }
-
-    public StringFilter state() {
-        if (state == null) {
-            state = new StringFilter();
-        }
-        return state;
-    }
-
-    public void setState(StringFilter state) {
-        this.state = state;
-    }
-
-    public StringFilter getDistrict() {
-        return district;
-    }
-
-    public StringFilter district() {
-        if (district == null) {
-            district = new StringFilter();
-        }
-        return district;
-    }
-
-    public void setDistrict(StringFilter district) {
-        this.district = district;
     }
 
     public DoubleFilter getRegistrationNumber() {
@@ -314,21 +218,6 @@ public class SocietyCriteria implements Serializable, Criteria {
 
     public void setEmailAddress(StringFilter emailAddress) {
         this.emailAddress = emailAddress;
-    }
-
-    public IntegerFilter getPinCode() {
-        return pinCode;
-    }
-
-    public IntegerFilter pinCode() {
-        if (pinCode == null) {
-            pinCode = new IntegerFilter();
-        }
-        return pinCode;
-    }
-
-    public void setPinCode(IntegerFilter pinCode) {
-        this.pinCode = pinCode;
     }
 
     public InstantFilter getCreatedOn() {
@@ -451,64 +340,49 @@ public class SocietyCriteria implements Serializable, Criteria {
         this.freeField2 = freeField2;
     }
 
-    public LongFilter getCityId() {
-        return cityId;
+    public StringFilter getFreeField3() {
+        return freeField3;
     }
 
-    public LongFilter cityId() {
-        if (cityId == null) {
-            cityId = new LongFilter();
+    public StringFilter freeField3() {
+        if (freeField3 == null) {
+            freeField3 = new StringFilter();
         }
-        return cityId;
+        return freeField3;
     }
 
-    public void setCityId(LongFilter cityId) {
-        this.cityId = cityId;
+    public void setFreeField3(StringFilter freeField3) {
+        this.freeField3 = freeField3;
     }
 
-    public LongFilter getStateId() {
-        return stateId;
+    public StringFilter getFreeField4() {
+        return freeField4;
     }
 
-    public LongFilter stateId() {
-        if (stateId == null) {
-            stateId = new LongFilter();
+    public StringFilter freeField4() {
+        if (freeField4 == null) {
+            freeField4 = new StringFilter();
         }
-        return stateId;
+        return freeField4;
     }
 
-    public void setStateId(LongFilter stateId) {
-        this.stateId = stateId;
+    public void setFreeField4(StringFilter freeField4) {
+        this.freeField4 = freeField4;
     }
 
-    public LongFilter getDistrictId() {
-        return districtId;
+    public LongFilter getAddressDetailsId() {
+        return addressDetailsId;
     }
 
-    public LongFilter districtId() {
-        if (districtId == null) {
-            districtId = new LongFilter();
+    public LongFilter addressDetailsId() {
+        if (addressDetailsId == null) {
+            addressDetailsId = new LongFilter();
         }
-        return districtId;
+        return addressDetailsId;
     }
 
-    public void setDistrictId(LongFilter districtId) {
-        this.districtId = districtId;
-    }
-
-    public LongFilter getTalukaId() {
-        return talukaId;
-    }
-
-    public LongFilter talukaId() {
-        if (talukaId == null) {
-            talukaId = new LongFilter();
-        }
-        return talukaId;
-    }
-
-    public void setTalukaId(LongFilter talukaId) {
-        this.talukaId = talukaId;
+    public void setAddressDetailsId(LongFilter addressDetailsId) {
+        this.addressDetailsId = addressDetailsId;
     }
 
     public LongFilter getSocietyId() {
@@ -546,18 +420,12 @@ public class SocietyCriteria implements Serializable, Criteria {
         return (
             Objects.equals(id, that.id) &&
             Objects.equals(societyName, that.societyName) &&
-            Objects.equals(address, that.address) &&
-            Objects.equals(village, that.village) &&
-            Objects.equals(tahsil, that.tahsil) &&
-            Objects.equals(state, that.state) &&
-            Objects.equals(district, that.district) &&
             Objects.equals(registrationNumber, that.registrationNumber) &&
             Objects.equals(gstinNumber, that.gstinNumber) &&
             Objects.equals(panNumber, that.panNumber) &&
             Objects.equals(tanNumber, that.tanNumber) &&
             Objects.equals(phoneNumber, that.phoneNumber) &&
             Objects.equals(emailAddress, that.emailAddress) &&
-            Objects.equals(pinCode, that.pinCode) &&
             Objects.equals(createdOn, that.createdOn) &&
             Objects.equals(createdBy, that.createdBy) &&
             Objects.equals(description, that.description) &&
@@ -566,10 +434,9 @@ public class SocietyCriteria implements Serializable, Criteria {
             Objects.equals(lastModifiedBy, that.lastModifiedBy) &&
             Objects.equals(freeField1, that.freeField1) &&
             Objects.equals(freeField2, that.freeField2) &&
-            Objects.equals(cityId, that.cityId) &&
-            Objects.equals(stateId, that.stateId) &&
-            Objects.equals(districtId, that.districtId) &&
-            Objects.equals(talukaId, that.talukaId) &&
+            Objects.equals(freeField3, that.freeField3) &&
+            Objects.equals(freeField4, that.freeField4) &&
+            Objects.equals(addressDetailsId, that.addressDetailsId) &&
             Objects.equals(societyId, that.societyId) &&
             Objects.equals(distinct, that.distinct)
         );
@@ -580,18 +447,12 @@ public class SocietyCriteria implements Serializable, Criteria {
         return Objects.hash(
             id,
             societyName,
-            address,
-            village,
-            tahsil,
-            state,
-            district,
             registrationNumber,
             gstinNumber,
             panNumber,
             tanNumber,
             phoneNumber,
             emailAddress,
-            pinCode,
             createdOn,
             createdBy,
             description,
@@ -600,10 +461,9 @@ public class SocietyCriteria implements Serializable, Criteria {
             lastModifiedBy,
             freeField1,
             freeField2,
-            cityId,
-            stateId,
-            districtId,
-            talukaId,
+            freeField3,
+            freeField4,
+            addressDetailsId,
             societyId,
             distinct
         );
@@ -615,18 +475,12 @@ public class SocietyCriteria implements Serializable, Criteria {
         return "SocietyCriteria{" +
             (id != null ? "id=" + id + ", " : "") +
             (societyName != null ? "societyName=" + societyName + ", " : "") +
-            (address != null ? "address=" + address + ", " : "") +
-            (village != null ? "village=" + village + ", " : "") +
-            (tahsil != null ? "tahsil=" + tahsil + ", " : "") +
-            (state != null ? "state=" + state + ", " : "") +
-            (district != null ? "district=" + district + ", " : "") +
             (registrationNumber != null ? "registrationNumber=" + registrationNumber + ", " : "") +
             (gstinNumber != null ? "gstinNumber=" + gstinNumber + ", " : "") +
             (panNumber != null ? "panNumber=" + panNumber + ", " : "") +
             (tanNumber != null ? "tanNumber=" + tanNumber + ", " : "") +
             (phoneNumber != null ? "phoneNumber=" + phoneNumber + ", " : "") +
             (emailAddress != null ? "emailAddress=" + emailAddress + ", " : "") +
-            (pinCode != null ? "pinCode=" + pinCode + ", " : "") +
             (createdOn != null ? "createdOn=" + createdOn + ", " : "") +
             (createdBy != null ? "createdBy=" + createdBy + ", " : "") +
             (description != null ? "description=" + description + ", " : "") +
@@ -635,10 +489,9 @@ public class SocietyCriteria implements Serializable, Criteria {
             (lastModifiedBy != null ? "lastModifiedBy=" + lastModifiedBy + ", " : "") +
             (freeField1 != null ? "freeField1=" + freeField1 + ", " : "") +
             (freeField2 != null ? "freeField2=" + freeField2 + ", " : "") +
-            (cityId != null ? "cityId=" + cityId + ", " : "") +
-            (stateId != null ? "stateId=" + stateId + ", " : "") +
-            (districtId != null ? "districtId=" + districtId + ", " : "") +
-            (talukaId != null ? "talukaId=" + talukaId + ", " : "") +
+            (freeField3 != null ? "freeField3=" + freeField3 + ", " : "") +
+            (freeField4 != null ? "freeField4=" + freeField4 + ", " : "") +
+            (addressDetailsId != null ? "addressDetailsId=" + addressDetailsId + ", " : "") +
             (societyId != null ? "societyId=" + societyId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";

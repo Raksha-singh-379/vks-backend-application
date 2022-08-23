@@ -31,7 +31,7 @@ type StateFormDefaults = Pick<NewState, 'id' | 'deleted' | 'lastModified'>;
 
 type StateFormGroupContent = {
   id: FormControl<StateFormRawValue['id'] | NewState['id']>;
-  name: FormControl<StateFormRawValue['name']>;
+  stateName: FormControl<StateFormRawValue['stateName']>;
   deleted: FormControl<StateFormRawValue['deleted']>;
   lgdCode: FormControl<StateFormRawValue['lgdCode']>;
   lastModified: FormControl<StateFormRawValue['lastModified']>;
@@ -55,17 +55,13 @@ export class StateFormService {
           validators: [Validators.required],
         }
       ),
-      name: new FormControl(stateRawValue.name, {
+      stateName: new FormControl(stateRawValue.stateName, {
         validators: [Validators.required],
       }),
       deleted: new FormControl(stateRawValue.deleted),
       lgdCode: new FormControl(stateRawValue.lgdCode),
-      lastModified: new FormControl(stateRawValue.lastModified, {
-        validators: [Validators.required],
-      }),
-      lastModifiedBy: new FormControl(stateRawValue.lastModifiedBy, {
-        validators: [Validators.required],
-      }),
+      lastModified: new FormControl(stateRawValue.lastModified),
+      lastModifiedBy: new FormControl(stateRawValue.lastModifiedBy),
     });
   }
 

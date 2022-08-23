@@ -90,8 +90,8 @@ public class StateQueryService extends QueryService<State> {
             if (criteria.getId() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getId(), State_.id));
             }
-            if (criteria.getName() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getName(), State_.name));
+            if (criteria.getStateName() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getStateName(), State_.stateName));
             }
             if (criteria.getDeleted() != null) {
                 specification = specification.and(buildSpecification(criteria.getDeleted(), State_.deleted));

@@ -35,31 +35,6 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="vksApplicationApp.society.address" for="field_address">Address</label>
-          <input type="text" class="form-control" name="address" id="field_address" data-cy="address" formControlName="address" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="vksApplicationApp.society.village" for="field_village">Village</label>
-          <input type="text" class="form-control" name="village" id="field_village" data-cy="village" formControlName="village" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="vksApplicationApp.society.tahsil" for="field_tahsil">Tahsil</label>
-          <input type="text" class="form-control" name="tahsil" id="field_tahsil" data-cy="tahsil" formControlName="tahsil" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="vksApplicationApp.society.state" for="field_state">State</label>
-          <input type="text" class="form-control" name="state" id="field_state" data-cy="state" formControlName="state" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="vksApplicationApp.society.district" for="field_district">District</label>
-          <input type="text" class="form-control" name="district" id="field_district" data-cy="district" formControlName="district" />
-        </div>
-
-        <div class="row mb-3">
           <label class="form-label" jhiTranslate="vksApplicationApp.society.registrationNumber" for="field_registrationNumber"
             >Registration Number</label
           >
@@ -117,11 +92,6 @@
             data-cy="emailAddress"
             formControlName="emailAddress"
           />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="vksApplicationApp.society.pinCode" for="field_pinCode">Pin Code</label>
-          <input type="number" class="form-control" name="pinCode" id="field_pinCode" data-cy="pinCode" formControlName="pinCode" />
         </div>
 
         <div class="row mb-3">
@@ -222,48 +192,45 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="vksApplicationApp.society.city" for="field_city">City</label>
-          <select class="form-control" id="field_city" data-cy="city" name="city" formControlName="city" [compareWith]="compareVillage">
-            <option [ngValue]="null"></option>
-            <option [ngValue]="villageOption" *ngFor="let villageOption of villagesSharedCollection">{{ villageOption.id }}</option>
-          </select>
+          <label class="form-label" jhiTranslate="vksApplicationApp.society.freeField3" for="field_freeField3">Free Field 3</label>
+          <input
+            type="text"
+            class="form-control"
+            name="freeField3"
+            id="field_freeField3"
+            data-cy="freeField3"
+            formControlName="freeField3"
+          />
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="vksApplicationApp.society.state" for="field_state">State</label>
-          <select class="form-control" id="field_state" data-cy="state" name="state" formControlName="state" [compareWith]="compareState">
-            <option [ngValue]="null"></option>
-            <option [ngValue]="stateOption" *ngFor="let stateOption of statesSharedCollection">{{ stateOption.id }}</option>
-          </select>
+          <label class="form-label" jhiTranslate="vksApplicationApp.society.freeField4" for="field_freeField4">Free Field 4</label>
+          <input
+            type="text"
+            class="form-control"
+            name="freeField4"
+            id="field_freeField4"
+            data-cy="freeField4"
+            formControlName="freeField4"
+          />
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="vksApplicationApp.society.district" for="field_district">District</label>
+          <label class="form-label" jhiTranslate="vksApplicationApp.society.addressDetails" for="field_addressDetails"
+            >Address Details</label
+          >
           <select
             class="form-control"
-            id="field_district"
-            data-cy="district"
-            name="district"
-            formControlName="district"
-            [compareWith]="compareDistrict"
+            id="field_addressDetails"
+            data-cy="addressDetails"
+            name="addressDetails"
+            formControlName="addressDetails"
+            [compareWith]="compareAddressDetails"
           >
             <option [ngValue]="null"></option>
-            <option [ngValue]="districtOption" *ngFor="let districtOption of districtsSharedCollection">{{ districtOption.id }}</option>
-          </select>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="vksApplicationApp.society.taluka" for="field_taluka">Taluka</label>
-          <select
-            class="form-control"
-            id="field_taluka"
-            data-cy="taluka"
-            name="taluka"
-            formControlName="taluka"
-            [compareWith]="compareTaluka"
-          >
-            <option [ngValue]="null"></option>
-            <option [ngValue]="talukaOption" *ngFor="let talukaOption of talukasSharedCollection">{{ talukaOption.id }}</option>
+            <option [ngValue]="addressDetailsOption" *ngFor="let addressDetailsOption of addressDetailsSharedCollection">
+              {{ addressDetailsOption.id }}
+            </option>
           </select>
         </div>
 

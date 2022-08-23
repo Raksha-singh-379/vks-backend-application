@@ -6,12 +6,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.vgtech.vks.app.IntegrationTest;
-import com.vgtech.vks.app.domain.District;
+import com.vgtech.vks.app.domain.AddressDetails;
 import com.vgtech.vks.app.domain.Society;
 import com.vgtech.vks.app.domain.Society;
-import com.vgtech.vks.app.domain.State;
-import com.vgtech.vks.app.domain.Taluka;
-import com.vgtech.vks.app.domain.Village;
 import com.vgtech.vks.app.repository.SocietyRepository;
 import com.vgtech.vks.app.service.criteria.SocietyCriteria;
 import com.vgtech.vks.app.service.dto.SocietyDTO;
@@ -42,21 +39,6 @@ class SocietyResourceIT {
     private static final String DEFAULT_SOCIETY_NAME = "AAAAAAAAAA";
     private static final String UPDATED_SOCIETY_NAME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_ADDRESS = "AAAAAAAAAA";
-    private static final String UPDATED_ADDRESS = "BBBBBBBBBB";
-
-    private static final String DEFAULT_VILLAGE = "AAAAAAAAAA";
-    private static final String UPDATED_VILLAGE = "BBBBBBBBBB";
-
-    private static final String DEFAULT_TAHSIL = "AAAAAAAAAA";
-    private static final String UPDATED_TAHSIL = "BBBBBBBBBB";
-
-    private static final String DEFAULT_STATE = "AAAAAAAAAA";
-    private static final String UPDATED_STATE = "BBBBBBBBBB";
-
-    private static final String DEFAULT_DISTRICT = "AAAAAAAAAA";
-    private static final String UPDATED_DISTRICT = "BBBBBBBBBB";
-
     private static final Double DEFAULT_REGISTRATION_NUMBER = 1D;
     private static final Double UPDATED_REGISTRATION_NUMBER = 2D;
     private static final Double SMALLER_REGISTRATION_NUMBER = 1D - 1D;
@@ -79,10 +61,6 @@ class SocietyResourceIT {
 
     private static final String DEFAULT_EMAIL_ADDRESS = "AAAAAAAAAA";
     private static final String UPDATED_EMAIL_ADDRESS = "BBBBBBBBBB";
-
-    private static final Integer DEFAULT_PIN_CODE = 1;
-    private static final Integer UPDATED_PIN_CODE = 2;
-    private static final Integer SMALLER_PIN_CODE = 1 - 1;
 
     private static final Instant DEFAULT_CREATED_ON = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_CREATED_ON = Instant.now().truncatedTo(ChronoUnit.MILLIS);
@@ -107,6 +85,12 @@ class SocietyResourceIT {
 
     private static final String DEFAULT_FREE_FIELD_2 = "AAAAAAAAAA";
     private static final String UPDATED_FREE_FIELD_2 = "BBBBBBBBBB";
+
+    private static final String DEFAULT_FREE_FIELD_3 = "AAAAAAAAAA";
+    private static final String UPDATED_FREE_FIELD_3 = "BBBBBBBBBB";
+
+    private static final String DEFAULT_FREE_FIELD_4 = "AAAAAAAAAA";
+    private static final String UPDATED_FREE_FIELD_4 = "BBBBBBBBBB";
 
     private static final String ENTITY_API_URL = "/api/societies";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -137,18 +121,12 @@ class SocietyResourceIT {
     public static Society createEntity(EntityManager em) {
         Society society = new Society()
             .societyName(DEFAULT_SOCIETY_NAME)
-            .address(DEFAULT_ADDRESS)
-            .village(DEFAULT_VILLAGE)
-            .tahsil(DEFAULT_TAHSIL)
-            .state(DEFAULT_STATE)
-            .district(DEFAULT_DISTRICT)
             .registrationNumber(DEFAULT_REGISTRATION_NUMBER)
             .gstinNumber(DEFAULT_GSTIN_NUMBER)
             .panNumber(DEFAULT_PAN_NUMBER)
             .tanNumber(DEFAULT_TAN_NUMBER)
             .phoneNumber(DEFAULT_PHONE_NUMBER)
             .emailAddress(DEFAULT_EMAIL_ADDRESS)
-            .pinCode(DEFAULT_PIN_CODE)
             .createdOn(DEFAULT_CREATED_ON)
             .createdBy(DEFAULT_CREATED_BY)
             .description(DEFAULT_DESCRIPTION)
@@ -156,7 +134,9 @@ class SocietyResourceIT {
             .lastModified(DEFAULT_LAST_MODIFIED)
             .lastModifiedBy(DEFAULT_LAST_MODIFIED_BY)
             .freeField1(DEFAULT_FREE_FIELD_1)
-            .freeField2(DEFAULT_FREE_FIELD_2);
+            .freeField2(DEFAULT_FREE_FIELD_2)
+            .freeField3(DEFAULT_FREE_FIELD_3)
+            .freeField4(DEFAULT_FREE_FIELD_4);
         return society;
     }
 
@@ -169,18 +149,12 @@ class SocietyResourceIT {
     public static Society createUpdatedEntity(EntityManager em) {
         Society society = new Society()
             .societyName(UPDATED_SOCIETY_NAME)
-            .address(UPDATED_ADDRESS)
-            .village(UPDATED_VILLAGE)
-            .tahsil(UPDATED_TAHSIL)
-            .state(UPDATED_STATE)
-            .district(UPDATED_DISTRICT)
             .registrationNumber(UPDATED_REGISTRATION_NUMBER)
             .gstinNumber(UPDATED_GSTIN_NUMBER)
             .panNumber(UPDATED_PAN_NUMBER)
             .tanNumber(UPDATED_TAN_NUMBER)
             .phoneNumber(UPDATED_PHONE_NUMBER)
             .emailAddress(UPDATED_EMAIL_ADDRESS)
-            .pinCode(UPDATED_PIN_CODE)
             .createdOn(UPDATED_CREATED_ON)
             .createdBy(UPDATED_CREATED_BY)
             .description(UPDATED_DESCRIPTION)
@@ -188,7 +162,9 @@ class SocietyResourceIT {
             .lastModified(UPDATED_LAST_MODIFIED)
             .lastModifiedBy(UPDATED_LAST_MODIFIED_BY)
             .freeField1(UPDATED_FREE_FIELD_1)
-            .freeField2(UPDATED_FREE_FIELD_2);
+            .freeField2(UPDATED_FREE_FIELD_2)
+            .freeField3(UPDATED_FREE_FIELD_3)
+            .freeField4(UPDATED_FREE_FIELD_4);
         return society;
     }
 
@@ -212,18 +188,12 @@ class SocietyResourceIT {
         assertThat(societyList).hasSize(databaseSizeBeforeCreate + 1);
         Society testSociety = societyList.get(societyList.size() - 1);
         assertThat(testSociety.getSocietyName()).isEqualTo(DEFAULT_SOCIETY_NAME);
-        assertThat(testSociety.getAddress()).isEqualTo(DEFAULT_ADDRESS);
-        assertThat(testSociety.getVillage()).isEqualTo(DEFAULT_VILLAGE);
-        assertThat(testSociety.getTahsil()).isEqualTo(DEFAULT_TAHSIL);
-        assertThat(testSociety.getState()).isEqualTo(DEFAULT_STATE);
-        assertThat(testSociety.getDistrict()).isEqualTo(DEFAULT_DISTRICT);
         assertThat(testSociety.getRegistrationNumber()).isEqualTo(DEFAULT_REGISTRATION_NUMBER);
         assertThat(testSociety.getGstinNumber()).isEqualTo(DEFAULT_GSTIN_NUMBER);
         assertThat(testSociety.getPanNumber()).isEqualTo(DEFAULT_PAN_NUMBER);
         assertThat(testSociety.getTanNumber()).isEqualTo(DEFAULT_TAN_NUMBER);
         assertThat(testSociety.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
         assertThat(testSociety.getEmailAddress()).isEqualTo(DEFAULT_EMAIL_ADDRESS);
-        assertThat(testSociety.getPinCode()).isEqualTo(DEFAULT_PIN_CODE);
         assertThat(testSociety.getCreatedOn()).isEqualTo(DEFAULT_CREATED_ON);
         assertThat(testSociety.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
         assertThat(testSociety.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
@@ -232,6 +202,8 @@ class SocietyResourceIT {
         assertThat(testSociety.getLastModifiedBy()).isEqualTo(DEFAULT_LAST_MODIFIED_BY);
         assertThat(testSociety.getFreeField1()).isEqualTo(DEFAULT_FREE_FIELD_1);
         assertThat(testSociety.getFreeField2()).isEqualTo(DEFAULT_FREE_FIELD_2);
+        assertThat(testSociety.getFreeField3()).isEqualTo(DEFAULT_FREE_FIELD_3);
+        assertThat(testSociety.getFreeField4()).isEqualTo(DEFAULT_FREE_FIELD_4);
     }
 
     @Test
@@ -284,18 +256,12 @@ class SocietyResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(society.getId().intValue())))
             .andExpect(jsonPath("$.[*].societyName").value(hasItem(DEFAULT_SOCIETY_NAME)))
-            .andExpect(jsonPath("$.[*].address").value(hasItem(DEFAULT_ADDRESS)))
-            .andExpect(jsonPath("$.[*].village").value(hasItem(DEFAULT_VILLAGE)))
-            .andExpect(jsonPath("$.[*].tahsil").value(hasItem(DEFAULT_TAHSIL)))
-            .andExpect(jsonPath("$.[*].state").value(hasItem(DEFAULT_STATE)))
-            .andExpect(jsonPath("$.[*].district").value(hasItem(DEFAULT_DISTRICT)))
             .andExpect(jsonPath("$.[*].registrationNumber").value(hasItem(DEFAULT_REGISTRATION_NUMBER.doubleValue())))
             .andExpect(jsonPath("$.[*].gstinNumber").value(hasItem(DEFAULT_GSTIN_NUMBER.doubleValue())))
             .andExpect(jsonPath("$.[*].panNumber").value(hasItem(DEFAULT_PAN_NUMBER.doubleValue())))
             .andExpect(jsonPath("$.[*].tanNumber").value(hasItem(DEFAULT_TAN_NUMBER.doubleValue())))
             .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER.doubleValue())))
             .andExpect(jsonPath("$.[*].emailAddress").value(hasItem(DEFAULT_EMAIL_ADDRESS)))
-            .andExpect(jsonPath("$.[*].pinCode").value(hasItem(DEFAULT_PIN_CODE)))
             .andExpect(jsonPath("$.[*].createdOn").value(hasItem(DEFAULT_CREATED_ON.toString())))
             .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
@@ -303,7 +269,9 @@ class SocietyResourceIT {
             .andExpect(jsonPath("$.[*].lastModified").value(hasItem(DEFAULT_LAST_MODIFIED.toString())))
             .andExpect(jsonPath("$.[*].lastModifiedBy").value(hasItem(DEFAULT_LAST_MODIFIED_BY)))
             .andExpect(jsonPath("$.[*].freeField1").value(hasItem(DEFAULT_FREE_FIELD_1)))
-            .andExpect(jsonPath("$.[*].freeField2").value(hasItem(DEFAULT_FREE_FIELD_2)));
+            .andExpect(jsonPath("$.[*].freeField2").value(hasItem(DEFAULT_FREE_FIELD_2)))
+            .andExpect(jsonPath("$.[*].freeField3").value(hasItem(DEFAULT_FREE_FIELD_3)))
+            .andExpect(jsonPath("$.[*].freeField4").value(hasItem(DEFAULT_FREE_FIELD_4)));
     }
 
     @Test
@@ -319,18 +287,12 @@ class SocietyResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(society.getId().intValue()))
             .andExpect(jsonPath("$.societyName").value(DEFAULT_SOCIETY_NAME))
-            .andExpect(jsonPath("$.address").value(DEFAULT_ADDRESS))
-            .andExpect(jsonPath("$.village").value(DEFAULT_VILLAGE))
-            .andExpect(jsonPath("$.tahsil").value(DEFAULT_TAHSIL))
-            .andExpect(jsonPath("$.state").value(DEFAULT_STATE))
-            .andExpect(jsonPath("$.district").value(DEFAULT_DISTRICT))
             .andExpect(jsonPath("$.registrationNumber").value(DEFAULT_REGISTRATION_NUMBER.doubleValue()))
             .andExpect(jsonPath("$.gstinNumber").value(DEFAULT_GSTIN_NUMBER.doubleValue()))
             .andExpect(jsonPath("$.panNumber").value(DEFAULT_PAN_NUMBER.doubleValue()))
             .andExpect(jsonPath("$.tanNumber").value(DEFAULT_TAN_NUMBER.doubleValue()))
             .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER.doubleValue()))
             .andExpect(jsonPath("$.emailAddress").value(DEFAULT_EMAIL_ADDRESS))
-            .andExpect(jsonPath("$.pinCode").value(DEFAULT_PIN_CODE))
             .andExpect(jsonPath("$.createdOn").value(DEFAULT_CREATED_ON.toString()))
             .andExpect(jsonPath("$.createdBy").value(DEFAULT_CREATED_BY))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION))
@@ -338,7 +300,9 @@ class SocietyResourceIT {
             .andExpect(jsonPath("$.lastModified").value(DEFAULT_LAST_MODIFIED.toString()))
             .andExpect(jsonPath("$.lastModifiedBy").value(DEFAULT_LAST_MODIFIED_BY))
             .andExpect(jsonPath("$.freeField1").value(DEFAULT_FREE_FIELD_1))
-            .andExpect(jsonPath("$.freeField2").value(DEFAULT_FREE_FIELD_2));
+            .andExpect(jsonPath("$.freeField2").value(DEFAULT_FREE_FIELD_2))
+            .andExpect(jsonPath("$.freeField3").value(DEFAULT_FREE_FIELD_3))
+            .andExpect(jsonPath("$.freeField4").value(DEFAULT_FREE_FIELD_4));
     }
 
     @Test
@@ -422,331 +386,6 @@ class SocietyResourceIT {
 
         // Get all the societyList where societyName does not contain UPDATED_SOCIETY_NAME
         defaultSocietyShouldBeFound("societyName.doesNotContain=" + UPDATED_SOCIETY_NAME);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByAddressIsEqualToSomething() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where address equals to DEFAULT_ADDRESS
-        defaultSocietyShouldBeFound("address.equals=" + DEFAULT_ADDRESS);
-
-        // Get all the societyList where address equals to UPDATED_ADDRESS
-        defaultSocietyShouldNotBeFound("address.equals=" + UPDATED_ADDRESS);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByAddressIsInShouldWork() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where address in DEFAULT_ADDRESS or UPDATED_ADDRESS
-        defaultSocietyShouldBeFound("address.in=" + DEFAULT_ADDRESS + "," + UPDATED_ADDRESS);
-
-        // Get all the societyList where address equals to UPDATED_ADDRESS
-        defaultSocietyShouldNotBeFound("address.in=" + UPDATED_ADDRESS);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByAddressIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where address is not null
-        defaultSocietyShouldBeFound("address.specified=true");
-
-        // Get all the societyList where address is null
-        defaultSocietyShouldNotBeFound("address.specified=false");
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByAddressContainsSomething() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where address contains DEFAULT_ADDRESS
-        defaultSocietyShouldBeFound("address.contains=" + DEFAULT_ADDRESS);
-
-        // Get all the societyList where address contains UPDATED_ADDRESS
-        defaultSocietyShouldNotBeFound("address.contains=" + UPDATED_ADDRESS);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByAddressNotContainsSomething() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where address does not contain DEFAULT_ADDRESS
-        defaultSocietyShouldNotBeFound("address.doesNotContain=" + DEFAULT_ADDRESS);
-
-        // Get all the societyList where address does not contain UPDATED_ADDRESS
-        defaultSocietyShouldBeFound("address.doesNotContain=" + UPDATED_ADDRESS);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByVillageIsEqualToSomething() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where village equals to DEFAULT_VILLAGE
-        defaultSocietyShouldBeFound("village.equals=" + DEFAULT_VILLAGE);
-
-        // Get all the societyList where village equals to UPDATED_VILLAGE
-        defaultSocietyShouldNotBeFound("village.equals=" + UPDATED_VILLAGE);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByVillageIsInShouldWork() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where village in DEFAULT_VILLAGE or UPDATED_VILLAGE
-        defaultSocietyShouldBeFound("village.in=" + DEFAULT_VILLAGE + "," + UPDATED_VILLAGE);
-
-        // Get all the societyList where village equals to UPDATED_VILLAGE
-        defaultSocietyShouldNotBeFound("village.in=" + UPDATED_VILLAGE);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByVillageIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where village is not null
-        defaultSocietyShouldBeFound("village.specified=true");
-
-        // Get all the societyList where village is null
-        defaultSocietyShouldNotBeFound("village.specified=false");
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByVillageContainsSomething() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where village contains DEFAULT_VILLAGE
-        defaultSocietyShouldBeFound("village.contains=" + DEFAULT_VILLAGE);
-
-        // Get all the societyList where village contains UPDATED_VILLAGE
-        defaultSocietyShouldNotBeFound("village.contains=" + UPDATED_VILLAGE);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByVillageNotContainsSomething() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where village does not contain DEFAULT_VILLAGE
-        defaultSocietyShouldNotBeFound("village.doesNotContain=" + DEFAULT_VILLAGE);
-
-        // Get all the societyList where village does not contain UPDATED_VILLAGE
-        defaultSocietyShouldBeFound("village.doesNotContain=" + UPDATED_VILLAGE);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByTahsilIsEqualToSomething() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where tahsil equals to DEFAULT_TAHSIL
-        defaultSocietyShouldBeFound("tahsil.equals=" + DEFAULT_TAHSIL);
-
-        // Get all the societyList where tahsil equals to UPDATED_TAHSIL
-        defaultSocietyShouldNotBeFound("tahsil.equals=" + UPDATED_TAHSIL);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByTahsilIsInShouldWork() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where tahsil in DEFAULT_TAHSIL or UPDATED_TAHSIL
-        defaultSocietyShouldBeFound("tahsil.in=" + DEFAULT_TAHSIL + "," + UPDATED_TAHSIL);
-
-        // Get all the societyList where tahsil equals to UPDATED_TAHSIL
-        defaultSocietyShouldNotBeFound("tahsil.in=" + UPDATED_TAHSIL);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByTahsilIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where tahsil is not null
-        defaultSocietyShouldBeFound("tahsil.specified=true");
-
-        // Get all the societyList where tahsil is null
-        defaultSocietyShouldNotBeFound("tahsil.specified=false");
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByTahsilContainsSomething() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where tahsil contains DEFAULT_TAHSIL
-        defaultSocietyShouldBeFound("tahsil.contains=" + DEFAULT_TAHSIL);
-
-        // Get all the societyList where tahsil contains UPDATED_TAHSIL
-        defaultSocietyShouldNotBeFound("tahsil.contains=" + UPDATED_TAHSIL);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByTahsilNotContainsSomething() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where tahsil does not contain DEFAULT_TAHSIL
-        defaultSocietyShouldNotBeFound("tahsil.doesNotContain=" + DEFAULT_TAHSIL);
-
-        // Get all the societyList where tahsil does not contain UPDATED_TAHSIL
-        defaultSocietyShouldBeFound("tahsil.doesNotContain=" + UPDATED_TAHSIL);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByStateIsEqualToSomething() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where state equals to DEFAULT_STATE
-        defaultSocietyShouldBeFound("state.equals=" + DEFAULT_STATE);
-
-        // Get all the societyList where state equals to UPDATED_STATE
-        defaultSocietyShouldNotBeFound("state.equals=" + UPDATED_STATE);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByStateIsInShouldWork() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where state in DEFAULT_STATE or UPDATED_STATE
-        defaultSocietyShouldBeFound("state.in=" + DEFAULT_STATE + "," + UPDATED_STATE);
-
-        // Get all the societyList where state equals to UPDATED_STATE
-        defaultSocietyShouldNotBeFound("state.in=" + UPDATED_STATE);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByStateIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where state is not null
-        defaultSocietyShouldBeFound("state.specified=true");
-
-        // Get all the societyList where state is null
-        defaultSocietyShouldNotBeFound("state.specified=false");
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByStateContainsSomething() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where state contains DEFAULT_STATE
-        defaultSocietyShouldBeFound("state.contains=" + DEFAULT_STATE);
-
-        // Get all the societyList where state contains UPDATED_STATE
-        defaultSocietyShouldNotBeFound("state.contains=" + UPDATED_STATE);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByStateNotContainsSomething() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where state does not contain DEFAULT_STATE
-        defaultSocietyShouldNotBeFound("state.doesNotContain=" + DEFAULT_STATE);
-
-        // Get all the societyList where state does not contain UPDATED_STATE
-        defaultSocietyShouldBeFound("state.doesNotContain=" + UPDATED_STATE);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByDistrictIsEqualToSomething() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where district equals to DEFAULT_DISTRICT
-        defaultSocietyShouldBeFound("district.equals=" + DEFAULT_DISTRICT);
-
-        // Get all the societyList where district equals to UPDATED_DISTRICT
-        defaultSocietyShouldNotBeFound("district.equals=" + UPDATED_DISTRICT);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByDistrictIsInShouldWork() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where district in DEFAULT_DISTRICT or UPDATED_DISTRICT
-        defaultSocietyShouldBeFound("district.in=" + DEFAULT_DISTRICT + "," + UPDATED_DISTRICT);
-
-        // Get all the societyList where district equals to UPDATED_DISTRICT
-        defaultSocietyShouldNotBeFound("district.in=" + UPDATED_DISTRICT);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByDistrictIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where district is not null
-        defaultSocietyShouldBeFound("district.specified=true");
-
-        // Get all the societyList where district is null
-        defaultSocietyShouldNotBeFound("district.specified=false");
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByDistrictContainsSomething() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where district contains DEFAULT_DISTRICT
-        defaultSocietyShouldBeFound("district.contains=" + DEFAULT_DISTRICT);
-
-        // Get all the societyList where district contains UPDATED_DISTRICT
-        defaultSocietyShouldNotBeFound("district.contains=" + UPDATED_DISTRICT);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByDistrictNotContainsSomething() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where district does not contain DEFAULT_DISTRICT
-        defaultSocietyShouldNotBeFound("district.doesNotContain=" + DEFAULT_DISTRICT);
-
-        // Get all the societyList where district does not contain UPDATED_DISTRICT
-        defaultSocietyShouldBeFound("district.doesNotContain=" + UPDATED_DISTRICT);
     }
 
     @Test
@@ -1271,97 +910,6 @@ class SocietyResourceIT {
 
     @Test
     @Transactional
-    void getAllSocietiesByPinCodeIsEqualToSomething() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where pinCode equals to DEFAULT_PIN_CODE
-        defaultSocietyShouldBeFound("pinCode.equals=" + DEFAULT_PIN_CODE);
-
-        // Get all the societyList where pinCode equals to UPDATED_PIN_CODE
-        defaultSocietyShouldNotBeFound("pinCode.equals=" + UPDATED_PIN_CODE);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByPinCodeIsInShouldWork() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where pinCode in DEFAULT_PIN_CODE or UPDATED_PIN_CODE
-        defaultSocietyShouldBeFound("pinCode.in=" + DEFAULT_PIN_CODE + "," + UPDATED_PIN_CODE);
-
-        // Get all the societyList where pinCode equals to UPDATED_PIN_CODE
-        defaultSocietyShouldNotBeFound("pinCode.in=" + UPDATED_PIN_CODE);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByPinCodeIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where pinCode is not null
-        defaultSocietyShouldBeFound("pinCode.specified=true");
-
-        // Get all the societyList where pinCode is null
-        defaultSocietyShouldNotBeFound("pinCode.specified=false");
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByPinCodeIsGreaterThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where pinCode is greater than or equal to DEFAULT_PIN_CODE
-        defaultSocietyShouldBeFound("pinCode.greaterThanOrEqual=" + DEFAULT_PIN_CODE);
-
-        // Get all the societyList where pinCode is greater than or equal to UPDATED_PIN_CODE
-        defaultSocietyShouldNotBeFound("pinCode.greaterThanOrEqual=" + UPDATED_PIN_CODE);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByPinCodeIsLessThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where pinCode is less than or equal to DEFAULT_PIN_CODE
-        defaultSocietyShouldBeFound("pinCode.lessThanOrEqual=" + DEFAULT_PIN_CODE);
-
-        // Get all the societyList where pinCode is less than or equal to SMALLER_PIN_CODE
-        defaultSocietyShouldNotBeFound("pinCode.lessThanOrEqual=" + SMALLER_PIN_CODE);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByPinCodeIsLessThanSomething() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where pinCode is less than DEFAULT_PIN_CODE
-        defaultSocietyShouldNotBeFound("pinCode.lessThan=" + DEFAULT_PIN_CODE);
-
-        // Get all the societyList where pinCode is less than UPDATED_PIN_CODE
-        defaultSocietyShouldBeFound("pinCode.lessThan=" + UPDATED_PIN_CODE);
-    }
-
-    @Test
-    @Transactional
-    void getAllSocietiesByPinCodeIsGreaterThanSomething() throws Exception {
-        // Initialize the database
-        societyRepository.saveAndFlush(society);
-
-        // Get all the societyList where pinCode is greater than DEFAULT_PIN_CODE
-        defaultSocietyShouldNotBeFound("pinCode.greaterThan=" + DEFAULT_PIN_CODE);
-
-        // Get all the societyList where pinCode is greater than SMALLER_PIN_CODE
-        defaultSocietyShouldBeFound("pinCode.greaterThan=" + SMALLER_PIN_CODE);
-    }
-
-    @Test
-    @Transactional
     void getAllSocietiesByCreatedOnIsEqualToSomething() throws Exception {
         // Initialize the database
         societyRepository.saveAndFlush(society);
@@ -1804,94 +1352,155 @@ class SocietyResourceIT {
 
     @Test
     @Transactional
-    void getAllSocietiesByCityIsEqualToSomething() throws Exception {
-        Village city;
-        if (TestUtil.findAll(em, Village.class).isEmpty()) {
-            societyRepository.saveAndFlush(society);
-            city = VillageResourceIT.createEntity(em);
-        } else {
-            city = TestUtil.findAll(em, Village.class).get(0);
-        }
-        em.persist(city);
-        em.flush();
-        society.setCity(city);
+    void getAllSocietiesByFreeField3IsEqualToSomething() throws Exception {
+        // Initialize the database
         societyRepository.saveAndFlush(society);
-        Long cityId = city.getId();
 
-        // Get all the societyList where city equals to cityId
-        defaultSocietyShouldBeFound("cityId.equals=" + cityId);
+        // Get all the societyList where freeField3 equals to DEFAULT_FREE_FIELD_3
+        defaultSocietyShouldBeFound("freeField3.equals=" + DEFAULT_FREE_FIELD_3);
 
-        // Get all the societyList where city equals to (cityId + 1)
-        defaultSocietyShouldNotBeFound("cityId.equals=" + (cityId + 1));
+        // Get all the societyList where freeField3 equals to UPDATED_FREE_FIELD_3
+        defaultSocietyShouldNotBeFound("freeField3.equals=" + UPDATED_FREE_FIELD_3);
     }
 
     @Test
     @Transactional
-    void getAllSocietiesByStateIsEqualToSomething() throws Exception {
-        State state;
-        if (TestUtil.findAll(em, State.class).isEmpty()) {
-            societyRepository.saveAndFlush(society);
-            state = StateResourceIT.createEntity(em);
-        } else {
-            state = TestUtil.findAll(em, State.class).get(0);
-        }
-        em.persist(state);
-        em.flush();
-        society.setState(state);
+    void getAllSocietiesByFreeField3IsInShouldWork() throws Exception {
+        // Initialize the database
         societyRepository.saveAndFlush(society);
-        Long stateId = state.getId();
 
-        // Get all the societyList where state equals to stateId
-        defaultSocietyShouldBeFound("stateId.equals=" + stateId);
+        // Get all the societyList where freeField3 in DEFAULT_FREE_FIELD_3 or UPDATED_FREE_FIELD_3
+        defaultSocietyShouldBeFound("freeField3.in=" + DEFAULT_FREE_FIELD_3 + "," + UPDATED_FREE_FIELD_3);
 
-        // Get all the societyList where state equals to (stateId + 1)
-        defaultSocietyShouldNotBeFound("stateId.equals=" + (stateId + 1));
+        // Get all the societyList where freeField3 equals to UPDATED_FREE_FIELD_3
+        defaultSocietyShouldNotBeFound("freeField3.in=" + UPDATED_FREE_FIELD_3);
     }
 
     @Test
     @Transactional
-    void getAllSocietiesByDistrictIsEqualToSomething() throws Exception {
-        District district;
-        if (TestUtil.findAll(em, District.class).isEmpty()) {
-            societyRepository.saveAndFlush(society);
-            district = DistrictResourceIT.createEntity(em);
-        } else {
-            district = TestUtil.findAll(em, District.class).get(0);
-        }
-        em.persist(district);
-        em.flush();
-        society.setDistrict(district);
+    void getAllSocietiesByFreeField3IsNullOrNotNull() throws Exception {
+        // Initialize the database
         societyRepository.saveAndFlush(society);
-        Long districtId = district.getId();
 
-        // Get all the societyList where district equals to districtId
-        defaultSocietyShouldBeFound("districtId.equals=" + districtId);
+        // Get all the societyList where freeField3 is not null
+        defaultSocietyShouldBeFound("freeField3.specified=true");
 
-        // Get all the societyList where district equals to (districtId + 1)
-        defaultSocietyShouldNotBeFound("districtId.equals=" + (districtId + 1));
+        // Get all the societyList where freeField3 is null
+        defaultSocietyShouldNotBeFound("freeField3.specified=false");
     }
 
     @Test
     @Transactional
-    void getAllSocietiesByTalukaIsEqualToSomething() throws Exception {
-        Taluka taluka;
-        if (TestUtil.findAll(em, Taluka.class).isEmpty()) {
-            societyRepository.saveAndFlush(society);
-            taluka = TalukaResourceIT.createEntity(em);
-        } else {
-            taluka = TestUtil.findAll(em, Taluka.class).get(0);
-        }
-        em.persist(taluka);
-        em.flush();
-        society.setTaluka(taluka);
+    void getAllSocietiesByFreeField3ContainsSomething() throws Exception {
+        // Initialize the database
         societyRepository.saveAndFlush(society);
-        Long talukaId = taluka.getId();
 
-        // Get all the societyList where taluka equals to talukaId
-        defaultSocietyShouldBeFound("talukaId.equals=" + talukaId);
+        // Get all the societyList where freeField3 contains DEFAULT_FREE_FIELD_3
+        defaultSocietyShouldBeFound("freeField3.contains=" + DEFAULT_FREE_FIELD_3);
 
-        // Get all the societyList where taluka equals to (talukaId + 1)
-        defaultSocietyShouldNotBeFound("talukaId.equals=" + (talukaId + 1));
+        // Get all the societyList where freeField3 contains UPDATED_FREE_FIELD_3
+        defaultSocietyShouldNotBeFound("freeField3.contains=" + UPDATED_FREE_FIELD_3);
+    }
+
+    @Test
+    @Transactional
+    void getAllSocietiesByFreeField3NotContainsSomething() throws Exception {
+        // Initialize the database
+        societyRepository.saveAndFlush(society);
+
+        // Get all the societyList where freeField3 does not contain DEFAULT_FREE_FIELD_3
+        defaultSocietyShouldNotBeFound("freeField3.doesNotContain=" + DEFAULT_FREE_FIELD_3);
+
+        // Get all the societyList where freeField3 does not contain UPDATED_FREE_FIELD_3
+        defaultSocietyShouldBeFound("freeField3.doesNotContain=" + UPDATED_FREE_FIELD_3);
+    }
+
+    @Test
+    @Transactional
+    void getAllSocietiesByFreeField4IsEqualToSomething() throws Exception {
+        // Initialize the database
+        societyRepository.saveAndFlush(society);
+
+        // Get all the societyList where freeField4 equals to DEFAULT_FREE_FIELD_4
+        defaultSocietyShouldBeFound("freeField4.equals=" + DEFAULT_FREE_FIELD_4);
+
+        // Get all the societyList where freeField4 equals to UPDATED_FREE_FIELD_4
+        defaultSocietyShouldNotBeFound("freeField4.equals=" + UPDATED_FREE_FIELD_4);
+    }
+
+    @Test
+    @Transactional
+    void getAllSocietiesByFreeField4IsInShouldWork() throws Exception {
+        // Initialize the database
+        societyRepository.saveAndFlush(society);
+
+        // Get all the societyList where freeField4 in DEFAULT_FREE_FIELD_4 or UPDATED_FREE_FIELD_4
+        defaultSocietyShouldBeFound("freeField4.in=" + DEFAULT_FREE_FIELD_4 + "," + UPDATED_FREE_FIELD_4);
+
+        // Get all the societyList where freeField4 equals to UPDATED_FREE_FIELD_4
+        defaultSocietyShouldNotBeFound("freeField4.in=" + UPDATED_FREE_FIELD_4);
+    }
+
+    @Test
+    @Transactional
+    void getAllSocietiesByFreeField4IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        societyRepository.saveAndFlush(society);
+
+        // Get all the societyList where freeField4 is not null
+        defaultSocietyShouldBeFound("freeField4.specified=true");
+
+        // Get all the societyList where freeField4 is null
+        defaultSocietyShouldNotBeFound("freeField4.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllSocietiesByFreeField4ContainsSomething() throws Exception {
+        // Initialize the database
+        societyRepository.saveAndFlush(society);
+
+        // Get all the societyList where freeField4 contains DEFAULT_FREE_FIELD_4
+        defaultSocietyShouldBeFound("freeField4.contains=" + DEFAULT_FREE_FIELD_4);
+
+        // Get all the societyList where freeField4 contains UPDATED_FREE_FIELD_4
+        defaultSocietyShouldNotBeFound("freeField4.contains=" + UPDATED_FREE_FIELD_4);
+    }
+
+    @Test
+    @Transactional
+    void getAllSocietiesByFreeField4NotContainsSomething() throws Exception {
+        // Initialize the database
+        societyRepository.saveAndFlush(society);
+
+        // Get all the societyList where freeField4 does not contain DEFAULT_FREE_FIELD_4
+        defaultSocietyShouldNotBeFound("freeField4.doesNotContain=" + DEFAULT_FREE_FIELD_4);
+
+        // Get all the societyList where freeField4 does not contain UPDATED_FREE_FIELD_4
+        defaultSocietyShouldBeFound("freeField4.doesNotContain=" + UPDATED_FREE_FIELD_4);
+    }
+
+    @Test
+    @Transactional
+    void getAllSocietiesByAddressDetailsIsEqualToSomething() throws Exception {
+        AddressDetails addressDetails;
+        if (TestUtil.findAll(em, AddressDetails.class).isEmpty()) {
+            societyRepository.saveAndFlush(society);
+            addressDetails = AddressDetailsResourceIT.createEntity(em);
+        } else {
+            addressDetails = TestUtil.findAll(em, AddressDetails.class).get(0);
+        }
+        em.persist(addressDetails);
+        em.flush();
+        society.setAddressDetails(addressDetails);
+        societyRepository.saveAndFlush(society);
+        Long addressDetailsId = addressDetails.getId();
+
+        // Get all the societyList where addressDetails equals to addressDetailsId
+        defaultSocietyShouldBeFound("addressDetailsId.equals=" + addressDetailsId);
+
+        // Get all the societyList where addressDetails equals to (addressDetailsId + 1)
+        defaultSocietyShouldNotBeFound("addressDetailsId.equals=" + (addressDetailsId + 1));
     }
 
     @Test
@@ -1927,18 +1536,12 @@ class SocietyResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(society.getId().intValue())))
             .andExpect(jsonPath("$.[*].societyName").value(hasItem(DEFAULT_SOCIETY_NAME)))
-            .andExpect(jsonPath("$.[*].address").value(hasItem(DEFAULT_ADDRESS)))
-            .andExpect(jsonPath("$.[*].village").value(hasItem(DEFAULT_VILLAGE)))
-            .andExpect(jsonPath("$.[*].tahsil").value(hasItem(DEFAULT_TAHSIL)))
-            .andExpect(jsonPath("$.[*].state").value(hasItem(DEFAULT_STATE)))
-            .andExpect(jsonPath("$.[*].district").value(hasItem(DEFAULT_DISTRICT)))
             .andExpect(jsonPath("$.[*].registrationNumber").value(hasItem(DEFAULT_REGISTRATION_NUMBER.doubleValue())))
             .andExpect(jsonPath("$.[*].gstinNumber").value(hasItem(DEFAULT_GSTIN_NUMBER.doubleValue())))
             .andExpect(jsonPath("$.[*].panNumber").value(hasItem(DEFAULT_PAN_NUMBER.doubleValue())))
             .andExpect(jsonPath("$.[*].tanNumber").value(hasItem(DEFAULT_TAN_NUMBER.doubleValue())))
             .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER.doubleValue())))
             .andExpect(jsonPath("$.[*].emailAddress").value(hasItem(DEFAULT_EMAIL_ADDRESS)))
-            .andExpect(jsonPath("$.[*].pinCode").value(hasItem(DEFAULT_PIN_CODE)))
             .andExpect(jsonPath("$.[*].createdOn").value(hasItem(DEFAULT_CREATED_ON.toString())))
             .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
@@ -1946,7 +1549,9 @@ class SocietyResourceIT {
             .andExpect(jsonPath("$.[*].lastModified").value(hasItem(DEFAULT_LAST_MODIFIED.toString())))
             .andExpect(jsonPath("$.[*].lastModifiedBy").value(hasItem(DEFAULT_LAST_MODIFIED_BY)))
             .andExpect(jsonPath("$.[*].freeField1").value(hasItem(DEFAULT_FREE_FIELD_1)))
-            .andExpect(jsonPath("$.[*].freeField2").value(hasItem(DEFAULT_FREE_FIELD_2)));
+            .andExpect(jsonPath("$.[*].freeField2").value(hasItem(DEFAULT_FREE_FIELD_2)))
+            .andExpect(jsonPath("$.[*].freeField3").value(hasItem(DEFAULT_FREE_FIELD_3)))
+            .andExpect(jsonPath("$.[*].freeField4").value(hasItem(DEFAULT_FREE_FIELD_4)));
 
         // Check, that the count call also returns 1
         restSocietyMockMvc
@@ -1996,18 +1601,12 @@ class SocietyResourceIT {
         em.detach(updatedSociety);
         updatedSociety
             .societyName(UPDATED_SOCIETY_NAME)
-            .address(UPDATED_ADDRESS)
-            .village(UPDATED_VILLAGE)
-            .tahsil(UPDATED_TAHSIL)
-            .state(UPDATED_STATE)
-            .district(UPDATED_DISTRICT)
             .registrationNumber(UPDATED_REGISTRATION_NUMBER)
             .gstinNumber(UPDATED_GSTIN_NUMBER)
             .panNumber(UPDATED_PAN_NUMBER)
             .tanNumber(UPDATED_TAN_NUMBER)
             .phoneNumber(UPDATED_PHONE_NUMBER)
             .emailAddress(UPDATED_EMAIL_ADDRESS)
-            .pinCode(UPDATED_PIN_CODE)
             .createdOn(UPDATED_CREATED_ON)
             .createdBy(UPDATED_CREATED_BY)
             .description(UPDATED_DESCRIPTION)
@@ -2015,7 +1614,9 @@ class SocietyResourceIT {
             .lastModified(UPDATED_LAST_MODIFIED)
             .lastModifiedBy(UPDATED_LAST_MODIFIED_BY)
             .freeField1(UPDATED_FREE_FIELD_1)
-            .freeField2(UPDATED_FREE_FIELD_2);
+            .freeField2(UPDATED_FREE_FIELD_2)
+            .freeField3(UPDATED_FREE_FIELD_3)
+            .freeField4(UPDATED_FREE_FIELD_4);
         SocietyDTO societyDTO = societyMapper.toDto(updatedSociety);
 
         restSocietyMockMvc
@@ -2031,18 +1632,12 @@ class SocietyResourceIT {
         assertThat(societyList).hasSize(databaseSizeBeforeUpdate);
         Society testSociety = societyList.get(societyList.size() - 1);
         assertThat(testSociety.getSocietyName()).isEqualTo(UPDATED_SOCIETY_NAME);
-        assertThat(testSociety.getAddress()).isEqualTo(UPDATED_ADDRESS);
-        assertThat(testSociety.getVillage()).isEqualTo(UPDATED_VILLAGE);
-        assertThat(testSociety.getTahsil()).isEqualTo(UPDATED_TAHSIL);
-        assertThat(testSociety.getState()).isEqualTo(UPDATED_STATE);
-        assertThat(testSociety.getDistrict()).isEqualTo(UPDATED_DISTRICT);
         assertThat(testSociety.getRegistrationNumber()).isEqualTo(UPDATED_REGISTRATION_NUMBER);
         assertThat(testSociety.getGstinNumber()).isEqualTo(UPDATED_GSTIN_NUMBER);
         assertThat(testSociety.getPanNumber()).isEqualTo(UPDATED_PAN_NUMBER);
         assertThat(testSociety.getTanNumber()).isEqualTo(UPDATED_TAN_NUMBER);
         assertThat(testSociety.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
         assertThat(testSociety.getEmailAddress()).isEqualTo(UPDATED_EMAIL_ADDRESS);
-        assertThat(testSociety.getPinCode()).isEqualTo(UPDATED_PIN_CODE);
         assertThat(testSociety.getCreatedOn()).isEqualTo(UPDATED_CREATED_ON);
         assertThat(testSociety.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);
         assertThat(testSociety.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
@@ -2051,6 +1646,8 @@ class SocietyResourceIT {
         assertThat(testSociety.getLastModifiedBy()).isEqualTo(UPDATED_LAST_MODIFIED_BY);
         assertThat(testSociety.getFreeField1()).isEqualTo(UPDATED_FREE_FIELD_1);
         assertThat(testSociety.getFreeField2()).isEqualTo(UPDATED_FREE_FIELD_2);
+        assertThat(testSociety.getFreeField3()).isEqualTo(UPDATED_FREE_FIELD_3);
+        assertThat(testSociety.getFreeField4()).isEqualTo(UPDATED_FREE_FIELD_4);
     }
 
     @Test
@@ -2132,17 +1729,16 @@ class SocietyResourceIT {
 
         partialUpdatedSociety
             .societyName(UPDATED_SOCIETY_NAME)
-            .village(UPDATED_VILLAGE)
-            .tahsil(UPDATED_TAHSIL)
-            .district(UPDATED_DISTRICT)
             .gstinNumber(UPDATED_GSTIN_NUMBER)
             .panNumber(UPDATED_PAN_NUMBER)
-            .tanNumber(UPDATED_TAN_NUMBER)
-            .emailAddress(UPDATED_EMAIL_ADDRESS)
-            .pinCode(UPDATED_PIN_CODE)
+            .phoneNumber(UPDATED_PHONE_NUMBER)
+            .createdOn(UPDATED_CREATED_ON)
             .createdBy(UPDATED_CREATED_BY)
-            .isActivate(UPDATED_IS_ACTIVATE)
-            .lastModifiedBy(UPDATED_LAST_MODIFIED_BY);
+            .description(UPDATED_DESCRIPTION)
+            .lastModified(UPDATED_LAST_MODIFIED)
+            .lastModifiedBy(UPDATED_LAST_MODIFIED_BY)
+            .freeField2(UPDATED_FREE_FIELD_2)
+            .freeField4(UPDATED_FREE_FIELD_4);
 
         restSocietyMockMvc
             .perform(
@@ -2157,26 +1753,22 @@ class SocietyResourceIT {
         assertThat(societyList).hasSize(databaseSizeBeforeUpdate);
         Society testSociety = societyList.get(societyList.size() - 1);
         assertThat(testSociety.getSocietyName()).isEqualTo(UPDATED_SOCIETY_NAME);
-        assertThat(testSociety.getAddress()).isEqualTo(DEFAULT_ADDRESS);
-        assertThat(testSociety.getVillage()).isEqualTo(UPDATED_VILLAGE);
-        assertThat(testSociety.getTahsil()).isEqualTo(UPDATED_TAHSIL);
-        assertThat(testSociety.getState()).isEqualTo(DEFAULT_STATE);
-        assertThat(testSociety.getDistrict()).isEqualTo(UPDATED_DISTRICT);
         assertThat(testSociety.getRegistrationNumber()).isEqualTo(DEFAULT_REGISTRATION_NUMBER);
         assertThat(testSociety.getGstinNumber()).isEqualTo(UPDATED_GSTIN_NUMBER);
         assertThat(testSociety.getPanNumber()).isEqualTo(UPDATED_PAN_NUMBER);
-        assertThat(testSociety.getTanNumber()).isEqualTo(UPDATED_TAN_NUMBER);
-        assertThat(testSociety.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
-        assertThat(testSociety.getEmailAddress()).isEqualTo(UPDATED_EMAIL_ADDRESS);
-        assertThat(testSociety.getPinCode()).isEqualTo(UPDATED_PIN_CODE);
-        assertThat(testSociety.getCreatedOn()).isEqualTo(DEFAULT_CREATED_ON);
+        assertThat(testSociety.getTanNumber()).isEqualTo(DEFAULT_TAN_NUMBER);
+        assertThat(testSociety.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
+        assertThat(testSociety.getEmailAddress()).isEqualTo(DEFAULT_EMAIL_ADDRESS);
+        assertThat(testSociety.getCreatedOn()).isEqualTo(UPDATED_CREATED_ON);
         assertThat(testSociety.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);
-        assertThat(testSociety.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
-        assertThat(testSociety.getIsActivate()).isEqualTo(UPDATED_IS_ACTIVATE);
-        assertThat(testSociety.getLastModified()).isEqualTo(DEFAULT_LAST_MODIFIED);
+        assertThat(testSociety.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testSociety.getIsActivate()).isEqualTo(DEFAULT_IS_ACTIVATE);
+        assertThat(testSociety.getLastModified()).isEqualTo(UPDATED_LAST_MODIFIED);
         assertThat(testSociety.getLastModifiedBy()).isEqualTo(UPDATED_LAST_MODIFIED_BY);
         assertThat(testSociety.getFreeField1()).isEqualTo(DEFAULT_FREE_FIELD_1);
-        assertThat(testSociety.getFreeField2()).isEqualTo(DEFAULT_FREE_FIELD_2);
+        assertThat(testSociety.getFreeField2()).isEqualTo(UPDATED_FREE_FIELD_2);
+        assertThat(testSociety.getFreeField3()).isEqualTo(DEFAULT_FREE_FIELD_3);
+        assertThat(testSociety.getFreeField4()).isEqualTo(UPDATED_FREE_FIELD_4);
     }
 
     @Test
@@ -2193,18 +1785,12 @@ class SocietyResourceIT {
 
         partialUpdatedSociety
             .societyName(UPDATED_SOCIETY_NAME)
-            .address(UPDATED_ADDRESS)
-            .village(UPDATED_VILLAGE)
-            .tahsil(UPDATED_TAHSIL)
-            .state(UPDATED_STATE)
-            .district(UPDATED_DISTRICT)
             .registrationNumber(UPDATED_REGISTRATION_NUMBER)
             .gstinNumber(UPDATED_GSTIN_NUMBER)
             .panNumber(UPDATED_PAN_NUMBER)
             .tanNumber(UPDATED_TAN_NUMBER)
             .phoneNumber(UPDATED_PHONE_NUMBER)
             .emailAddress(UPDATED_EMAIL_ADDRESS)
-            .pinCode(UPDATED_PIN_CODE)
             .createdOn(UPDATED_CREATED_ON)
             .createdBy(UPDATED_CREATED_BY)
             .description(UPDATED_DESCRIPTION)
@@ -2212,7 +1798,9 @@ class SocietyResourceIT {
             .lastModified(UPDATED_LAST_MODIFIED)
             .lastModifiedBy(UPDATED_LAST_MODIFIED_BY)
             .freeField1(UPDATED_FREE_FIELD_1)
-            .freeField2(UPDATED_FREE_FIELD_2);
+            .freeField2(UPDATED_FREE_FIELD_2)
+            .freeField3(UPDATED_FREE_FIELD_3)
+            .freeField4(UPDATED_FREE_FIELD_4);
 
         restSocietyMockMvc
             .perform(
@@ -2227,18 +1815,12 @@ class SocietyResourceIT {
         assertThat(societyList).hasSize(databaseSizeBeforeUpdate);
         Society testSociety = societyList.get(societyList.size() - 1);
         assertThat(testSociety.getSocietyName()).isEqualTo(UPDATED_SOCIETY_NAME);
-        assertThat(testSociety.getAddress()).isEqualTo(UPDATED_ADDRESS);
-        assertThat(testSociety.getVillage()).isEqualTo(UPDATED_VILLAGE);
-        assertThat(testSociety.getTahsil()).isEqualTo(UPDATED_TAHSIL);
-        assertThat(testSociety.getState()).isEqualTo(UPDATED_STATE);
-        assertThat(testSociety.getDistrict()).isEqualTo(UPDATED_DISTRICT);
         assertThat(testSociety.getRegistrationNumber()).isEqualTo(UPDATED_REGISTRATION_NUMBER);
         assertThat(testSociety.getGstinNumber()).isEqualTo(UPDATED_GSTIN_NUMBER);
         assertThat(testSociety.getPanNumber()).isEqualTo(UPDATED_PAN_NUMBER);
         assertThat(testSociety.getTanNumber()).isEqualTo(UPDATED_TAN_NUMBER);
         assertThat(testSociety.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
         assertThat(testSociety.getEmailAddress()).isEqualTo(UPDATED_EMAIL_ADDRESS);
-        assertThat(testSociety.getPinCode()).isEqualTo(UPDATED_PIN_CODE);
         assertThat(testSociety.getCreatedOn()).isEqualTo(UPDATED_CREATED_ON);
         assertThat(testSociety.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);
         assertThat(testSociety.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
@@ -2247,6 +1829,8 @@ class SocietyResourceIT {
         assertThat(testSociety.getLastModifiedBy()).isEqualTo(UPDATED_LAST_MODIFIED_BY);
         assertThat(testSociety.getFreeField1()).isEqualTo(UPDATED_FREE_FIELD_1);
         assertThat(testSociety.getFreeField2()).isEqualTo(UPDATED_FREE_FIELD_2);
+        assertThat(testSociety.getFreeField3()).isEqualTo(UPDATED_FREE_FIELD_3);
+        assertThat(testSociety.getFreeField4()).isEqualTo(UPDATED_FREE_FIELD_4);
     }
 
     @Test

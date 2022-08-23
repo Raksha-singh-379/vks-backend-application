@@ -30,6 +30,10 @@ public class ParameterLookupDTO implements Serializable {
 
     private Boolean isDeleted;
 
+    private String freeField1;
+
+    private String freeField2;
+
     private SocietyDTO society;
 
     public Long getId() {
@@ -112,6 +116,22 @@ public class ParameterLookupDTO implements Serializable {
         this.isDeleted = isDeleted;
     }
 
+    public String getFreeField1() {
+        return freeField1;
+    }
+
+    public void setFreeField1(String freeField1) {
+        this.freeField1 = freeField1;
+    }
+
+    public String getFreeField2() {
+        return freeField2;
+    }
+
+    public void setFreeField2(String freeField2) {
+        this.freeField2 = freeField2;
+    }
+
     public SocietyDTO getSociety() {
         return society;
     }
@@ -155,6 +175,8 @@ public class ParameterLookupDTO implements Serializable {
             ", createdBy='" + getCreatedBy() + "'" +
             ", createdOn='" + getCreatedOn() + "'" +
             ", isDeleted='" + getIsDeleted() + "'" +
+            ", freeField1='" + getFreeField1() + "'" +
+            ", freeField2='" + getFreeField2() + "'" +
             ", society=" + getSociety() +
             "}";
     }

@@ -93,21 +93,6 @@ public class SocietyQueryService extends QueryService<Society> {
             if (criteria.getSocietyName() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getSocietyName(), Society_.societyName));
             }
-            if (criteria.getAddress() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getAddress(), Society_.address));
-            }
-            if (criteria.getVillage() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getVillage(), Society_.village));
-            }
-            if (criteria.getTahsil() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getTahsil(), Society_.tahsil));
-            }
-            if (criteria.getState() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getState(), Society_.state));
-            }
-            if (criteria.getDistrict() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getDistrict(), Society_.district));
-            }
             if (criteria.getRegistrationNumber() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getRegistrationNumber(), Society_.registrationNumber));
             }
@@ -125,9 +110,6 @@ public class SocietyQueryService extends QueryService<Society> {
             }
             if (criteria.getEmailAddress() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getEmailAddress(), Society_.emailAddress));
-            }
-            if (criteria.getPinCode() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getPinCode(), Society_.pinCode));
             }
             if (criteria.getCreatedOn() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getCreatedOn(), Society_.createdOn));
@@ -153,28 +135,19 @@ public class SocietyQueryService extends QueryService<Society> {
             if (criteria.getFreeField2() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getFreeField2(), Society_.freeField2));
             }
-            if (criteria.getCityId() != null) {
-                specification =
-                    specification.and(
-                        buildSpecification(criteria.getCityId(), root -> root.join(Society_.city, JoinType.LEFT).get(Village_.id))
-                    );
+            if (criteria.getFreeField3() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getFreeField3(), Society_.freeField3));
             }
-            if (criteria.getStateId() != null) {
-                specification =
-                    specification.and(
-                        buildSpecification(criteria.getStateId(), root -> root.join(Society_.state, JoinType.LEFT).get(State_.id))
-                    );
+            if (criteria.getFreeField4() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getFreeField4(), Society_.freeField4));
             }
-            if (criteria.getDistrictId() != null) {
+            if (criteria.getAddressDetailsId() != null) {
                 specification =
                     specification.and(
-                        buildSpecification(criteria.getDistrictId(), root -> root.join(Society_.district, JoinType.LEFT).get(District_.id))
-                    );
-            }
-            if (criteria.getTalukaId() != null) {
-                specification =
-                    specification.and(
-                        buildSpecification(criteria.getTalukaId(), root -> root.join(Society_.taluka, JoinType.LEFT).get(Taluka_.id))
+                        buildSpecification(
+                            criteria.getAddressDetailsId(),
+                            root -> root.join(Society_.addressDetails, JoinType.LEFT).get(AddressDetails_.id)
+                        )
                     );
             }
             if (criteria.getSocietyId() != null) {
