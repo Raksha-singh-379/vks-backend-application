@@ -13,16 +13,14 @@ public class TalukaDTO implements Serializable {
     private Long id;
 
     @NotNull
-    private String name;
+    private String talukaName;
 
     private Boolean deleted;
 
     private Long lgdCode;
 
-    @NotNull
     private Instant lastModified;
 
-    @NotNull
     private String lastModifiedBy;
 
     public Long getId() {
@@ -33,12 +31,12 @@ public class TalukaDTO implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTalukaName() {
+        return talukaName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTalukaName(String talukaName) {
+        this.talukaName = talukaName;
     }
 
     public Boolean getDeleted() {
@@ -99,7 +97,7 @@ public class TalukaDTO implements Serializable {
     public String toString() {
         return "TalukaDTO{" +
             "id=" + getId() +
-            ", name='" + getName() + "'" +
+            ", talukaName='" + getTalukaName() + "'" +
             ", deleted='" + getDeleted() + "'" +
             ", lgdCode=" + getLgdCode() +
             ", lastModified='" + getLastModified() + "'" +

@@ -20,4 +20,6 @@ export enum ParameterLookupType {
   MEASURING_UNIT = 'Measuring_Unit',
 
   ACCOUNT_TYPE = 'Account_Type',
+
+  DEPOSIT_TYPE = 'Deposit_Type',
 }

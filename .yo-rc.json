@@ -57,7 +57,13 @@
       "LoanWatapDetails",
       "Vouchers",
       "VoucherDetails",
-      "VouchersHistory"
+      "VouchersHistory",
+      "AddressDetails",
+      "AccountHeadCode",
+      "LoanType",
+      "IncomeDetails",
+      "EmployementDetails",
+      "MemberCropsDetails"
     ],
     "entitySuffix": "",
     "gitCompany": "",
@@ -65,7 +71,7 @@
     "jhipsterVersion": "7.9.1",
     "jwtSecretKey": "NTYyZjU5ZDk3YzRiODY3ZTAzNTFjNDA4MGJiYmE0ZmMxNWEyNzgyNTNlNTg0NjEwODNlZmU5YWM0MDExYmMwZjMzY2ZmODc5NGFhNWUwY2E3ODkxNTM4ODQ4ZjJmZWFmNjVlY2YzMmIyYzk1NjMxYWQzNWQwYWEzODdiMDcyYjM=",
     "languages": ["en"],
-    "lastLiquibaseTimestamp": 1660885718000,
+    "lastLiquibaseTimestamp": 1661259318000,
     "messageBroker": false,
     "nativeLanguage": "en",
     "otherModules": [],

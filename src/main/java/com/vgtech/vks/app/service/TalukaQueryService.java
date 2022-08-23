@@ -90,8 +90,8 @@ public class TalukaQueryService extends QueryService<Taluka> {
             if (criteria.getId() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getId(), Taluka_.id));
             }
-            if (criteria.getName() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getName(), Taluka_.name));
+            if (criteria.getTalukaName() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getTalukaName(), Taluka_.talukaName));
             }
             if (criteria.getDeleted() != null) {
                 specification = specification.and(buildSpecification(criteria.getDeleted(), Taluka_.deleted));

@@ -1,58 +1,30 @@
 {
   "applications": "*",
-  "changelogDate": "20220819050828",
+  "changelogDate": "20220823125513",
   "dto": "mapstruct",
   "embedded": false,
-  "entityTableName": "nominee",
+  "entityTableName": "address_details",
   "fields": [
     {
-      "fieldName": "firstName",
+      "fieldName": "type",
+      "fieldType": "AddressType",
+      "fieldValues": "CURRENT_ADDRESS (Current_Address),PERMANENT_ADDRESS (Permanent_Address),EMPLOYMENT_ADDRESS (Employment_Address)"
+    },
+    {
+      "fieldName": "houseNo",
       "fieldType": "String"
     },
     {
-      "fieldName": "lastName",
+      "fieldName": "roadName",
       "fieldType": "String"
     },
     {
-      "fieldName": "fatherName",
+      "fieldName": "landMark",
       "fieldType": "String"
     },
     {
-      "fieldName": "motherName",
+      "fieldName": "pincode",
       "fieldType": "String"
-    },
-    {
-      "fieldName": "guardianName",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "gender",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "dob",
-      "fieldType": "LocalDate"
-    },
-    {
-      "fieldName": "aadharCard",
-      "fieldType": "String",
-      "fieldValidateRules": ["unique"]
-    },
-    {
-      "fieldName": "nomineeDeclareDate",
-      "fieldType": "Instant"
-    },
-    {
-      "fieldName": "relation",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "permanentAddr",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "nomineePercentage",
-      "fieldType": "Double"
     },
     {
       "fieldName": "lastModified",
@@ -71,10 +43,6 @@
       "fieldType": "Instant"
     },
     {
-      "fieldName": "isActive",
-      "fieldType": "Boolean"
-    },
-    {
       "fieldName": "isDeleted",
       "fieldType": "Boolean"
     },
@@ -89,18 +57,39 @@
     {
       "fieldName": "freeField3",
       "fieldType": "String"
-    },
-    {
-      "fieldName": "freeField4",
-      "fieldType": "String"
     }
   ],
   "fluentMethods": true,
   "jpaMetamodelFiltering": true,
-  "name": "Nominee",
+  "name": "AddressDetails",
   "pagination": "pagination",
   "readOnly": false,
   "relationships": [
+    {
+      "otherEntityName": "state",
+      "relationshipName": "state",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "district",
+      "relationshipName": "district",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "taluka",
+      "relationshipName": "taluka",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "village",
+      "relationshipName": "taluka",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "securityUser",
+      "relationshipName": "securityUser",
+      "relationshipType": "many-to-one"
+    },
     {
       "otherEntityName": "member",
       "relationshipName": "member",

@@ -14,51 +14,7 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "borrowingInterestRate",
-      "fieldType": "Double"
-    },
-    {
-      "fieldName": "duration",
-      "fieldType": "Integer"
-    },
-    {
-      "fieldName": "interestRate",
-      "fieldType": "Double"
-    },
-    {
-      "fieldName": "lastDateOfRepayment",
-      "fieldType": "Instant"
-    },
-    {
-      "fieldName": "loanNumber",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "maxLoanAmt",
-      "fieldType": "Double"
-    },
-    {
-      "fieldName": "noOfDisbursement",
-      "fieldType": "Integer"
-    },
-    {
-      "fieldName": "noOfInstallment",
-      "fieldType": "Integer"
-    },
-    {
       "fieldName": "parentAccHeadCode",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "parentAccHeadId",
-      "fieldType": "Long"
-    },
-    {
-      "fieldName": "penaltyInterest",
-      "fieldType": "Double"
-    },
-    {
-      "fieldName": "productType",
       "fieldType": "String"
     },
     {
@@ -74,10 +30,6 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "surcharge",
-      "fieldType": "Double"
-    },
-    {
       "fieldName": "unitSize",
       "fieldType": "Long"
     },
@@ -90,6 +42,58 @@
       "fieldType": "Instant"
     },
     {
+      "fieldName": "interestRate",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "maxLoanAmt",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "borrowingInterestRate",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "penaltyInterest",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "surcharge",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "loanDuration",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "numberOFInstallment",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "extendedInterstRate",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "centralGovSubsidyInterest",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "distBankSubsidyInterest",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "borrowerInterest",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "stateGovSubsidyInterest",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "year",
+      "fieldType": "String"
+    },
+    {
       "fieldName": "createdOn",
       "fieldType": "Instant"
     },
@@ -99,6 +103,10 @@
     },
     {
       "fieldName": "isActivate",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "isDeleted",
       "fieldType": "Boolean"
     },
     {
@@ -120,6 +128,10 @@
     {
       "fieldName": "freeField3",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField4",
+      "fieldType": "String"
     }
   ],
   "fluentMethods": true,
@@ -139,8 +151,14 @@
       "relationshipType": "many-to-one"
     },
     {
-      "otherEntityName": "gRInterestDetails",
-      "relationshipName": "gRInterestDetails",
+      "otherEntityName": "ledgerAccounts",
+      "relationshipName": "ledgerAccounts",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "loanType",
+      "otherEntityRelationshipName": "societyLoanProduct",
+      "relationshipName": "loanType",
       "relationshipType": "many-to-one"
     }
   ],

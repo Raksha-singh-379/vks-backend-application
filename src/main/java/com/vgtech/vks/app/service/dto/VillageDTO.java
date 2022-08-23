@@ -13,16 +13,14 @@ public class VillageDTO implements Serializable {
     private Long id;
 
     @NotNull
-    private String name;
+    private String villageName;
 
     private Boolean deleted;
 
     private Long lgdCode;
 
-    @NotNull
     private Instant lastModified;
 
-    @NotNull
     private String lastModifiedBy;
 
     public Long getId() {
@@ -33,12 +31,12 @@ public class VillageDTO implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getVillageName() {
+        return villageName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setVillageName(String villageName) {
+        this.villageName = villageName;
     }
 
     public Boolean getDeleted() {
@@ -99,7 +97,7 @@ public class VillageDTO implements Serializable {
     public String toString() {
         return "VillageDTO{" +
             "id=" + getId() +
-            ", name='" + getName() + "'" +
+            ", villageName='" + getVillageName() + "'" +
             ", deleted='" + getDeleted() + "'" +
             ", lgdCode=" + getLgdCode() +
             ", lastModified='" + getLastModified() + "'" +

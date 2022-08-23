@@ -20,7 +20,7 @@ describe('Village Form Service', () => {
         expect(formGroup.controls).toEqual(
           expect.objectContaining({
             id: expect.any(Object),
-            name: expect.any(Object),
+            villageName: expect.any(Object),
             deleted: expect.any(Object),
             lgdCode: expect.any(Object),
             lastModified: expect.any(Object),
@@ -35,7 +35,7 @@ describe('Village Form Service', () => {
         expect(formGroup.controls).toEqual(
           expect.objectContaining({
             id: expect.any(Object),
-            name: expect.any(Object),
+            villageName: expect.any(Object),
             deleted: expect.any(Object),
             lgdCode: expect.any(Object),
             lastModified: expect.any(Object),

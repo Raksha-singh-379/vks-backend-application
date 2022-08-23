@@ -72,6 +72,9 @@
           <th scope="col" jhiSortBy="freeField3">
             <span jhiTranslate="vksApplicationApp.societyAssets.freeField3">Free Field 3</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="freeField4">
+            <span jhiTranslate="vksApplicationApp.societyAssets.freeField4">Free Field 4</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="society.id">
             <span jhiTranslate="vksApplicationApp.societyAssets.society">Society</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -95,6 +98,7 @@
           <td>{{ societyAssets.freeField1 }}</td>
           <td>{{ societyAssets.freeField2 }}</td>
           <td>{{ societyAssets.freeField3 }}</td>
+          <td>{{ societyAssets.freeField4 }}</td>
           <td>
             <div *ngIf="societyAssets.society">
               <a [routerLink]="['/society', societyAssets.society.id, 'view']">{{ societyAssets.society?.id }}</a>

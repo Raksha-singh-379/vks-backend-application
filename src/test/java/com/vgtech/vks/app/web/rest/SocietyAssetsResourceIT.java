@@ -73,6 +73,9 @@ class SocietyAssetsResourceIT {
     private static final String DEFAULT_FREE_FIELD_3 = "AAAAAAAAAA";
     private static final String UPDATED_FREE_FIELD_3 = "BBBBBBBBBB";
 
+    private static final String DEFAULT_FREE_FIELD_4 = "AAAAAAAAAA";
+    private static final String UPDATED_FREE_FIELD_4 = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/society-assets";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -112,7 +115,8 @@ class SocietyAssetsResourceIT {
             .isDeleted(DEFAULT_IS_DELETED)
             .freeField1(DEFAULT_FREE_FIELD_1)
             .freeField2(DEFAULT_FREE_FIELD_2)
-            .freeField3(DEFAULT_FREE_FIELD_3);
+            .freeField3(DEFAULT_FREE_FIELD_3)
+            .freeField4(DEFAULT_FREE_FIELD_4);
         return societyAssets;
     }
 
@@ -135,7 +139,8 @@ class SocietyAssetsResourceIT {
             .isDeleted(UPDATED_IS_DELETED)
             .freeField1(UPDATED_FREE_FIELD_1)
             .freeField2(UPDATED_FREE_FIELD_2)
-            .freeField3(UPDATED_FREE_FIELD_3);
+            .freeField3(UPDATED_FREE_FIELD_3)
+            .freeField4(UPDATED_FREE_FIELD_4);
         return societyAssets;
     }
 
@@ -172,6 +177,7 @@ class SocietyAssetsResourceIT {
         assertThat(testSocietyAssets.getFreeField1()).isEqualTo(DEFAULT_FREE_FIELD_1);
         assertThat(testSocietyAssets.getFreeField2()).isEqualTo(DEFAULT_FREE_FIELD_2);
         assertThat(testSocietyAssets.getFreeField3()).isEqualTo(DEFAULT_FREE_FIELD_3);
+        assertThat(testSocietyAssets.getFreeField4()).isEqualTo(DEFAULT_FREE_FIELD_4);
     }
 
     @Test
@@ -218,7 +224,8 @@ class SocietyAssetsResourceIT {
             .andExpect(jsonPath("$.[*].isDeleted").value(hasItem(DEFAULT_IS_DELETED.booleanValue())))
             .andExpect(jsonPath("$.[*].freeField1").value(hasItem(DEFAULT_FREE_FIELD_1)))
             .andExpect(jsonPath("$.[*].freeField2").value(hasItem(DEFAULT_FREE_FIELD_2)))
-            .andExpect(jsonPath("$.[*].freeField3").value(hasItem(DEFAULT_FREE_FIELD_3)));
+            .andExpect(jsonPath("$.[*].freeField3").value(hasItem(DEFAULT_FREE_FIELD_3)))
+            .andExpect(jsonPath("$.[*].freeField4").value(hasItem(DEFAULT_FREE_FIELD_4)));
     }
 
     @Test
@@ -244,7 +251,8 @@ class SocietyAssetsResourceIT {
             .andExpect(jsonPath("$.isDeleted").value(DEFAULT_IS_DELETED.booleanValue()))
             .andExpect(jsonPath("$.freeField1").value(DEFAULT_FREE_FIELD_1))
             .andExpect(jsonPath("$.freeField2").value(DEFAULT_FREE_FIELD_2))
-            .andExpect(jsonPath("$.freeField3").value(DEFAULT_FREE_FIELD_3));
+            .andExpect(jsonPath("$.freeField3").value(DEFAULT_FREE_FIELD_3))
+            .andExpect(jsonPath("$.freeField4").value(DEFAULT_FREE_FIELD_4));
     }
 
     @Test
@@ -969,6 +977,71 @@ class SocietyAssetsResourceIT {
 
     @Test
     @Transactional
+    void getAllSocietyAssetsByFreeField4IsEqualToSomething() throws Exception {
+        // Initialize the database
+        societyAssetsRepository.saveAndFlush(societyAssets);
+
+        // Get all the societyAssetsList where freeField4 equals to DEFAULT_FREE_FIELD_4
+        defaultSocietyAssetsShouldBeFound("freeField4.equals=" + DEFAULT_FREE_FIELD_4);
+
+        // Get all the societyAssetsList where freeField4 equals to UPDATED_FREE_FIELD_4
+        defaultSocietyAssetsShouldNotBeFound("freeField4.equals=" + UPDATED_FREE_FIELD_4);
+    }
+
+    @Test
+    @Transactional
+    void getAllSocietyAssetsByFreeField4IsInShouldWork() throws Exception {
+        // Initialize the database
+        societyAssetsRepository.saveAndFlush(societyAssets);
+
+        // Get all the societyAssetsList where freeField4 in DEFAULT_FREE_FIELD_4 or UPDATED_FREE_FIELD_4
+        defaultSocietyAssetsShouldBeFound("freeField4.in=" + DEFAULT_FREE_FIELD_4 + "," + UPDATED_FREE_FIELD_4);
+
+        // Get all the societyAssetsList where freeField4 equals to UPDATED_FREE_FIELD_4
+        defaultSocietyAssetsShouldNotBeFound("freeField4.in=" + UPDATED_FREE_FIELD_4);
+    }
+
+    @Test
+    @Transactional
+    void getAllSocietyAssetsByFreeField4IsNullOrNotNull() throws Exception {
+        // Initialize the database
+        societyAssetsRepository.saveAndFlush(societyAssets);
+
+        // Get all the societyAssetsList where freeField4 is not null
+        defaultSocietyAssetsShouldBeFound("freeField4.specified=true");
+
+        // Get all the societyAssetsList where freeField4 is null
+        defaultSocietyAssetsShouldNotBeFound("freeField4.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllSocietyAssetsByFreeField4ContainsSomething() throws Exception {
+        // Initialize the database
+        societyAssetsRepository.saveAndFlush(societyAssets);
+
+        // Get all the societyAssetsList where freeField4 contains DEFAULT_FREE_FIELD_4
+        defaultSocietyAssetsShouldBeFound("freeField4.contains=" + DEFAULT_FREE_FIELD_4);
+
+        // Get all the societyAssetsList where freeField4 contains UPDATED_FREE_FIELD_4
+        defaultSocietyAssetsShouldNotBeFound("freeField4.contains=" + UPDATED_FREE_FIELD_4);
+    }
+
+    @Test
+    @Transactional
+    void getAllSocietyAssetsByFreeField4NotContainsSomething() throws Exception {
+        // Initialize the database
+        societyAssetsRepository.saveAndFlush(societyAssets);
+
+        // Get all the societyAssetsList where freeField4 does not contain DEFAULT_FREE_FIELD_4
+        defaultSocietyAssetsShouldNotBeFound("freeField4.doesNotContain=" + DEFAULT_FREE_FIELD_4);
+
+        // Get all the societyAssetsList where freeField4 does not contain UPDATED_FREE_FIELD_4
+        defaultSocietyAssetsShouldBeFound("freeField4.doesNotContain=" + UPDATED_FREE_FIELD_4);
+    }
+
+    @Test
+    @Transactional
     void getAllSocietyAssetsBySocietyIsEqualToSomething() throws Exception {
         Society society;
         if (TestUtil.findAll(em, Society.class).isEmpty()) {
@@ -1010,7 +1083,8 @@ class SocietyAssetsResourceIT {
             .andExpect(jsonPath("$.[*].isDeleted").value(hasItem(DEFAULT_IS_DELETED.booleanValue())))
             .andExpect(jsonPath("$.[*].freeField1").value(hasItem(DEFAULT_FREE_FIELD_1)))
             .andExpect(jsonPath("$.[*].freeField2").value(hasItem(DEFAULT_FREE_FIELD_2)))
-            .andExpect(jsonPath("$.[*].freeField3").value(hasItem(DEFAULT_FREE_FIELD_3)));
+            .andExpect(jsonPath("$.[*].freeField3").value(hasItem(DEFAULT_FREE_FIELD_3)))
+            .andExpect(jsonPath("$.[*].freeField4").value(hasItem(DEFAULT_FREE_FIELD_4)));
 
         // Check, that the count call also returns 1
         restSocietyAssetsMockMvc
@@ -1070,7 +1144,8 @@ class SocietyAssetsResourceIT {
             .isDeleted(UPDATED_IS_DELETED)
             .freeField1(UPDATED_FREE_FIELD_1)
             .freeField2(UPDATED_FREE_FIELD_2)
-            .freeField3(UPDATED_FREE_FIELD_3);
+            .freeField3(UPDATED_FREE_FIELD_3)
+            .freeField4(UPDATED_FREE_FIELD_4);
         SocietyAssetsDTO societyAssetsDTO = societyAssetsMapper.toDto(updatedSocietyAssets);
 
         restSocietyAssetsMockMvc
@@ -1097,6 +1172,7 @@ class SocietyAssetsResourceIT {
         assertThat(testSocietyAssets.getFreeField1()).isEqualTo(UPDATED_FREE_FIELD_1);
         assertThat(testSocietyAssets.getFreeField2()).isEqualTo(UPDATED_FREE_FIELD_2);
         assertThat(testSocietyAssets.getFreeField3()).isEqualTo(UPDATED_FREE_FIELD_3);
+        assertThat(testSocietyAssets.getFreeField4()).isEqualTo(UPDATED_FREE_FIELD_4);
     }
 
     @Test
@@ -1183,7 +1259,8 @@ class SocietyAssetsResourceIT {
             .lastModifiedBy(UPDATED_LAST_MODIFIED_BY)
             .createdOn(UPDATED_CREATED_ON)
             .isDeleted(UPDATED_IS_DELETED)
-            .freeField3(UPDATED_FREE_FIELD_3);
+            .freeField3(UPDATED_FREE_FIELD_3)
+            .freeField4(UPDATED_FREE_FIELD_4);
 
         restSocietyAssetsMockMvc
             .perform(
@@ -1209,6 +1286,7 @@ class SocietyAssetsResourceIT {
         assertThat(testSocietyAssets.getFreeField1()).isEqualTo(DEFAULT_FREE_FIELD_1);
         assertThat(testSocietyAssets.getFreeField2()).isEqualTo(DEFAULT_FREE_FIELD_2);
         assertThat(testSocietyAssets.getFreeField3()).isEqualTo(UPDATED_FREE_FIELD_3);
+        assertThat(testSocietyAssets.getFreeField4()).isEqualTo(UPDATED_FREE_FIELD_4);
     }
 
     @Test
@@ -1235,7 +1313,8 @@ class SocietyAssetsResourceIT {
             .isDeleted(UPDATED_IS_DELETED)
             .freeField1(UPDATED_FREE_FIELD_1)
             .freeField2(UPDATED_FREE_FIELD_2)
-            .freeField3(UPDATED_FREE_FIELD_3);
+            .freeField3(UPDATED_FREE_FIELD_3)
+            .freeField4(UPDATED_FREE_FIELD_4);
 
         restSocietyAssetsMockMvc
             .perform(
@@ -1261,6 +1340,7 @@ class SocietyAssetsResourceIT {
         assertThat(testSocietyAssets.getFreeField1()).isEqualTo(UPDATED_FREE_FIELD_1);
         assertThat(testSocietyAssets.getFreeField2()).isEqualTo(UPDATED_FREE_FIELD_2);
         assertThat(testSocietyAssets.getFreeField3()).isEqualTo(UPDATED_FREE_FIELD_3);
+        assertThat(testSocietyAssets.getFreeField4()).isEqualTo(UPDATED_FREE_FIELD_4);
     }
 
     @Test

@@ -2,7 +2,7 @@ import dayjs from 'dayjs/esm';
 
 export interface ITaluka {
   id: number;
-  name?: string | null;
+  talukaName?: string | null;
   deleted?: boolean | null;
   lgdCode?: number | null;
   lastModified?: dayjs.Dayjs | null;

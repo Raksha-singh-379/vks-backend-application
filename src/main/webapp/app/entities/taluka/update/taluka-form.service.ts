@@ -31,7 +31,7 @@ type TalukaFormDefaults = Pick<NewTaluka, 'id' | 'deleted' | 'lastModified'>;
 
 type TalukaFormGroupContent = {
   id: FormControl<TalukaFormRawValue['id'] | NewTaluka['id']>;
-  name: FormControl<TalukaFormRawValue['name']>;
+  talukaName: FormControl<TalukaFormRawValue['talukaName']>;
   deleted: FormControl<TalukaFormRawValue['deleted']>;
   lgdCode: FormControl<TalukaFormRawValue['lgdCode']>;
   lastModified: FormControl<TalukaFormRawValue['lastModified']>;
@@ -55,17 +55,13 @@ export class TalukaFormService {
           validators: [Validators.required],
         }
       ),
-      name: new FormControl(talukaRawValue.name, {
+      talukaName: new FormControl(talukaRawValue.talukaName, {
         validators: [Validators.required],
       }),
       deleted: new FormControl(talukaRawValue.deleted),
       lgdCode: new FormControl(talukaRawValue.lgdCode),
-      lastModified: new FormControl(talukaRawValue.lastModified, {
-        validators: [Validators.required],
-      }),
-      lastModifiedBy: new FormControl(talukaRawValue.lastModifiedBy, {
-        validators: [Validators.required],
-      }),
+      lastModified: new FormControl(talukaRawValue.lastModified),
+      lastModifiedBy: new FormControl(talukaRawValue.lastModifiedBy),
     });
   }
 

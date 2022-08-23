@@ -27,6 +27,10 @@
       "fieldType": "Integer"
     },
     {
+      "fieldName": "isInsured",
+      "fieldType": "Boolean"
+    },
+    {
       "fieldName": "lastModified",
       "fieldType": "Instant"
     },
@@ -56,6 +60,10 @@
     },
     {
       "fieldName": "freeField3",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField4",
       "fieldType": "String"
     }
   ],

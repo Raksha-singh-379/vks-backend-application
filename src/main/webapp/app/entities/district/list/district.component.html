@@ -35,8 +35,8 @@
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
           <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="name">
-            <span jhiTranslate="vksApplicationApp.district.name">Name</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="districtName">
+            <span jhiTranslate="vksApplicationApp.district.districtName">District Name</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="deleted">
             <span jhiTranslate="vksApplicationApp.district.deleted">Deleted</span> <fa-icon icon="sort"></fa-icon>
@@ -58,7 +58,7 @@
           <td>
             <a [routerLink]="['/district', district.id, 'view']">{{ district.id }}</a>
           </td>
-          <td>{{ district.name }}</td>
+          <td>{{ district.districtName }}</td>
           <td>{{ district.deleted }}</td>
           <td>{{ district.lgdCode }}</td>
           <td>{{ district.lastModified | formatMediumDatetime }}</td>

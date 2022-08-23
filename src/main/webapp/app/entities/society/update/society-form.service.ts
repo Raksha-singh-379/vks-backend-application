@@ -33,18 +33,12 @@ type SocietyFormDefaults = Pick<NewSociety, 'id' | 'createdOn' | 'isActivate' | 
 type SocietyFormGroupContent = {
   id: FormControl<SocietyFormRawValue['id'] | NewSociety['id']>;
   societyName: FormControl<SocietyFormRawValue['societyName']>;
-  address: FormControl<SocietyFormRawValue['address']>;
-  village: FormControl<SocietyFormRawValue['village']>;
-  tahsil: FormControl<SocietyFormRawValue['tahsil']>;
-  state: FormControl<SocietyFormRawValue['state']>;
-  district: FormControl<SocietyFormRawValue['district']>;
   registrationNumber: FormControl<SocietyFormRawValue['registrationNumber']>;
   gstinNumber: FormControl<SocietyFormRawValue['gstinNumber']>;
   panNumber: FormControl<SocietyFormRawValue['panNumber']>;
   tanNumber: FormControl<SocietyFormRawValue['tanNumber']>;
   phoneNumber: FormControl<SocietyFormRawValue['phoneNumber']>;
   emailAddress: FormControl<SocietyFormRawValue['emailAddress']>;
-  pinCode: FormControl<SocietyFormRawValue['pinCode']>;
   createdOn: FormControl<SocietyFormRawValue['createdOn']>;
   createdBy: FormControl<SocietyFormRawValue['createdBy']>;
   description: FormControl<SocietyFormRawValue['description']>;
@@ -53,10 +47,9 @@ type SocietyFormGroupContent = {
   lastModifiedBy: FormControl<SocietyFormRawValue['lastModifiedBy']>;
   freeField1: FormControl<SocietyFormRawValue['freeField1']>;
   freeField2: FormControl<SocietyFormRawValue['freeField2']>;
-  city: FormControl<SocietyFormRawValue['city']>;
-  state: FormControl<SocietyFormRawValue['state']>;
-  district: FormControl<SocietyFormRawValue['district']>;
-  taluka: FormControl<SocietyFormRawValue['taluka']>;
+  freeField3: FormControl<SocietyFormRawValue['freeField3']>;
+  freeField4: FormControl<SocietyFormRawValue['freeField4']>;
+  addressDetails: FormControl<SocietyFormRawValue['addressDetails']>;
   society: FormControl<SocietyFormRawValue['society']>;
 };
 
@@ -80,18 +73,12 @@ export class SocietyFormService {
       societyName: new FormControl(societyRawValue.societyName, {
         validators: [Validators.required],
       }),
-      address: new FormControl(societyRawValue.address),
-      village: new FormControl(societyRawValue.village),
-      tahsil: new FormControl(societyRawValue.tahsil),
-      state: new FormControl(societyRawValue.state),
-      district: new FormControl(societyRawValue.district),
       registrationNumber: new FormControl(societyRawValue.registrationNumber),
       gstinNumber: new FormControl(societyRawValue.gstinNumber),
       panNumber: new FormControl(societyRawValue.panNumber),
       tanNumber: new FormControl(societyRawValue.tanNumber),
       phoneNumber: new FormControl(societyRawValue.phoneNumber),
       emailAddress: new FormControl(societyRawValue.emailAddress),
-      pinCode: new FormControl(societyRawValue.pinCode),
       createdOn: new FormControl(societyRawValue.createdOn),
       createdBy: new FormControl(societyRawValue.createdBy),
       description: new FormControl(societyRawValue.description),
@@ -100,10 +87,9 @@ export class SocietyFormService {
       lastModifiedBy: new FormControl(societyRawValue.lastModifiedBy),
       freeField1: new FormControl(societyRawValue.freeField1),
       freeField2: new FormControl(societyRawValue.freeField2),
-      city: new FormControl(societyRawValue.city),
-      state: new FormControl(societyRawValue.state),
-      district: new FormControl(societyRawValue.district),
-      taluka: new FormControl(societyRawValue.taluka),
+      freeField3: new FormControl(societyRawValue.freeField3),
+      freeField4: new FormControl(societyRawValue.freeField4),
+      addressDetails: new FormControl(societyRawValue.addressDetails),
       society: new FormControl(societyRawValue.society),
     });
   }

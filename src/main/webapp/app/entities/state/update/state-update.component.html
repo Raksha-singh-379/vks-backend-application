@@ -14,10 +14,14 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="vksApplicationApp.state.name" for="field_name">Name</label>
-          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
-          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+          <label class="form-label" jhiTranslate="vksApplicationApp.state.stateName" for="field_stateName">State Name</label>
+          <input type="text" class="form-control" name="stateName" id="field_stateName" data-cy="stateName" formControlName="stateName" />
+          <div *ngIf="editForm.get('stateName')!.invalid && (editForm.get('stateName')!.dirty || editForm.get('stateName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('stateName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
               This field is required.
             </small>
           </div>
@@ -46,24 +50,6 @@
               placeholder="YYYY-MM-DD HH:mm"
             />
           </div>
-          <div
-            *ngIf="editForm.get('lastModified')!.invalid && (editForm.get('lastModified')!.dirty || editForm.get('lastModified')!.touched)"
-          >
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('lastModified')?.errors?.required"
-              jhiTranslate="entity.validation.required"
-            >
-              This field is required.
-            </small>
-            <small
-              class="form-text text-danger"
-              [hidden]="!editForm.get('lastModified')?.errors?.datetimelocal"
-              jhiTranslate="entity.validation.datetimelocal"
-            >
-              This field should be a date and time.
-            </small>
-          </div>
         </div>
 
         <div class="row mb-3">
@@ -78,19 +64,6 @@
             data-cy="lastModifiedBy"
             formControlName="lastModifiedBy"
           />
-          <div
-            *ngIf="
-              editForm.get('lastModifiedBy')!.invalid && (editForm.get('lastModifiedBy')!.dirty || editForm.get('lastModifiedBy')!.touched)
-            "
-          >
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('lastModifiedBy')?.errors?.required"
-              jhiTranslate="entity.validation.required"
-            >
-              This field is required.
-            </small>
-          </div>
         </div>
       </div>
 

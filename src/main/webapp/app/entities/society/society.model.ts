@@ -1,24 +1,15 @@
 import dayjs from 'dayjs/esm';
-import { IVillage } from 'app/entities/village/village.model';
-import { IState } from 'app/entities/state/state.model';
-import { IDistrict } from 'app/entities/district/district.model';
-import { ITaluka } from 'app/entities/taluka/taluka.model';
+import { IAddressDetails } from 'app/entities/address-details/address-details.model';
 
 export interface ISociety {
   id: number;
   societyName?: string | null;
-  address?: string | null;
-  village?: string | null;
-  tahsil?: string | null;
-  state?: string | null;
-  district?: string | null;
   registrationNumber?: number | null;
   gstinNumber?: number | null;
   panNumber?: number | null;
   tanNumber?: number | null;
   phoneNumber?: number | null;
   emailAddress?: string | null;
-  pinCode?: number | null;
   createdOn?: dayjs.Dayjs | null;
   createdBy?: string | null;
   description?: string | null;
@@ -27,10 +18,9 @@ export interface ISociety {
   lastModifiedBy?: string | null;
   freeField1?: string | null;
   freeField2?: string | null;
-  city?: Pick<IVillage, 'id'> | null;
-  state?: Pick<IState, 'id'> | null;
-  district?: Pick<IDistrict, 'id'> | null;
-  taluka?: Pick<ITaluka, 'id'> | null;
+  freeField3?: string | null;
+  freeField4?: string | null;
+  addressDetails?: Pick<IAddressDetails, 'id'> | null;
   society?: Pick<ISociety, 'id'> | null;
 }
 

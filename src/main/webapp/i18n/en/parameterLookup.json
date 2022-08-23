@@ -27,6 +27,8 @@
       "createdBy": "Created By",
       "createdOn": "Created On",
       "isDeleted": "Is Deleted",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2",
       "society": "Society"
     }
   }

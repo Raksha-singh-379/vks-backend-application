@@ -29,7 +29,7 @@ public class VillageCriteria implements Serializable, Criteria {
 
     private LongFilter id;
 
-    private StringFilter name;
+    private StringFilter villageName;
 
     private BooleanFilter deleted;
 
@@ -45,7 +45,7 @@ public class VillageCriteria implements Serializable, Criteria {
 
     public VillageCriteria(VillageCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
-        this.name = other.name == null ? null : other.name.copy();
+        this.villageName = other.villageName == null ? null : other.villageName.copy();
         this.deleted = other.deleted == null ? null : other.deleted.copy();
         this.lgdCode = other.lgdCode == null ? null : other.lgdCode.copy();
         this.lastModified = other.lastModified == null ? null : other.lastModified.copy();
@@ -73,19 +73,19 @@ public class VillageCriteria implements Serializable, Criteria {
         this.id = id;
     }
 
-    public StringFilter getName() {
-        return name;
+    public StringFilter getVillageName() {
+        return villageName;
     }
 
-    public StringFilter name() {
-        if (name == null) {
-            name = new StringFilter();
+    public StringFilter villageName() {
+        if (villageName == null) {
+            villageName = new StringFilter();
         }
-        return name;
+        return villageName;
     }
 
-    public void setName(StringFilter name) {
-        this.name = name;
+    public void setVillageName(StringFilter villageName) {
+        this.villageName = villageName;
     }
 
     public BooleanFilter getDeleted() {
@@ -167,7 +167,7 @@ public class VillageCriteria implements Serializable, Criteria {
         final VillageCriteria that = (VillageCriteria) o;
         return (
             Objects.equals(id, that.id) &&
-            Objects.equals(name, that.name) &&
+            Objects.equals(villageName, that.villageName) &&
             Objects.equals(deleted, that.deleted) &&
             Objects.equals(lgdCode, that.lgdCode) &&
             Objects.equals(lastModified, that.lastModified) &&
@@ -178,7 +178,7 @@ public class VillageCriteria implements Serializable, Criteria {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, deleted, lgdCode, lastModified, lastModifiedBy, distinct);
+        return Objects.hash(id, villageName, deleted, lgdCode, lastModified, lastModifiedBy, distinct);
     }
 
     // prettier-ignore
@@ -186,7 +186,7 @@ public class VillageCriteria implements Serializable, Criteria {
     public String toString() {
         return "VillageCriteria{" +
             (id != null ? "id=" + id + ", " : "") +
-            (name != null ? "name=" + name + ", " : "") +
+            (villageName != null ? "villageName=" + villageName + ", " : "") +
             (deleted != null ? "deleted=" + deleted + ", " : "") +
             (lgdCode != null ? "lgdCode=" + lgdCode + ", " : "") +
             (lastModified != null ? "lastModified=" + lastModified + ", " : "") +

@@ -36,6 +36,8 @@ public class SocietyAssetsDTO implements Serializable {
 
     private String freeField3;
 
+    private String freeField4;
+
     private SocietyDTO society;
 
     public Long getId() {
@@ -142,6 +144,14 @@ public class SocietyAssetsDTO implements Serializable {
         this.freeField3 = freeField3;
     }
 
+    public String getFreeField4() {
+        return freeField4;
+    }
+
+    public void setFreeField4(String freeField4) {
+        this.freeField4 = freeField4;
+    }
+
     public SocietyDTO getSociety() {
         return society;
     }
@@ -188,6 +198,7 @@ public class SocietyAssetsDTO implements Serializable {
             ", freeField1='" + getFreeField1() + "'" +
             ", freeField2='" + getFreeField2() + "'" +
             ", freeField3='" + getFreeField3() + "'" +
+            ", freeField4='" + getFreeField4() + "'" +
             ", society=" + getSociety() +
             "}";
     }

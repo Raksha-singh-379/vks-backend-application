@@ -117,6 +117,12 @@ public class ParameterLookupQueryService extends QueryService<ParameterLookup> {
             if (criteria.getIsDeleted() != null) {
                 specification = specification.and(buildSpecification(criteria.getIsDeleted(), ParameterLookup_.isDeleted));
             }
+            if (criteria.getFreeField1() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getFreeField1(), ParameterLookup_.freeField1));
+            }
+            if (criteria.getFreeField2() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getFreeField2(), ParameterLookup_.freeField2));
+            }
             if (criteria.getSocietyId() != null) {
                 specification =
                     specification.and(

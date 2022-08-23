@@ -8,7 +8,7 @@
     {
       "fieldName": "type",
       "fieldType": "ParameterLookupType",
-      "fieldValues": "ACCOUNT (Account),RELIGION (Religion),CASTE (Caste),CATEGORY (Category),FARMER (Farmer),RESOLUTION (Resolution),EXECUTIVE_TITLE (Executive_Title),BELONGING (Belonging),INVESTMENT (Investment),MEASURING_UNIT (Measuring_Unit),ACCOUNT_TYPE (Account_Type)"
+      "fieldValues": "ACCOUNT (Account),RELIGION (Religion),CASTE (Caste),CATEGORY (Category),FARMER (Farmer),RESOLUTION (Resolution),EXECUTIVE_TITLE (Executive_Title),BELONGING (Belonging),INVESTMENT (Investment),MEASURING_UNIT (Measuring_Unit),ACCOUNT_TYPE (Account_Type),DEPOSIT_TYPE (Deposit_Type)"
     },
     {
       "fieldName": "name",
@@ -41,6 +41,14 @@
     {
       "fieldName": "isDeleted",
       "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "freeField1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField2",
+      "fieldType": "String"
     }
   ],
   "fluentMethods": true,

@@ -2,7 +2,7 @@ import dayjs from 'dayjs/esm';
 
 export interface IVillage {
   id: number;
-  name?: string | null;
+  villageName?: string | null;
   deleted?: boolean | null;
   lgdCode?: number | null;
   lastModified?: dayjs.Dayjs | null;

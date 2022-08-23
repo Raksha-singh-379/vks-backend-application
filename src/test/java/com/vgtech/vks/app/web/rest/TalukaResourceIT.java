@@ -34,8 +34,8 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class TalukaResourceIT {
 
-    private static final String DEFAULT_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_NAME = "BBBBBBBBBB";
+    private static final String DEFAULT_TALUKA_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_TALUKA_NAME = "BBBBBBBBBB";
 
     private static final Boolean DEFAULT_DELETED = false;
     private static final Boolean UPDATED_DELETED = true;
@@ -78,7 +78,7 @@ class TalukaResourceIT {
      */
     public static Taluka createEntity(EntityManager em) {
         Taluka taluka = new Taluka()
-            .name(DEFAULT_NAME)
+            .talukaName(DEFAULT_TALUKA_NAME)
             .deleted(DEFAULT_DELETED)
             .lgdCode(DEFAULT_LGD_CODE)
             .lastModified(DEFAULT_LAST_MODIFIED)
@@ -94,7 +94,7 @@ class TalukaResourceIT {
      */
     public static Taluka createUpdatedEntity(EntityManager em) {
         Taluka taluka = new Taluka()
-            .name(UPDATED_NAME)
+            .talukaName(UPDATED_TALUKA_NAME)
             .deleted(UPDATED_DELETED)
             .lgdCode(UPDATED_LGD_CODE)
             .lastModified(UPDATED_LAST_MODIFIED)
@@ -121,7 +121,7 @@ class TalukaResourceIT {
         List<Taluka> talukaList = talukaRepository.findAll();
         assertThat(talukaList).hasSize(databaseSizeBeforeCreate + 1);
         Taluka testTaluka = talukaList.get(talukaList.size() - 1);
-        assertThat(testTaluka.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testTaluka.getTalukaName()).isEqualTo(DEFAULT_TALUKA_NAME);
         assertThat(testTaluka.getDeleted()).isEqualTo(DEFAULT_DELETED);
         assertThat(testTaluka.getLgdCode()).isEqualTo(DEFAULT_LGD_CODE);
         assertThat(testTaluka.getLastModified()).isEqualTo(DEFAULT_LAST_MODIFIED);
@@ -149,46 +149,10 @@ class TalukaResourceIT {
 
     @Test
     @Transactional
-    void checkNameIsRequired() throws Exception {
+    void checkTalukaNameIsRequired() throws Exception {
         int databaseSizeBeforeTest = talukaRepository.findAll().size();
         // set the field null
-        taluka.setName(null);
-
-        // Create the Taluka, which fails.
-        TalukaDTO talukaDTO = talukaMapper.toDto(taluka);
-
-        restTalukaMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(talukaDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Taluka> talukaList = talukaRepository.findAll();
-        assertThat(talukaList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    void checkLastModifiedIsRequired() throws Exception {
-        int databaseSizeBeforeTest = talukaRepository.findAll().size();
-        // set the field null
-        taluka.setLastModified(null);
-
-        // Create the Taluka, which fails.
-        TalukaDTO talukaDTO = talukaMapper.toDto(taluka);
-
-        restTalukaMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(talukaDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Taluka> talukaList = talukaRepository.findAll();
-        assertThat(talukaList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    void checkLastModifiedByIsRequired() throws Exception {
-        int databaseSizeBeforeTest = talukaRepository.findAll().size();
-        // set the field null
-        taluka.setLastModifiedBy(null);
+        taluka.setTalukaName(null);
 
         // Create the Taluka, which fails.
         TalukaDTO talukaDTO = talukaMapper.toDto(taluka);
@@ -213,7 +177,7 @@ class TalukaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(taluka.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
+            .andExpect(jsonPath("$.[*].talukaName").value(hasItem(DEFAULT_TALUKA_NAME)))
             .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())))
             .andExpect(jsonPath("$.[*].lgdCode").value(hasItem(DEFAULT_LGD_CODE.intValue())))
             .andExpect(jsonPath("$.[*].lastModified").value(hasItem(DEFAULT_LAST_MODIFIED.toString())))
@@ -232,7 +196,7 @@ class TalukaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(taluka.getId().intValue()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
+            .andExpect(jsonPath("$.talukaName").value(DEFAULT_TALUKA_NAME))
             .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()))
             .andExpect(jsonPath("$.lgdCode").value(DEFAULT_LGD_CODE.intValue()))
             .andExpect(jsonPath("$.lastModified").value(DEFAULT_LAST_MODIFIED.toString()))
@@ -259,67 +223,67 @@ class TalukaResourceIT {
 
     @Test
     @Transactional
-    void getAllTalukasByNameIsEqualToSomething() throws Exception {
+    void getAllTalukasByTalukaNameIsEqualToSomething() throws Exception {
         // Initialize the database
         talukaRepository.saveAndFlush(taluka);
 
-        // Get all the talukaList where name equals to DEFAULT_NAME
-        defaultTalukaShouldBeFound("name.equals=" + DEFAULT_NAME);
+        // Get all the talukaList where talukaName equals to DEFAULT_TALUKA_NAME
+        defaultTalukaShouldBeFound("talukaName.equals=" + DEFAULT_TALUKA_NAME);
 
-        // Get all the talukaList where name equals to UPDATED_NAME
-        defaultTalukaShouldNotBeFound("name.equals=" + UPDATED_NAME);
+        // Get all the talukaList where talukaName equals to UPDATED_TALUKA_NAME
+        defaultTalukaShouldNotBeFound("talukaName.equals=" + UPDATED_TALUKA_NAME);
     }
 
     @Test
     @Transactional
-    void getAllTalukasByNameIsInShouldWork() throws Exception {
+    void getAllTalukasByTalukaNameIsInShouldWork() throws Exception {
         // Initialize the database
         talukaRepository.saveAndFlush(taluka);
 
-        // Get all the talukaList where name in DEFAULT_NAME or UPDATED_NAME
-        defaultTalukaShouldBeFound("name.in=" + DEFAULT_NAME + "," + UPDATED_NAME);
+        // Get all the talukaList where talukaName in DEFAULT_TALUKA_NAME or UPDATED_TALUKA_NAME
+        defaultTalukaShouldBeFound("talukaName.in=" + DEFAULT_TALUKA_NAME + "," + UPDATED_TALUKA_NAME);
 
-        // Get all the talukaList where name equals to UPDATED_NAME
-        defaultTalukaShouldNotBeFound("name.in=" + UPDATED_NAME);
+        // Get all the talukaList where talukaName equals to UPDATED_TALUKA_NAME
+        defaultTalukaShouldNotBeFound("talukaName.in=" + UPDATED_TALUKA_NAME);
     }
 
     @Test
     @Transactional
-    void getAllTalukasByNameIsNullOrNotNull() throws Exception {
+    void getAllTalukasByTalukaNameIsNullOrNotNull() throws Exception {
         // Initialize the database
         talukaRepository.saveAndFlush(taluka);
 
-        // Get all the talukaList where name is not null
-        defaultTalukaShouldBeFound("name.specified=true");
+        // Get all the talukaList where talukaName is not null
+        defaultTalukaShouldBeFound("talukaName.specified=true");
 
-        // Get all the talukaList where name is null
-        defaultTalukaShouldNotBeFound("name.specified=false");
+        // Get all the talukaList where talukaName is null
+        defaultTalukaShouldNotBeFound("talukaName.specified=false");
     }
 
     @Test
     @Transactional
-    void getAllTalukasByNameContainsSomething() throws Exception {
+    void getAllTalukasByTalukaNameContainsSomething() throws Exception {
         // Initialize the database
         talukaRepository.saveAndFlush(taluka);
 
-        // Get all the talukaList where name contains DEFAULT_NAME
-        defaultTalukaShouldBeFound("name.contains=" + DEFAULT_NAME);
+        // Get all the talukaList where talukaName contains DEFAULT_TALUKA_NAME
+        defaultTalukaShouldBeFound("talukaName.contains=" + DEFAULT_TALUKA_NAME);
 
-        // Get all the talukaList where name contains UPDATED_NAME
-        defaultTalukaShouldNotBeFound("name.contains=" + UPDATED_NAME);
+        // Get all the talukaList where talukaName contains UPDATED_TALUKA_NAME
+        defaultTalukaShouldNotBeFound("talukaName.contains=" + UPDATED_TALUKA_NAME);
     }
 
     @Test
     @Transactional
-    void getAllTalukasByNameNotContainsSomething() throws Exception {
+    void getAllTalukasByTalukaNameNotContainsSomething() throws Exception {
         // Initialize the database
         talukaRepository.saveAndFlush(taluka);
 
-        // Get all the talukaList where name does not contain DEFAULT_NAME
-        defaultTalukaShouldNotBeFound("name.doesNotContain=" + DEFAULT_NAME);
+        // Get all the talukaList where talukaName does not contain DEFAULT_TALUKA_NAME
+        defaultTalukaShouldNotBeFound("talukaName.doesNotContain=" + DEFAULT_TALUKA_NAME);
 
-        // Get all the talukaList where name does not contain UPDATED_NAME
-        defaultTalukaShouldBeFound("name.doesNotContain=" + UPDATED_NAME);
+        // Get all the talukaList where talukaName does not contain UPDATED_TALUKA_NAME
+        defaultTalukaShouldBeFound("talukaName.doesNotContain=" + UPDATED_TALUKA_NAME);
     }
 
     @Test
@@ -565,7 +529,7 @@ class TalukaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(taluka.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
+            .andExpect(jsonPath("$.[*].talukaName").value(hasItem(DEFAULT_TALUKA_NAME)))
             .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())))
             .andExpect(jsonPath("$.[*].lgdCode").value(hasItem(DEFAULT_LGD_CODE.intValue())))
             .andExpect(jsonPath("$.[*].lastModified").value(hasItem(DEFAULT_LAST_MODIFIED.toString())))
@@ -618,7 +582,7 @@ class TalukaResourceIT {
         // Disconnect from session so that the updates on updatedTaluka are not directly saved in db
         em.detach(updatedTaluka);
         updatedTaluka
-            .name(UPDATED_NAME)
+            .talukaName(UPDATED_TALUKA_NAME)
             .deleted(UPDATED_DELETED)
             .lgdCode(UPDATED_LGD_CODE)
             .lastModified(UPDATED_LAST_MODIFIED)
@@ -637,7 +601,7 @@ class TalukaResourceIT {
         List<Taluka> talukaList = talukaRepository.findAll();
         assertThat(talukaList).hasSize(databaseSizeBeforeUpdate);
         Taluka testTaluka = talukaList.get(talukaList.size() - 1);
-        assertThat(testTaluka.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testTaluka.getTalukaName()).isEqualTo(UPDATED_TALUKA_NAME);
         assertThat(testTaluka.getDeleted()).isEqualTo(UPDATED_DELETED);
         assertThat(testTaluka.getLgdCode()).isEqualTo(UPDATED_LGD_CODE);
         assertThat(testTaluka.getLastModified()).isEqualTo(UPDATED_LAST_MODIFIED);
@@ -721,7 +685,11 @@ class TalukaResourceIT {
         Taluka partialUpdatedTaluka = new Taluka();
         partialUpdatedTaluka.setId(taluka.getId());
 
-        partialUpdatedTaluka.name(UPDATED_NAME).deleted(UPDATED_DELETED).lgdCode(UPDATED_LGD_CODE).lastModified(UPDATED_LAST_MODIFIED);
+        partialUpdatedTaluka
+            .talukaName(UPDATED_TALUKA_NAME)
+            .deleted(UPDATED_DELETED)
+            .lgdCode(UPDATED_LGD_CODE)
+            .lastModified(UPDATED_LAST_MODIFIED);
 
         restTalukaMockMvc
             .perform(
@@ -735,7 +703,7 @@ class TalukaResourceIT {
         List<Taluka> talukaList = talukaRepository.findAll();
         assertThat(talukaList).hasSize(databaseSizeBeforeUpdate);
         Taluka testTaluka = talukaList.get(talukaList.size() - 1);
-        assertThat(testTaluka.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testTaluka.getTalukaName()).isEqualTo(UPDATED_TALUKA_NAME);
         assertThat(testTaluka.getDeleted()).isEqualTo(UPDATED_DELETED);
         assertThat(testTaluka.getLgdCode()).isEqualTo(UPDATED_LGD_CODE);
         assertThat(testTaluka.getLastModified()).isEqualTo(UPDATED_LAST_MODIFIED);
@@ -755,7 +723,7 @@ class TalukaResourceIT {
         partialUpdatedTaluka.setId(taluka.getId());
 
         partialUpdatedTaluka
-            .name(UPDATED_NAME)
+            .talukaName(UPDATED_TALUKA_NAME)
             .deleted(UPDATED_DELETED)
             .lgdCode(UPDATED_LGD_CODE)
             .lastModified(UPDATED_LAST_MODIFIED)
@@ -773,7 +741,7 @@ class TalukaResourceIT {
         List<Taluka> talukaList = talukaRepository.findAll();
         assertThat(talukaList).hasSize(databaseSizeBeforeUpdate);
         Taluka testTaluka = talukaList.get(talukaList.size() - 1);
-        assertThat(testTaluka.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testTaluka.getTalukaName()).isEqualTo(UPDATED_TALUKA_NAME);
         assertThat(testTaluka.getDeleted()).isEqualTo(UPDATED_DELETED);
         assertThat(testTaluka.getLgdCode()).isEqualTo(UPDATED_LGD_CODE);
         assertThat(testTaluka.getLastModified()).isEqualTo(UPDATED_LAST_MODIFIED);
