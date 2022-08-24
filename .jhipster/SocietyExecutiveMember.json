@@ -1,25 +1,21 @@
 {
   "applications": "*",
-  "changelogDate": "20220819050814",
+  "changelogDate": "20220824074008",
   "dto": "mapstruct",
   "embedded": false,
-  "entityTableName": "society_prerequisite",
+  "entityTableName": "society_executive_member",
   "fields": [
     {
-      "fieldName": "docType",
+      "fieldName": "designation",
       "fieldType": "String"
     },
     {
-      "fieldName": "documentDesc",
-      "fieldType": "String"
+      "fieldName": "electedFrom",
+      "fieldType": "Instant"
     },
     {
-      "fieldName": "documentName",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "mandatory",
-      "fieldType": "String"
+      "fieldName": "electedto",
+      "fieldType": "Instant"
     },
     {
       "fieldName": "lastModified",
@@ -56,20 +52,15 @@
   ],
   "fluentMethods": true,
   "jpaMetamodelFiltering": true,
-  "name": "SocietyPrerequisite",
+  "name": "SocietyExecutiveMember",
   "pagination": "pagination",
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "society",
-      "relationshipName": "society",
-      "relationshipType": "many-to-one"
-    },
-    {
-      "otherEntityName": "loanType",
-      "otherEntityRelationshipName": "societyPrerequisite",
-      "relationshipName": "loanType",
-      "relationshipType": "many-to-one"
+      "otherEntityName": "member",
+      "ownerSide": true,
+      "relationshipName": "member",
+      "relationshipType": "one-to-one"
     }
   ],
   "service": "serviceClass"

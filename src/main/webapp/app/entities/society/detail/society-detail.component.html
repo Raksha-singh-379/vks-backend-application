@@ -18,26 +18,6 @@
         <dd>
           <span>{{ society.societyName }}</span>
         </dd>
-        <dt><span jhiTranslate="vksApplicationApp.society.address">Address</span></dt>
-        <dd>
-          <span>{{ society.address }}</span>
-        </dd>
-        <dt><span jhiTranslate="vksApplicationApp.society.village">Village</span></dt>
-        <dd>
-          <span>{{ society.village }}</span>
-        </dd>
-        <dt><span jhiTranslate="vksApplicationApp.society.tahsil">Tahsil</span></dt>
-        <dd>
-          <span>{{ society.tahsil }}</span>
-        </dd>
-        <dt><span jhiTranslate="vksApplicationApp.society.state">State</span></dt>
-        <dd>
-          <span>{{ society.state }}</span>
-        </dd>
-        <dt><span jhiTranslate="vksApplicationApp.society.district">District</span></dt>
-        <dd>
-          <span>{{ society.district }}</span>
-        </dd>
         <dt><span jhiTranslate="vksApplicationApp.society.registrationNumber">Registration Number</span></dt>
         <dd>
           <span>{{ society.registrationNumber }}</span>
@@ -61,10 +41,6 @@
         <dt><span jhiTranslate="vksApplicationApp.society.emailAddress">Email Address</span></dt>
         <dd>
           <span>{{ society.emailAddress }}</span>
-        </dd>
-        <dt><span jhiTranslate="vksApplicationApp.society.pinCode">Pin Code</span></dt>
-        <dd>
-          <span>{{ society.pinCode }}</span>
         </dd>
         <dt><span jhiTranslate="vksApplicationApp.society.createdOn">Created On</span></dt>
         <dd>
@@ -98,28 +74,18 @@
         <dd>
           <span>{{ society.freeField2 }}</span>
         </dd>
-        <dt><span jhiTranslate="vksApplicationApp.society.city">City</span></dt>
+        <dt><span jhiTranslate="vksApplicationApp.society.freeField3">Free Field 3</span></dt>
         <dd>
-          <div *ngIf="society.city">
-            <a [routerLink]="['/village', society.city.id, 'view']">{{ society.city?.id }}</a>
-          </div>
+          <span>{{ society.freeField3 }}</span>
         </dd>
-        <dt><span jhiTranslate="vksApplicationApp.society.state">State</span></dt>
+        <dt><span jhiTranslate="vksApplicationApp.society.freeField4">Free Field 4</span></dt>
         <dd>
-          <div *ngIf="society.state">
-            <a [routerLink]="['/state', society.state.id, 'view']">{{ society.state?.id }}</a>
-          </div>
+          <span>{{ society.freeField4 }}</span>
         </dd>
-        <dt><span jhiTranslate="vksApplicationApp.society.district">District</span></dt>
+        <dt><span jhiTranslate="vksApplicationApp.society.addressDetails">Address Details</span></dt>
         <dd>
-          <div *ngIf="society.district">
-            <a [routerLink]="['/district', society.district.id, 'view']">{{ society.district?.id }}</a>
-          </div>
-        </dd>
-        <dt><span jhiTranslate="vksApplicationApp.society.taluka">Taluka</span></dt>
-        <dd>
-          <div *ngIf="society.taluka">
-            <a [routerLink]="['/taluka', society.taluka.id, 'view']">{{ society.taluka?.id }}</a>
+          <div *ngIf="society.addressDetails">
+            <a [routerLink]="['/address-details', society.addressDetails.id, 'view']">{{ society.addressDetails?.id }}</a>
           </div>
         </dd>
         <dt><span jhiTranslate="vksApplicationApp.society.society">Society</span></dt>

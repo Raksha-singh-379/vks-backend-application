@@ -38,21 +38,6 @@
           <th scope="col" jhiSortBy="societyName">
             <span jhiTranslate="vksApplicationApp.society.societyName">Society Name</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="address">
-            <span jhiTranslate="vksApplicationApp.society.address">Address</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="village">
-            <span jhiTranslate="vksApplicationApp.society.village">Village</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="tahsil">
-            <span jhiTranslate="vksApplicationApp.society.tahsil">Tahsil</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="state">
-            <span jhiTranslate="vksApplicationApp.society.state">State</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="district">
-            <span jhiTranslate="vksApplicationApp.society.district">District</span> <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col" jhiSortBy="registrationNumber">
             <span jhiTranslate="vksApplicationApp.society.registrationNumber">Registration Number</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -70,9 +55,6 @@
           </th>
           <th scope="col" jhiSortBy="emailAddress">
             <span jhiTranslate="vksApplicationApp.society.emailAddress">Email Address</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="pinCode">
-            <span jhiTranslate="vksApplicationApp.society.pinCode">Pin Code</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="createdOn">
             <span jhiTranslate="vksApplicationApp.society.createdOn">Created On</span> <fa-icon icon="sort"></fa-icon>
@@ -98,17 +80,14 @@
           <th scope="col" jhiSortBy="freeField2">
             <span jhiTranslate="vksApplicationApp.society.freeField2">Free Field 2</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="city.id">
-            <span jhiTranslate="vksApplicationApp.society.city">City</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="freeField3">
+            <span jhiTranslate="vksApplicationApp.society.freeField3">Free Field 3</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="state.id">
-            <span jhiTranslate="vksApplicationApp.society.state">State</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="freeField4">
+            <span jhiTranslate="vksApplicationApp.society.freeField4">Free Field 4</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="district.id">
-            <span jhiTranslate="vksApplicationApp.society.district">District</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="taluka.id">
-            <span jhiTranslate="vksApplicationApp.society.taluka">Taluka</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="addressDetails.id">
+            <span jhiTranslate="vksApplicationApp.society.addressDetails">Address Details</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="society.id">
             <span jhiTranslate="vksApplicationApp.society.society">Society</span> <fa-icon icon="sort"></fa-icon>
@@ -122,18 +101,12 @@
             <a [routerLink]="['/society', society.id, 'view']">{{ society.id }}</a>
           </td>
           <td>{{ society.societyName }}</td>
-          <td>{{ society.address }}</td>
-          <td>{{ society.village }}</td>
-          <td>{{ society.tahsil }}</td>
-          <td>{{ society.state }}</td>
-          <td>{{ society.district }}</td>
           <td>{{ society.registrationNumber }}</td>
           <td>{{ society.gstinNumber }}</td>
           <td>{{ society.panNumber }}</td>
           <td>{{ society.tanNumber }}</td>
           <td>{{ society.phoneNumber }}</td>
           <td>{{ society.emailAddress }}</td>
-          <td>{{ society.pinCode }}</td>
           <td>{{ society.createdOn | formatMediumDatetime }}</td>
           <td>{{ society.createdBy }}</td>
           <td>{{ society.description }}</td>
@@ -142,24 +115,11 @@
           <td>{{ society.lastModifiedBy }}</td>
           <td>{{ society.freeField1 }}</td>
           <td>{{ society.freeField2 }}</td>
+          <td>{{ society.freeField3 }}</td>
+          <td>{{ society.freeField4 }}</td>
           <td>
-            <div *ngIf="society.city">
-              <a [routerLink]="['/village', society.city.id, 'view']">{{ society.city?.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="society.state">
-              <a [routerLink]="['/state', society.state.id, 'view']">{{ society.state?.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="society.district">
-              <a [routerLink]="['/district', society.district.id, 'view']">{{ society.district?.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="society.taluka">
-              <a [routerLink]="['/taluka', society.taluka.id, 'view']">{{ society.taluka?.id }}</a>
+            <div *ngIf="society.addressDetails">
+              <a [routerLink]="['/address-details', society.addressDetails.id, 'view']">{{ society.addressDetails?.id }}</a>
             </div>
           </td>
           <td>

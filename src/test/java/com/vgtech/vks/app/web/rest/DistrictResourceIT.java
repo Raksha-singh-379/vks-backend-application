@@ -34,8 +34,8 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class DistrictResourceIT {
 
-    private static final String DEFAULT_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_NAME = "BBBBBBBBBB";
+    private static final String DEFAULT_DISTRICT_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_DISTRICT_NAME = "BBBBBBBBBB";
 
     private static final Boolean DEFAULT_DELETED = false;
     private static final Boolean UPDATED_DELETED = true;
@@ -78,7 +78,7 @@ class DistrictResourceIT {
      */
     public static District createEntity(EntityManager em) {
         District district = new District()
-            .name(DEFAULT_NAME)
+            .districtName(DEFAULT_DISTRICT_NAME)
             .deleted(DEFAULT_DELETED)
             .lgdCode(DEFAULT_LGD_CODE)
             .lastModified(DEFAULT_LAST_MODIFIED)
@@ -94,7 +94,7 @@ class DistrictResourceIT {
      */
     public static District createUpdatedEntity(EntityManager em) {
         District district = new District()
-            .name(UPDATED_NAME)
+            .districtName(UPDATED_DISTRICT_NAME)
             .deleted(UPDATED_DELETED)
             .lgdCode(UPDATED_LGD_CODE)
             .lastModified(UPDATED_LAST_MODIFIED)
@@ -121,7 +121,7 @@ class DistrictResourceIT {
         List<District> districtList = districtRepository.findAll();
         assertThat(districtList).hasSize(databaseSizeBeforeCreate + 1);
         District testDistrict = districtList.get(districtList.size() - 1);
-        assertThat(testDistrict.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testDistrict.getDistrictName()).isEqualTo(DEFAULT_DISTRICT_NAME);
         assertThat(testDistrict.getDeleted()).isEqualTo(DEFAULT_DELETED);
         assertThat(testDistrict.getLgdCode()).isEqualTo(DEFAULT_LGD_CODE);
         assertThat(testDistrict.getLastModified()).isEqualTo(DEFAULT_LAST_MODIFIED);
@@ -149,46 +149,10 @@ class DistrictResourceIT {
 
     @Test
     @Transactional
-    void checkNameIsRequired() throws Exception {
+    void checkDistrictNameIsRequired() throws Exception {
         int databaseSizeBeforeTest = districtRepository.findAll().size();
         // set the field null
-        district.setName(null);
-
-        // Create the District, which fails.
-        DistrictDTO districtDTO = districtMapper.toDto(district);
-
-        restDistrictMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(districtDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<District> districtList = districtRepository.findAll();
-        assertThat(districtList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    void checkLastModifiedIsRequired() throws Exception {
-        int databaseSizeBeforeTest = districtRepository.findAll().size();
-        // set the field null
-        district.setLastModified(null);
-
-        // Create the District, which fails.
-        DistrictDTO districtDTO = districtMapper.toDto(district);
-
-        restDistrictMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(districtDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<District> districtList = districtRepository.findAll();
-        assertThat(districtList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    void checkLastModifiedByIsRequired() throws Exception {
-        int databaseSizeBeforeTest = districtRepository.findAll().size();
-        // set the field null
-        district.setLastModifiedBy(null);
+        district.setDistrictName(null);
 
         // Create the District, which fails.
         DistrictDTO districtDTO = districtMapper.toDto(district);
@@ -213,7 +177,7 @@ class DistrictResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(district.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
+            .andExpect(jsonPath("$.[*].districtName").value(hasItem(DEFAULT_DISTRICT_NAME)))
             .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())))
             .andExpect(jsonPath("$.[*].lgdCode").value(hasItem(DEFAULT_LGD_CODE.intValue())))
             .andExpect(jsonPath("$.[*].lastModified").value(hasItem(DEFAULT_LAST_MODIFIED.toString())))
@@ -232,7 +196,7 @@ class DistrictResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(district.getId().intValue()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
+            .andExpect(jsonPath("$.districtName").value(DEFAULT_DISTRICT_NAME))
             .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()))
             .andExpect(jsonPath("$.lgdCode").value(DEFAULT_LGD_CODE.intValue()))
             .andExpect(jsonPath("$.lastModified").value(DEFAULT_LAST_MODIFIED.toString()))
@@ -259,67 +223,67 @@ class DistrictResourceIT {
 
     @Test
     @Transactional
-    void getAllDistrictsByNameIsEqualToSomething() throws Exception {
+    void getAllDistrictsByDistrictNameIsEqualToSomething() throws Exception {
         // Initialize the database
         districtRepository.saveAndFlush(district);
 
-        // Get all the districtList where name equals to DEFAULT_NAME
-        defaultDistrictShouldBeFound("name.equals=" + DEFAULT_NAME);
+        // Get all the districtList where districtName equals to DEFAULT_DISTRICT_NAME
+        defaultDistrictShouldBeFound("districtName.equals=" + DEFAULT_DISTRICT_NAME);
 
-        // Get all the districtList where name equals to UPDATED_NAME
-        defaultDistrictShouldNotBeFound("name.equals=" + UPDATED_NAME);
+        // Get all the districtList where districtName equals to UPDATED_DISTRICT_NAME
+        defaultDistrictShouldNotBeFound("districtName.equals=" + UPDATED_DISTRICT_NAME);
     }
 
     @Test
     @Transactional
-    void getAllDistrictsByNameIsInShouldWork() throws Exception {
+    void getAllDistrictsByDistrictNameIsInShouldWork() throws Exception {
         // Initialize the database
         districtRepository.saveAndFlush(district);
 
-        // Get all the districtList where name in DEFAULT_NAME or UPDATED_NAME
-        defaultDistrictShouldBeFound("name.in=" + DEFAULT_NAME + "," + UPDATED_NAME);
+        // Get all the districtList where districtName in DEFAULT_DISTRICT_NAME or UPDATED_DISTRICT_NAME
+        defaultDistrictShouldBeFound("districtName.in=" + DEFAULT_DISTRICT_NAME + "," + UPDATED_DISTRICT_NAME);
 
-        // Get all the districtList where name equals to UPDATED_NAME
-        defaultDistrictShouldNotBeFound("name.in=" + UPDATED_NAME);
+        // Get all the districtList where districtName equals to UPDATED_DISTRICT_NAME
+        defaultDistrictShouldNotBeFound("districtName.in=" + UPDATED_DISTRICT_NAME);
     }
 
     @Test
     @Transactional
-    void getAllDistrictsByNameIsNullOrNotNull() throws Exception {
+    void getAllDistrictsByDistrictNameIsNullOrNotNull() throws Exception {
         // Initialize the database
         districtRepository.saveAndFlush(district);
 
-        // Get all the districtList where name is not null
-        defaultDistrictShouldBeFound("name.specified=true");
+        // Get all the districtList where districtName is not null
+        defaultDistrictShouldBeFound("districtName.specified=true");
 
-        // Get all the districtList where name is null
-        defaultDistrictShouldNotBeFound("name.specified=false");
+        // Get all the districtList where districtName is null
+        defaultDistrictShouldNotBeFound("districtName.specified=false");
     }
 
     @Test
     @Transactional
-    void getAllDistrictsByNameContainsSomething() throws Exception {
+    void getAllDistrictsByDistrictNameContainsSomething() throws Exception {
         // Initialize the database
         districtRepository.saveAndFlush(district);
 
-        // Get all the districtList where name contains DEFAULT_NAME
-        defaultDistrictShouldBeFound("name.contains=" + DEFAULT_NAME);
+        // Get all the districtList where districtName contains DEFAULT_DISTRICT_NAME
+        defaultDistrictShouldBeFound("districtName.contains=" + DEFAULT_DISTRICT_NAME);
 
-        // Get all the districtList where name contains UPDATED_NAME
-        defaultDistrictShouldNotBeFound("name.contains=" + UPDATED_NAME);
+        // Get all the districtList where districtName contains UPDATED_DISTRICT_NAME
+        defaultDistrictShouldNotBeFound("districtName.contains=" + UPDATED_DISTRICT_NAME);
     }
 
     @Test
     @Transactional
-    void getAllDistrictsByNameNotContainsSomething() throws Exception {
+    void getAllDistrictsByDistrictNameNotContainsSomething() throws Exception {
         // Initialize the database
         districtRepository.saveAndFlush(district);
 
-        // Get all the districtList where name does not contain DEFAULT_NAME
-        defaultDistrictShouldNotBeFound("name.doesNotContain=" + DEFAULT_NAME);
+        // Get all the districtList where districtName does not contain DEFAULT_DISTRICT_NAME
+        defaultDistrictShouldNotBeFound("districtName.doesNotContain=" + DEFAULT_DISTRICT_NAME);
 
-        // Get all the districtList where name does not contain UPDATED_NAME
-        defaultDistrictShouldBeFound("name.doesNotContain=" + UPDATED_NAME);
+        // Get all the districtList where districtName does not contain UPDATED_DISTRICT_NAME
+        defaultDistrictShouldBeFound("districtName.doesNotContain=" + UPDATED_DISTRICT_NAME);
     }
 
     @Test
@@ -565,7 +529,7 @@ class DistrictResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(district.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
+            .andExpect(jsonPath("$.[*].districtName").value(hasItem(DEFAULT_DISTRICT_NAME)))
             .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())))
             .andExpect(jsonPath("$.[*].lgdCode").value(hasItem(DEFAULT_LGD_CODE.intValue())))
             .andExpect(jsonPath("$.[*].lastModified").value(hasItem(DEFAULT_LAST_MODIFIED.toString())))
@@ -618,7 +582,7 @@ class DistrictResourceIT {
         // Disconnect from session so that the updates on updatedDistrict are not directly saved in db
         em.detach(updatedDistrict);
         updatedDistrict
-            .name(UPDATED_NAME)
+            .districtName(UPDATED_DISTRICT_NAME)
             .deleted(UPDATED_DELETED)
             .lgdCode(UPDATED_LGD_CODE)
             .lastModified(UPDATED_LAST_MODIFIED)
@@ -637,7 +601,7 @@ class DistrictResourceIT {
         List<District> districtList = districtRepository.findAll();
         assertThat(districtList).hasSize(databaseSizeBeforeUpdate);
         District testDistrict = districtList.get(districtList.size() - 1);
-        assertThat(testDistrict.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testDistrict.getDistrictName()).isEqualTo(UPDATED_DISTRICT_NAME);
         assertThat(testDistrict.getDeleted()).isEqualTo(UPDATED_DELETED);
         assertThat(testDistrict.getLgdCode()).isEqualTo(UPDATED_LGD_CODE);
         assertThat(testDistrict.getLastModified()).isEqualTo(UPDATED_LAST_MODIFIED);
@@ -721,7 +685,7 @@ class DistrictResourceIT {
         District partialUpdatedDistrict = new District();
         partialUpdatedDistrict.setId(district.getId());
 
-        partialUpdatedDistrict.name(UPDATED_NAME).deleted(UPDATED_DELETED).lgdCode(UPDATED_LGD_CODE);
+        partialUpdatedDistrict.districtName(UPDATED_DISTRICT_NAME).deleted(UPDATED_DELETED).lgdCode(UPDATED_LGD_CODE);
 
         restDistrictMockMvc
             .perform(
@@ -735,7 +699,7 @@ class DistrictResourceIT {
         List<District> districtList = districtRepository.findAll();
         assertThat(districtList).hasSize(databaseSizeBeforeUpdate);
         District testDistrict = districtList.get(districtList.size() - 1);
-        assertThat(testDistrict.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testDistrict.getDistrictName()).isEqualTo(UPDATED_DISTRICT_NAME);
         assertThat(testDistrict.getDeleted()).isEqualTo(UPDATED_DELETED);
         assertThat(testDistrict.getLgdCode()).isEqualTo(UPDATED_LGD_CODE);
         assertThat(testDistrict.getLastModified()).isEqualTo(DEFAULT_LAST_MODIFIED);
@@ -755,7 +719,7 @@ class DistrictResourceIT {
         partialUpdatedDistrict.setId(district.getId());
 
         partialUpdatedDistrict
-            .name(UPDATED_NAME)
+            .districtName(UPDATED_DISTRICT_NAME)
             .deleted(UPDATED_DELETED)
             .lgdCode(UPDATED_LGD_CODE)
             .lastModified(UPDATED_LAST_MODIFIED)
@@ -773,7 +737,7 @@ class DistrictResourceIT {
         List<District> districtList = districtRepository.findAll();
         assertThat(districtList).hasSize(databaseSizeBeforeUpdate);
         District testDistrict = districtList.get(districtList.size() - 1);
-        assertThat(testDistrict.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testDistrict.getDistrictName()).isEqualTo(UPDATED_DISTRICT_NAME);
         assertThat(testDistrict.getDeleted()).isEqualTo(UPDATED_DELETED);
         assertThat(testDistrict.getLgdCode()).isEqualTo(UPDATED_LGD_CODE);
         assertThat(testDistrict.getLastModified()).isEqualTo(UPDATED_LAST_MODIFIED);

@@ -32,11 +32,16 @@
     {
       "fieldName": "status",
       "fieldType": "LoanStatus",
-      "fieldValues": "APPLIED (Applied),PENDING (Pending),CHART_GENRATED (Chart_Genrated),APPROVED (Approved),DISBURSED (Disbursed),ACTIVE (Active),CLOSED (Closed)"
+      "fieldValues": "RECORDED (Recorded),APPLIED (Applied),PENDING (Pending),AWAITED (Awaited),CHART_GENRATED (Chart_Genrated),APPROVED (Approved),REJECTED (Rejected),CANCELLED (cancelled),DISBURSED (Disbursed),ACTIVE (Active),CLOSED (Closed)"
     },
     {
       "fieldName": "seasonOfCropLoan",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "loanSteps",
+      "fieldType": "StepperNumber",
+      "fieldValues": "STEP_1 (Step_1),STEP_2 (Step_2),STEP_3 (Step_3),STEP_4 (Step_4),STEP_5 (Step_5),STEP_6 (Step_6)"
     },
     {
       "fieldName": "year",
@@ -60,6 +65,14 @@
     },
     {
       "fieldName": "freeField3",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField4",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField5",
       "fieldType": "String"
     }
   ],
@@ -87,6 +100,12 @@
     {
       "otherEntityName": "societyCropRegistration",
       "relationshipName": "societyCropRegistration",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "loanType",
+      "otherEntityRelationshipName": "loanDemand",
+      "relationshipName": "loanType",
       "relationshipType": "many-to-one"
     }
   ],

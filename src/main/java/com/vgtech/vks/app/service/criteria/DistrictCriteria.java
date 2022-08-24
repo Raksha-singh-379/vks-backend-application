@@ -29,7 +29,7 @@ public class DistrictCriteria implements Serializable, Criteria {
 
     private LongFilter id;
 
-    private StringFilter name;
+    private StringFilter districtName;
 
     private BooleanFilter deleted;
 
@@ -45,7 +45,7 @@ public class DistrictCriteria implements Serializable, Criteria {
 
     public DistrictCriteria(DistrictCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
-        this.name = other.name == null ? null : other.name.copy();
+        this.districtName = other.districtName == null ? null : other.districtName.copy();
         this.deleted = other.deleted == null ? null : other.deleted.copy();
         this.lgdCode = other.lgdCode == null ? null : other.lgdCode.copy();
         this.lastModified = other.lastModified == null ? null : other.lastModified.copy();
@@ -73,19 +73,19 @@ public class DistrictCriteria implements Serializable, Criteria {
         this.id = id;
     }
 
-    public StringFilter getName() {
-        return name;
+    public StringFilter getDistrictName() {
+        return districtName;
     }
 
-    public StringFilter name() {
-        if (name == null) {
-            name = new StringFilter();
+    public StringFilter districtName() {
+        if (districtName == null) {
+            districtName = new StringFilter();
         }
-        return name;
+        return districtName;
     }
 
-    public void setName(StringFilter name) {
-        this.name = name;
+    public void setDistrictName(StringFilter districtName) {
+        this.districtName = districtName;
     }
 
     public BooleanFilter getDeleted() {
@@ -167,7 +167,7 @@ public class DistrictCriteria implements Serializable, Criteria {
         final DistrictCriteria that = (DistrictCriteria) o;
         return (
             Objects.equals(id, that.id) &&
-            Objects.equals(name, that.name) &&
+            Objects.equals(districtName, that.districtName) &&
             Objects.equals(deleted, that.deleted) &&
             Objects.equals(lgdCode, that.lgdCode) &&
             Objects.equals(lastModified, that.lastModified) &&
@@ -178,7 +178,7 @@ public class DistrictCriteria implements Serializable, Criteria {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, deleted, lgdCode, lastModified, lastModifiedBy, distinct);
+        return Objects.hash(id, districtName, deleted, lgdCode, lastModified, lastModifiedBy, distinct);
     }
 
     // prettier-ignore
@@ -186,7 +186,7 @@ public class DistrictCriteria implements Serializable, Criteria {
     public String toString() {
         return "DistrictCriteria{" +
             (id != null ? "id=" + id + ", " : "") +
-            (name != null ? "name=" + name + ", " : "") +
+            (districtName != null ? "districtName=" + districtName + ", " : "") +
             (deleted != null ? "deleted=" + deleted + ", " : "") +
             (lgdCode != null ? "lgdCode=" + lgdCode + ", " : "") +
             (lastModified != null ? "lastModified=" + lastModified + ", " : "") +

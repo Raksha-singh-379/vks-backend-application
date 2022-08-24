@@ -4,33 +4,27 @@ import { IDistrict, NewDistrict } from './district.model';
 
 export const sampleWithRequiredData: IDistrict = {
   id: 85653,
-  name: 'Soap invoice Dong',
-  lastModified: dayjs('2022-08-18T17:11'),
-  lastModifiedBy: 'Fresh real-time gold',
+  districtName: 'Soap invoice Dong',
 };
 
 export const sampleWithPartialData: IDistrict = {
-  id: 82766,
-  name: 'intuitive',
-  deleted: false,
-  lgdCode: 84089,
-  lastModified: dayjs('2022-08-18T23:20'),
-  lastModifiedBy: 'Generic transmitting Checking',
+  id: 83275,
+  districtName: 'Glens',
+  lgdCode: 31911,
+  lastModifiedBy: 'navigating',
 };
 
 export const sampleWithFullData: IDistrict = {
-  id: 9788,
-  name: 'overriding ivory Dollar',
+  id: 67829,
+  districtName: 'executive tan Virtual',
   deleted: true,
-  lgdCode: 53685,
-  lastModified: dayjs('2022-08-18T18:44'),
-  lastModifiedBy: 'Frozen defect Table',
+  lgdCode: 22238,
+  lastModified: dayjs('2022-08-18T09:02'),
+  lastModifiedBy: 'Rubber partnerships overriding',
 };
 
 export const sampleWithNewData: NewDistrict = {
-  name: 'killer efficient Cotton',
-  lastModified: dayjs('2022-08-18T17:04'),
-  lastModifiedBy: 'matrix',
+  districtName: 'override',
   id: null,
 };
 

@@ -1,53 +1,37 @@
 {
   "applications": "*",
-  "changelogDate": "20220819050827",
+  "changelogDate": "20220824074011",
   "dto": "mapstruct",
   "embedded": false,
-  "entityTableName": "member_land_assets",
+  "entityTableName": "income_details",
   "fields": [
     {
-      "fieldName": "landType",
-      "fieldType": "String"
+      "fieldName": "year",
+      "fieldType": "Integer"
     },
     {
-      "fieldName": "landGatNo",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "landAreaInHector",
+      "fieldName": "grossIncome",
       "fieldType": "Double"
     },
     {
-      "fieldName": "jindagiPatrakNo",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "jindagiAmount",
+      "fieldName": "expenses",
       "fieldType": "Double"
     },
     {
-      "fieldName": "assetLandAddress",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "valueOfLand",
+      "fieldName": "netIncome",
       "fieldType": "Double"
     },
     {
-      "fieldName": "assigneeOfLand",
-      "fieldType": "Boolean"
+      "fieldName": "paidTaxes",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "cashSurplus",
+      "fieldType": "Double"
     },
     {
       "fieldName": "isDeleted",
       "fieldType": "Boolean"
-    },
-    {
-      "fieldName": "isInsured",
-      "fieldType": "Boolean"
-    },
-    {
-      "fieldName": "mLLoanNo",
-      "fieldType": "Long"
     },
     {
       "fieldName": "lastModified",
@@ -84,7 +68,7 @@
   ],
   "fluentMethods": true,
   "jpaMetamodelFiltering": true,
-  "name": "MemberLandAssets",
+  "name": "IncomeDetails",
   "pagination": "pagination",
   "readOnly": false,
   "relationships": [

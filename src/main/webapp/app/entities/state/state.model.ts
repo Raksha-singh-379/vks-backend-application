@@ -2,7 +2,7 @@ import dayjs from 'dayjs/esm';
 
 export interface IState {
   id: number;
-  name?: string | null;
+  stateName?: string | null;
   deleted?: boolean | null;
   lgdCode?: number | null;
   lastModified?: dayjs.Dayjs | null;
