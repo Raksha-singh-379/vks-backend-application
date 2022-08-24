@@ -29,7 +29,7 @@ public class StateCriteria implements Serializable, Criteria {
 
     private LongFilter id;
 
-    private StringFilter name;
+    private StringFilter stateName;
 
     private BooleanFilter deleted;
 
@@ -45,7 +45,7 @@ public class StateCriteria implements Serializable, Criteria {
 
     public StateCriteria(StateCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
-        this.name = other.name == null ? null : other.name.copy();
+        this.stateName = other.stateName == null ? null : other.stateName.copy();
         this.deleted = other.deleted == null ? null : other.deleted.copy();
         this.lgdCode = other.lgdCode == null ? null : other.lgdCode.copy();
         this.lastModified = other.lastModified == null ? null : other.lastModified.copy();
@@ -73,19 +73,19 @@ public class StateCriteria implements Serializable, Criteria {
         this.id = id;
     }
 
-    public StringFilter getName() {
-        return name;
+    public StringFilter getStateName() {
+        return stateName;
     }
 
-    public StringFilter name() {
-        if (name == null) {
-            name = new StringFilter();
+    public StringFilter stateName() {
+        if (stateName == null) {
+            stateName = new StringFilter();
         }
-        return name;
+        return stateName;
     }
 
-    public void setName(StringFilter name) {
-        this.name = name;
+    public void setStateName(StringFilter stateName) {
+        this.stateName = stateName;
     }
 
     public BooleanFilter getDeleted() {
@@ -167,7 +167,7 @@ public class StateCriteria implements Serializable, Criteria {
         final StateCriteria that = (StateCriteria) o;
         return (
             Objects.equals(id, that.id) &&
-            Objects.equals(name, that.name) &&
+            Objects.equals(stateName, that.stateName) &&
             Objects.equals(deleted, that.deleted) &&
             Objects.equals(lgdCode, that.lgdCode) &&
             Objects.equals(lastModified, that.lastModified) &&
@@ -178,7 +178,7 @@ public class StateCriteria implements Serializable, Criteria {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, deleted, lgdCode, lastModified, lastModifiedBy, distinct);
+        return Objects.hash(id, stateName, deleted, lgdCode, lastModified, lastModifiedBy, distinct);
     }
 
     // prettier-ignore
@@ -186,7 +186,7 @@ public class StateCriteria implements Serializable, Criteria {
     public String toString() {
         return "StateCriteria{" +
             (id != null ? "id=" + id + ", " : "") +
-            (name != null ? "name=" + name + ", " : "") +
+            (stateName != null ? "stateName=" + stateName + ", " : "") +
             (deleted != null ? "deleted=" + deleted + ", " : "") +
             (lgdCode != null ? "lgdCode=" + lgdCode + ", " : "") +
             (lastModified != null ? "lastModified=" + lastModified + ", " : "") +

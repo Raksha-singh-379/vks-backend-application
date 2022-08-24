@@ -13,16 +13,14 @@ public class DistrictDTO implements Serializable {
     private Long id;
 
     @NotNull
-    private String name;
+    private String districtName;
 
     private Boolean deleted;
 
     private Long lgdCode;
 
-    @NotNull
     private Instant lastModified;
 
-    @NotNull
     private String lastModifiedBy;
 
     public Long getId() {
@@ -33,12 +31,12 @@ public class DistrictDTO implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDistrictName() {
+        return districtName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDistrictName(String districtName) {
+        this.districtName = districtName;
     }
 
     public Boolean getDeleted() {
@@ -99,7 +97,7 @@ public class DistrictDTO implements Serializable {
     public String toString() {
         return "DistrictDTO{" +
             "id=" + getId() +
-            ", name='" + getName() + "'" +
+            ", districtName='" + getDistrictName() + "'" +
             ", deleted='" + getDeleted() + "'" +
             ", lgdCode=" + getLgdCode() +
             ", lastModified='" + getLastModified() + "'" +

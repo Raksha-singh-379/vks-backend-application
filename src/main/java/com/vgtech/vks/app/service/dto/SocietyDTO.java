@@ -15,16 +15,6 @@ public class SocietyDTO implements Serializable {
     @NotNull
     private String societyName;
 
-    private String address;
-
-    private String village;
-
-    private String tahsil;
-
-    private String state;
-
-    private String district;
-
     private Double registrationNumber;
 
     private Double gstinNumber;
@@ -36,8 +26,6 @@ public class SocietyDTO implements Serializable {
     private Double phoneNumber;
 
     private String emailAddress;
-
-    private Integer pinCode;
 
     private Instant createdOn;
 
@@ -55,13 +43,11 @@ public class SocietyDTO implements Serializable {
 
     private String freeField2;
 
-    private VillageDTO city;
+    private String freeField3;
 
-    private StateDTO state;
+    private String freeField4;
 
-    private DistrictDTO district;
-
-    private TalukaDTO taluka;
+    private AddressDetailsDTO addressDetails;
 
     private SocietyDTO society;
 
@@ -79,46 +65,6 @@ public class SocietyDTO implements Serializable {
 
     public void setSocietyName(String societyName) {
         this.societyName = societyName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getVillage() {
-        return village;
-    }
-
-    public void setVillage(String village) {
-        this.village = village;
-    }
-
-    public String getTahsil() {
-        return tahsil;
-    }
-
-    public void setTahsil(String tahsil) {
-        this.tahsil = tahsil;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
     }
 
     public Double getRegistrationNumber() {
@@ -167,14 +113,6 @@ public class SocietyDTO implements Serializable {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
-    }
-
-    public Integer getPinCode() {
-        return pinCode;
-    }
-
-    public void setPinCode(Integer pinCode) {
-        this.pinCode = pinCode;
     }
 
     public Instant getCreatedOn() {
@@ -241,36 +179,28 @@ public class SocietyDTO implements Serializable {
         this.freeField2 = freeField2;
     }
 
-    public VillageDTO getCity() {
-        return city;
+    public String getFreeField3() {
+        return freeField3;
     }
 
-    public void setCity(VillageDTO city) {
-        this.city = city;
+    public void setFreeField3(String freeField3) {
+        this.freeField3 = freeField3;
     }
 
-    public StateDTO getState() {
-        return state;
+    public String getFreeField4() {
+        return freeField4;
     }
 
-    public void setState(StateDTO state) {
-        this.state = state;
+    public void setFreeField4(String freeField4) {
+        this.freeField4 = freeField4;
     }
 
-    public DistrictDTO getDistrict() {
-        return district;
+    public AddressDetailsDTO getAddressDetails() {
+        return addressDetails;
     }
 
-    public void setDistrict(DistrictDTO district) {
-        this.district = district;
-    }
-
-    public TalukaDTO getTaluka() {
-        return taluka;
-    }
-
-    public void setTaluka(TalukaDTO taluka) {
-        this.taluka = taluka;
+    public void setAddressDetails(AddressDetailsDTO addressDetails) {
+        this.addressDetails = addressDetails;
     }
 
     public SocietyDTO getSociety() {
@@ -308,18 +238,12 @@ public class SocietyDTO implements Serializable {
         return "SocietyDTO{" +
             "id=" + getId() +
             ", societyName='" + getSocietyName() + "'" +
-            ", address='" + getAddress() + "'" +
-            ", village='" + getVillage() + "'" +
-            ", tahsil='" + getTahsil() + "'" +
-            ", state='" + getState() + "'" +
-            ", district='" + getDistrict() + "'" +
             ", registrationNumber=" + getRegistrationNumber() +
             ", gstinNumber=" + getGstinNumber() +
             ", panNumber=" + getPanNumber() +
             ", tanNumber=" + getTanNumber() +
             ", phoneNumber=" + getPhoneNumber() +
             ", emailAddress='" + getEmailAddress() + "'" +
-            ", pinCode=" + getPinCode() +
             ", createdOn='" + getCreatedOn() + "'" +
             ", createdBy='" + getCreatedBy() + "'" +
             ", description='" + getDescription() + "'" +
@@ -328,10 +252,9 @@ public class SocietyDTO implements Serializable {
             ", lastModifiedBy='" + getLastModifiedBy() + "'" +
             ", freeField1='" + getFreeField1() + "'" +
             ", freeField2='" + getFreeField2() + "'" +
-            ", city=" + getCity() +
-            ", state=" + getState() +
-            ", district=" + getDistrict() +
-            ", taluka=" + getTaluka() +
+            ", freeField3='" + getFreeField3() + "'" +
+            ", freeField4='" + getFreeField4() + "'" +
+            ", addressDetails=" + getAddressDetails() +
             ", society=" + getSociety() +
             "}";
     }

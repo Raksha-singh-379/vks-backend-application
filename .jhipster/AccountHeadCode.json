@@ -1,53 +1,21 @@
 {
   "applications": "*",
-  "changelogDate": "20220819050815",
+  "changelogDate": "20220824074009",
   "dto": "mapstruct",
   "embedded": false,
-  "entityTableName": "ledger_accounts",
+  "entityTableName": "account_head_code",
   "fields": [
     {
-      "fieldName": "accountNo",
-      "fieldType": "Long"
+      "fieldName": "type",
+      "fieldType": "MappingType",
+      "fieldValues": "HEADOFFICE (HeadOffice),SHARE (Share),MEMBER (Member),LOAN (Loan),SUNDRY (Sundry),PURCHASE (Purchase),SALES (Sales),LOANPRODUCT (LoanProduct),DEPOSIT (Deposit),BORROWING (Borrowing),INVESTMENT (Investment)"
     },
     {
-      "fieldName": "accountName",
+      "fieldName": "value",
       "fieldType": "String"
     },
     {
-      "fieldName": "accBalance",
-      "fieldType": "Double"
-    },
-    {
-      "fieldName": "accHeadCode",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "ledgerCode",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "appCode",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "ledgerClassification",
-      "fieldType": "LedgerClassification",
-      "fieldValues": "BALANCE_SHEET (Balance_Sheet),TRADING_ACCOUNT (Trading_Account),PROFIT_AND_LOSS (Profit_And_Loss)"
-    },
-    {
-      "fieldName": "category",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "level",
-      "fieldType": "Integer"
-    },
-    {
-      "fieldName": "year",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "accountType",
+      "fieldName": "headCodeName",
       "fieldType": "String"
     },
     {
@@ -85,15 +53,10 @@
   ],
   "fluentMethods": true,
   "jpaMetamodelFiltering": true,
-  "name": "LedgerAccounts",
+  "name": "AccountHeadCode",
   "pagination": "pagination",
   "readOnly": false,
   "relationships": [
-    {
-      "otherEntityName": "society",
-      "relationshipName": "society",
-      "relationshipType": "many-to-one"
-    },
     {
       "otherEntityName": "ledgerAccounts",
       "relationshipName": "ledgerAccounts",

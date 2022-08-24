@@ -10,6 +10,10 @@
       "fieldType": "String"
     },
     {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
       "fieldName": "startDate",
       "fieldType": "Instant"
     },
@@ -22,7 +26,15 @@
       "fieldType": "String"
     },
     {
+      "fieldName": "url",
+      "fieldType": "String"
+    },
+    {
       "fieldName": "isActivate",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "isDeleted",
       "fieldType": "Boolean"
     },
     {
@@ -43,6 +55,10 @@
     },
     {
       "fieldName": "freeField3",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField4",
       "fieldType": "String"
     }
   ],

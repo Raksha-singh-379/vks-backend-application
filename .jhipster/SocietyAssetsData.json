@@ -68,6 +68,10 @@
     {
       "fieldName": "freeField3",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField4",
+      "fieldType": "String"
     }
   ],
   "fluentMethods": true,

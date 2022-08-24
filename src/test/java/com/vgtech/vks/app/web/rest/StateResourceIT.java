@@ -34,8 +34,8 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class StateResourceIT {
 
-    private static final String DEFAULT_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_NAME = "BBBBBBBBBB";
+    private static final String DEFAULT_STATE_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_STATE_NAME = "BBBBBBBBBB";
 
     private static final Boolean DEFAULT_DELETED = false;
     private static final Boolean UPDATED_DELETED = true;
@@ -78,7 +78,7 @@ class StateResourceIT {
      */
     public static State createEntity(EntityManager em) {
         State state = new State()
-            .name(DEFAULT_NAME)
+            .stateName(DEFAULT_STATE_NAME)
             .deleted(DEFAULT_DELETED)
             .lgdCode(DEFAULT_LGD_CODE)
             .lastModified(DEFAULT_LAST_MODIFIED)
@@ -94,7 +94,7 @@ class StateResourceIT {
      */
     public static State createUpdatedEntity(EntityManager em) {
         State state = new State()
-            .name(UPDATED_NAME)
+            .stateName(UPDATED_STATE_NAME)
             .deleted(UPDATED_DELETED)
             .lgdCode(UPDATED_LGD_CODE)
             .lastModified(UPDATED_LAST_MODIFIED)
@@ -121,7 +121,7 @@ class StateResourceIT {
         List<State> stateList = stateRepository.findAll();
         assertThat(stateList).hasSize(databaseSizeBeforeCreate + 1);
         State testState = stateList.get(stateList.size() - 1);
-        assertThat(testState.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testState.getStateName()).isEqualTo(DEFAULT_STATE_NAME);
         assertThat(testState.getDeleted()).isEqualTo(DEFAULT_DELETED);
         assertThat(testState.getLgdCode()).isEqualTo(DEFAULT_LGD_CODE);
         assertThat(testState.getLastModified()).isEqualTo(DEFAULT_LAST_MODIFIED);
@@ -149,46 +149,10 @@ class StateResourceIT {
 
     @Test
     @Transactional
-    void checkNameIsRequired() throws Exception {
+    void checkStateNameIsRequired() throws Exception {
         int databaseSizeBeforeTest = stateRepository.findAll().size();
         // set the field null
-        state.setName(null);
-
-        // Create the State, which fails.
-        StateDTO stateDTO = stateMapper.toDto(state);
-
-        restStateMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(stateDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<State> stateList = stateRepository.findAll();
-        assertThat(stateList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    void checkLastModifiedIsRequired() throws Exception {
-        int databaseSizeBeforeTest = stateRepository.findAll().size();
-        // set the field null
-        state.setLastModified(null);
-
-        // Create the State, which fails.
-        StateDTO stateDTO = stateMapper.toDto(state);
-
-        restStateMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(stateDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<State> stateList = stateRepository.findAll();
-        assertThat(stateList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    void checkLastModifiedByIsRequired() throws Exception {
-        int databaseSizeBeforeTest = stateRepository.findAll().size();
-        // set the field null
-        state.setLastModifiedBy(null);
+        state.setStateName(null);
 
         // Create the State, which fails.
         StateDTO stateDTO = stateMapper.toDto(state);
@@ -213,7 +177,7 @@ class StateResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(state.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
+            .andExpect(jsonPath("$.[*].stateName").value(hasItem(DEFAULT_STATE_NAME)))
             .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())))
             .andExpect(jsonPath("$.[*].lgdCode").value(hasItem(DEFAULT_LGD_CODE.intValue())))
             .andExpect(jsonPath("$.[*].lastModified").value(hasItem(DEFAULT_LAST_MODIFIED.toString())))
@@ -232,7 +196,7 @@ class StateResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(state.getId().intValue()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
+            .andExpect(jsonPath("$.stateName").value(DEFAULT_STATE_NAME))
             .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()))
             .andExpect(jsonPath("$.lgdCode").value(DEFAULT_LGD_CODE.intValue()))
             .andExpect(jsonPath("$.lastModified").value(DEFAULT_LAST_MODIFIED.toString()))
@@ -259,67 +223,67 @@ class StateResourceIT {
 
     @Test
     @Transactional
-    void getAllStatesByNameIsEqualToSomething() throws Exception {
+    void getAllStatesByStateNameIsEqualToSomething() throws Exception {
         // Initialize the database
         stateRepository.saveAndFlush(state);
 
-        // Get all the stateList where name equals to DEFAULT_NAME
-        defaultStateShouldBeFound("name.equals=" + DEFAULT_NAME);
+        // Get all the stateList where stateName equals to DEFAULT_STATE_NAME
+        defaultStateShouldBeFound("stateName.equals=" + DEFAULT_STATE_NAME);
 
-        // Get all the stateList where name equals to UPDATED_NAME
-        defaultStateShouldNotBeFound("name.equals=" + UPDATED_NAME);
+        // Get all the stateList where stateName equals to UPDATED_STATE_NAME
+        defaultStateShouldNotBeFound("stateName.equals=" + UPDATED_STATE_NAME);
     }
 
     @Test
     @Transactional
-    void getAllStatesByNameIsInShouldWork() throws Exception {
+    void getAllStatesByStateNameIsInShouldWork() throws Exception {
         // Initialize the database
         stateRepository.saveAndFlush(state);
 
-        // Get all the stateList where name in DEFAULT_NAME or UPDATED_NAME
-        defaultStateShouldBeFound("name.in=" + DEFAULT_NAME + "," + UPDATED_NAME);
+        // Get all the stateList where stateName in DEFAULT_STATE_NAME or UPDATED_STATE_NAME
+        defaultStateShouldBeFound("stateName.in=" + DEFAULT_STATE_NAME + "," + UPDATED_STATE_NAME);
 
-        // Get all the stateList where name equals to UPDATED_NAME
-        defaultStateShouldNotBeFound("name.in=" + UPDATED_NAME);
+        // Get all the stateList where stateName equals to UPDATED_STATE_NAME
+        defaultStateShouldNotBeFound("stateName.in=" + UPDATED_STATE_NAME);
     }
 
     @Test
     @Transactional
-    void getAllStatesByNameIsNullOrNotNull() throws Exception {
+    void getAllStatesByStateNameIsNullOrNotNull() throws Exception {
         // Initialize the database
         stateRepository.saveAndFlush(state);
 
-        // Get all the stateList where name is not null
-        defaultStateShouldBeFound("name.specified=true");
+        // Get all the stateList where stateName is not null
+        defaultStateShouldBeFound("stateName.specified=true");
 
-        // Get all the stateList where name is null
-        defaultStateShouldNotBeFound("name.specified=false");
+        // Get all the stateList where stateName is null
+        defaultStateShouldNotBeFound("stateName.specified=false");
     }
 
     @Test
     @Transactional
-    void getAllStatesByNameContainsSomething() throws Exception {
+    void getAllStatesByStateNameContainsSomething() throws Exception {
         // Initialize the database
         stateRepository.saveAndFlush(state);
 
-        // Get all the stateList where name contains DEFAULT_NAME
-        defaultStateShouldBeFound("name.contains=" + DEFAULT_NAME);
+        // Get all the stateList where stateName contains DEFAULT_STATE_NAME
+        defaultStateShouldBeFound("stateName.contains=" + DEFAULT_STATE_NAME);
 
-        // Get all the stateList where name contains UPDATED_NAME
-        defaultStateShouldNotBeFound("name.contains=" + UPDATED_NAME);
+        // Get all the stateList where stateName contains UPDATED_STATE_NAME
+        defaultStateShouldNotBeFound("stateName.contains=" + UPDATED_STATE_NAME);
     }
 
     @Test
     @Transactional
-    void getAllStatesByNameNotContainsSomething() throws Exception {
+    void getAllStatesByStateNameNotContainsSomething() throws Exception {
         // Initialize the database
         stateRepository.saveAndFlush(state);
 
-        // Get all the stateList where name does not contain DEFAULT_NAME
-        defaultStateShouldNotBeFound("name.doesNotContain=" + DEFAULT_NAME);
+        // Get all the stateList where stateName does not contain DEFAULT_STATE_NAME
+        defaultStateShouldNotBeFound("stateName.doesNotContain=" + DEFAULT_STATE_NAME);
 
-        // Get all the stateList where name does not contain UPDATED_NAME
-        defaultStateShouldBeFound("name.doesNotContain=" + UPDATED_NAME);
+        // Get all the stateList where stateName does not contain UPDATED_STATE_NAME
+        defaultStateShouldBeFound("stateName.doesNotContain=" + UPDATED_STATE_NAME);
     }
 
     @Test
@@ -565,7 +529,7 @@ class StateResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(state.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
+            .andExpect(jsonPath("$.[*].stateName").value(hasItem(DEFAULT_STATE_NAME)))
             .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())))
             .andExpect(jsonPath("$.[*].lgdCode").value(hasItem(DEFAULT_LGD_CODE.intValue())))
             .andExpect(jsonPath("$.[*].lastModified").value(hasItem(DEFAULT_LAST_MODIFIED.toString())))
@@ -618,7 +582,7 @@ class StateResourceIT {
         // Disconnect from session so that the updates on updatedState are not directly saved in db
         em.detach(updatedState);
         updatedState
-            .name(UPDATED_NAME)
+            .stateName(UPDATED_STATE_NAME)
             .deleted(UPDATED_DELETED)
             .lgdCode(UPDATED_LGD_CODE)
             .lastModified(UPDATED_LAST_MODIFIED)
@@ -637,7 +601,7 @@ class StateResourceIT {
         List<State> stateList = stateRepository.findAll();
         assertThat(stateList).hasSize(databaseSizeBeforeUpdate);
         State testState = stateList.get(stateList.size() - 1);
-        assertThat(testState.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testState.getStateName()).isEqualTo(UPDATED_STATE_NAME);
         assertThat(testState.getDeleted()).isEqualTo(UPDATED_DELETED);
         assertThat(testState.getLgdCode()).isEqualTo(UPDATED_LGD_CODE);
         assertThat(testState.getLastModified()).isEqualTo(UPDATED_LAST_MODIFIED);
@@ -721,7 +685,7 @@ class StateResourceIT {
         State partialUpdatedState = new State();
         partialUpdatedState.setId(state.getId());
 
-        partialUpdatedState.name(UPDATED_NAME).deleted(UPDATED_DELETED);
+        partialUpdatedState.stateName(UPDATED_STATE_NAME).deleted(UPDATED_DELETED);
 
         restStateMockMvc
             .perform(
@@ -735,7 +699,7 @@ class StateResourceIT {
         List<State> stateList = stateRepository.findAll();
         assertThat(stateList).hasSize(databaseSizeBeforeUpdate);
         State testState = stateList.get(stateList.size() - 1);
-        assertThat(testState.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testState.getStateName()).isEqualTo(UPDATED_STATE_NAME);
         assertThat(testState.getDeleted()).isEqualTo(UPDATED_DELETED);
         assertThat(testState.getLgdCode()).isEqualTo(DEFAULT_LGD_CODE);
         assertThat(testState.getLastModified()).isEqualTo(DEFAULT_LAST_MODIFIED);
@@ -755,7 +719,7 @@ class StateResourceIT {
         partialUpdatedState.setId(state.getId());
 
         partialUpdatedState
-            .name(UPDATED_NAME)
+            .stateName(UPDATED_STATE_NAME)
             .deleted(UPDATED_DELETED)
             .lgdCode(UPDATED_LGD_CODE)
             .lastModified(UPDATED_LAST_MODIFIED)
@@ -773,7 +737,7 @@ class StateResourceIT {
         List<State> stateList = stateRepository.findAll();
         assertThat(stateList).hasSize(databaseSizeBeforeUpdate);
         State testState = stateList.get(stateList.size() - 1);
-        assertThat(testState.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testState.getStateName()).isEqualTo(UPDATED_STATE_NAME);
         assertThat(testState.getDeleted()).isEqualTo(UPDATED_DELETED);
         assertThat(testState.getLgdCode()).isEqualTo(UPDATED_LGD_CODE);
         assertThat(testState.getLastModified()).isEqualTo(UPDATED_LAST_MODIFIED);

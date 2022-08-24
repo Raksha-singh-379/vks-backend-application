@@ -6,7 +6,7 @@
   "entityTableName": "state",
   "fields": [
     {
-      "fieldName": "name",
+      "fieldName": "stateName",
       "fieldType": "String",
       "fieldValidateRules": ["required", "unique"]
     },
@@ -20,13 +20,11 @@
     },
     {
       "fieldName": "lastModified",
-      "fieldType": "Instant",
-      "fieldValidateRules": ["required"]
+      "fieldType": "Instant"
     },
     {
       "fieldName": "lastModifiedBy",
-      "fieldType": "String",
-      "fieldValidateRules": ["required"]
+      "fieldType": "String"
     }
   ],
   "fluentMethods": true,

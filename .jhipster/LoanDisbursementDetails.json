@@ -27,11 +27,6 @@
       "fieldValues": "ONLINE (Online_Payment),CASH (Cash_Payment),TRANSFER (Transfer),CHEQUE (By_Cheque),OTHERS (Other_Mode)"
     },
     {
-      "fieldName": "type",
-      "fieldType": "LoanType",
-      "fieldValues": "SHORT_TERM (Short_term_loan),MID_TERM (Mid_term_loan),LONG_TERM (Long_term_loan)"
-    },
-    {
       "fieldName": "lastModified",
       "fieldType": "Instant"
     },
@@ -50,6 +45,10 @@
     {
       "fieldName": "freeField3",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField4",
+      "fieldType": "String"
     }
   ],
   "fluentMethods": true,
@@ -61,6 +60,12 @@
     {
       "otherEntityName": "loanDetails",
       "relationshipName": "loanDetails",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "loanType",
+      "otherEntityRelationshipName": "loanDisbursementDetails",
+      "relationshipName": "loanType",
       "relationshipType": "many-to-one"
     }
   ],

@@ -9,14 +9,8 @@ import { of, Subject, from } from 'rxjs';
 import { SocietyFormService } from './society-form.service';
 import { SocietyService } from '../service/society.service';
 import { ISociety } from '../society.model';
-import { IVillage } from 'app/entities/village/village.model';
-import { VillageService } from 'app/entities/village/service/village.service';
-import { IState } from 'app/entities/state/state.model';
-import { StateService } from 'app/entities/state/service/state.service';
-import { IDistrict } from 'app/entities/district/district.model';
-import { DistrictService } from 'app/entities/district/service/district.service';
-import { ITaluka } from 'app/entities/taluka/taluka.model';
-import { TalukaService } from 'app/entities/taluka/service/taluka.service';
+import { IAddressDetails } from 'app/entities/address-details/address-details.model';
+import { AddressDetailsService } from 'app/entities/address-details/service/address-details.service';
 
 import { SocietyUpdateComponent } from './society-update.component';
 
@@ -26,10 +20,7 @@ describe('Society Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let societyFormService: SocietyFormService;
   let societyService: SocietyService;
-  let villageService: VillageService;
-  let stateService: StateService;
-  let districtService: DistrictService;
-  let talukaService: TalukaService;
+  let addressDetailsService: AddressDetailsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -52,101 +43,32 @@ describe('Society Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     societyFormService = TestBed.inject(SocietyFormService);
     societyService = TestBed.inject(SocietyService);
-    villageService = TestBed.inject(VillageService);
-    stateService = TestBed.inject(StateService);
-    districtService = TestBed.inject(DistrictService);
-    talukaService = TestBed.inject(TalukaService);
+    addressDetailsService = TestBed.inject(AddressDetailsService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should call Village query and add missing value', () => {
+    it('Should call AddressDetails query and add missing value', () => {
       const society: ISociety = { id: 456 };
-      const city: IVillage = { id: 51480 };
-      society.city = city;
+      const addressDetails: IAddressDetails = { id: 71732 };
+      society.addressDetails = addressDetails;
 
-      const villageCollection: IVillage[] = [{ id: 37663 }];
-      jest.spyOn(villageService, 'query').mockReturnValue(of(new HttpResponse({ body: villageCollection })));
-      const additionalVillages = [city];
-      const expectedCollection: IVillage[] = [...additionalVillages, ...villageCollection];
-      jest.spyOn(villageService, 'addVillageToCollectionIfMissing').mockReturnValue(expectedCollection);
+      const addressDetailsCollection: IAddressDetails[] = [{ id: 32158 }];
+      jest.spyOn(addressDetailsService, 'query').mockReturnValue(of(new HttpResponse({ body: addressDetailsCollection })));
+      const additionalAddressDetails = [addressDetails];
+      const expectedCollection: IAddressDetails[] = [...additionalAddressDetails, ...addressDetailsCollection];
+      jest.spyOn(addressDetailsService, 'addAddressDetailsToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ society });
       comp.ngOnInit();
 
-      expect(villageService.query).toHaveBeenCalled();
-      expect(villageService.addVillageToCollectionIfMissing).toHaveBeenCalledWith(
-        villageCollection,
-        ...additionalVillages.map(expect.objectContaining)
+      expect(addressDetailsService.query).toHaveBeenCalled();
+      expect(addressDetailsService.addAddressDetailsToCollectionIfMissing).toHaveBeenCalledWith(
+        addressDetailsCollection,
+        ...additionalAddressDetails.map(expect.objectContaining)
       );
-      expect(comp.villagesSharedCollection).toEqual(expectedCollection);
-    });
-
-    it('Should call State query and add missing value', () => {
-      const society: ISociety = { id: 456 };
-      const state: IState = { id: 34144 };
-      society.state = state;
-
-      const stateCollection: IState[] = [{ id: 68311 }];
-      jest.spyOn(stateService, 'query').mockReturnValue(of(new HttpResponse({ body: stateCollection })));
-      const additionalStates = [state];
-      const expectedCollection: IState[] = [...additionalStates, ...stateCollection];
-      jest.spyOn(stateService, 'addStateToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ society });
-      comp.ngOnInit();
-
-      expect(stateService.query).toHaveBeenCalled();
-      expect(stateService.addStateToCollectionIfMissing).toHaveBeenCalledWith(
-        stateCollection,
-        ...additionalStates.map(expect.objectContaining)
-      );
-      expect(comp.statesSharedCollection).toEqual(expectedCollection);
-    });
-
-    it('Should call District query and add missing value', () => {
-      const society: ISociety = { id: 456 };
-      const district: IDistrict = { id: 32015 };
-      society.district = district;
-
-      const districtCollection: IDistrict[] = [{ id: 21463 }];
-      jest.spyOn(districtService, 'query').mockReturnValue(of(new HttpResponse({ body: districtCollection })));
-      const additionalDistricts = [district];
-      const expectedCollection: IDistrict[] = [...additionalDistricts, ...districtCollection];
-      jest.spyOn(districtService, 'addDistrictToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ society });
-      comp.ngOnInit();
-
-      expect(districtService.query).toHaveBeenCalled();
-      expect(districtService.addDistrictToCollectionIfMissing).toHaveBeenCalledWith(
-        districtCollection,
-        ...additionalDistricts.map(expect.objectContaining)
-      );
-      expect(comp.districtsSharedCollection).toEqual(expectedCollection);
-    });
-
-    it('Should call Taluka query and add missing value', () => {
-      const society: ISociety = { id: 456 };
-      const taluka: ITaluka = { id: 14185 };
-      society.taluka = taluka;
-
-      const talukaCollection: ITaluka[] = [{ id: 56 }];
-      jest.spyOn(talukaService, 'query').mockReturnValue(of(new HttpResponse({ body: talukaCollection })));
-      const additionalTalukas = [taluka];
-      const expectedCollection: ITaluka[] = [...additionalTalukas, ...talukaCollection];
-      jest.spyOn(talukaService, 'addTalukaToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ society });
-      comp.ngOnInit();
-
-      expect(talukaService.query).toHaveBeenCalled();
-      expect(talukaService.addTalukaToCollectionIfMissing).toHaveBeenCalledWith(
-        talukaCollection,
-        ...additionalTalukas.map(expect.objectContaining)
-      );
-      expect(comp.talukasSharedCollection).toEqual(expectedCollection);
+      expect(comp.addressDetailsSharedCollection).toEqual(expectedCollection);
     });
 
     it('Should call Society query and add missing value', () => {
@@ -173,24 +95,15 @@ describe('Society Management Update Component', () => {
 
     it('Should update editForm', () => {
       const society: ISociety = { id: 456 };
-      const city: IVillage = { id: 8986 };
-      society.city = city;
-      const state: IState = { id: 80278 };
-      society.state = state;
-      const district: IDistrict = { id: 55230 };
-      society.district = district;
-      const taluka: ITaluka = { id: 22180 };
-      society.taluka = taluka;
+      const addressDetails: IAddressDetails = { id: 49429 };
+      society.addressDetails = addressDetails;
       const society: ISociety = { id: 20492 };
       society.society = society;
 
       activatedRoute.data = of({ society });
       comp.ngOnInit();
 
-      expect(comp.villagesSharedCollection).toContain(city);
-      expect(comp.statesSharedCollection).toContain(state);
-      expect(comp.districtsSharedCollection).toContain(district);
-      expect(comp.talukasSharedCollection).toContain(taluka);
+      expect(comp.addressDetailsSharedCollection).toContain(addressDetails);
       expect(comp.societiesSharedCollection).toContain(society);
       expect(comp.society).toEqual(society);
     });
@@ -265,43 +178,13 @@ describe('Society Management Update Component', () => {
   });
 
   describe('Compare relationships', () => {
-    describe('compareVillage', () => {
-      it('Should forward to villageService', () => {
+    describe('compareAddressDetails', () => {
+      it('Should forward to addressDetailsService', () => {
         const entity = { id: 123 };
         const entity2 = { id: 456 };
-        jest.spyOn(villageService, 'compareVillage');
-        comp.compareVillage(entity, entity2);
-        expect(villageService.compareVillage).toHaveBeenCalledWith(entity, entity2);
-      });
-    });
-
-    describe('compareState', () => {
-      it('Should forward to stateService', () => {
-        const entity = { id: 123 };
-        const entity2 = { id: 456 };
-        jest.spyOn(stateService, 'compareState');
-        comp.compareState(entity, entity2);
-        expect(stateService.compareState).toHaveBeenCalledWith(entity, entity2);
-      });
-    });
-
-    describe('compareDistrict', () => {
-      it('Should forward to districtService', () => {
-        const entity = { id: 123 };
-        const entity2 = { id: 456 };
-        jest.spyOn(districtService, 'compareDistrict');
-        comp.compareDistrict(entity, entity2);
-        expect(districtService.compareDistrict).toHaveBeenCalledWith(entity, entity2);
-      });
-    });
-
-    describe('compareTaluka', () => {
-      it('Should forward to talukaService', () => {
-        const entity = { id: 123 };
-        const entity2 = { id: 456 };
-        jest.spyOn(talukaService, 'compareTaluka');
-        comp.compareTaluka(entity, entity2);
-        expect(talukaService.compareTaluka).toHaveBeenCalledWith(entity, entity2);
+        jest.spyOn(addressDetailsService, 'compareAddressDetails');
+        comp.compareAddressDetails(entity, entity2);
+        expect(addressDetailsService.compareAddressDetails).toHaveBeenCalledWith(entity, entity2);
       });
     });
 

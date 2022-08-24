@@ -1,53 +1,41 @@
 {
   "applications": "*",
-  "changelogDate": "20220819050827",
+  "changelogDate": "20220824074014",
   "dto": "mapstruct",
   "embedded": false,
-  "entityTableName": "member_land_assets",
+  "entityTableName": "member_crops_details",
   "fields": [
+    {
+      "fieldName": "season",
+      "fieldType": "String"
+    },
     {
       "fieldName": "landType",
       "fieldType": "String"
     },
     {
-      "fieldName": "landGatNo",
+      "fieldName": "landGatno",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "year",
+      "fieldType": "Integer"
     },
     {
       "fieldName": "landAreaInHector",
       "fieldType": "Double"
     },
     {
-      "fieldName": "jindagiPatrakNo",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "jindagiAmount",
-      "fieldType": "Double"
-    },
-    {
-      "fieldName": "assetLandAddress",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "valueOfLand",
-      "fieldType": "Double"
-    },
-    {
-      "fieldName": "assigneeOfLand",
+      "fieldName": "memberkmpStatus",
       "fieldType": "Boolean"
     },
     {
-      "fieldName": "isDeleted",
+      "fieldName": "societyKmpStatus",
       "fieldType": "Boolean"
     },
     {
-      "fieldName": "isInsured",
+      "fieldName": "isActivate",
       "fieldType": "Boolean"
-    },
-    {
-      "fieldName": "mLLoanNo",
-      "fieldType": "Long"
     },
     {
       "fieldName": "lastModified",
@@ -56,14 +44,6 @@
     {
       "fieldName": "lastModifiedBy",
       "fieldType": "String"
-    },
-    {
-      "fieldName": "createdBy",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "createdOn",
-      "fieldType": "Instant"
     },
     {
       "fieldName": "freeField1",
@@ -84,7 +64,7 @@
   ],
   "fluentMethods": true,
   "jpaMetamodelFiltering": true,
-  "name": "MemberLandAssets",
+  "name": "MemberCropsDetails",
   "pagination": "pagination",
   "readOnly": false,
   "relationships": [

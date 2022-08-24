@@ -45,6 +45,14 @@
         "vouchers": "Vouchers",
         "voucherDetails": "Voucher Details",
         "vouchersHistory": "Vouchers History",
+        "addressDetails": "Address Details",
+        "societyExecutiveMember": "Society Executive Member",
+        "accountHeadCode": "Account Head Code",
+        "loanType": "Loan Type",
+        "incomeDetails": "Income Details",
+        "memberExistingfacility": "Member Existingfacility",
+        "employementDetails": "Employement Details",
+        "memberCropsDetails": "Member Crops Details",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

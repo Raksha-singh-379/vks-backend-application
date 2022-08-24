@@ -60,18 +60,37 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "aadharCard",
+      "fieldName": "aadharCardNo",
       "fieldType": "String",
       "fieldValidateRules": ["unique"]
     },
     {
-      "fieldName": "panCard",
+      "fieldName": "panCardNo",
       "fieldType": "String",
       "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "passportNo",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "passportExpiry",
+      "fieldType": "String"
     },
     {
       "fieldName": "rationCard",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "residentalStatus",
+      "fieldType": "ResidentalStatus",
+      "fieldValues": "RESIDENT (Resident),NON_RESIDENT (Non_Resident),OTHER (Other)"
+    },
+    {
+      "fieldName": "maritalStatus",
+      "fieldType": "MaritalStatus",
+      "fieldValues": "MARRIED (Married),SINGLE (Single),DIVORCED (Divorced),WIDOW (Widow),OTHERS (Others)"
     },
     {
       "fieldName": "familyMemberCount",
@@ -82,17 +101,21 @@
       "fieldType": "String"
     },
     {
+      "fieldName": "nationality",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "noOfDependents",
+      "fieldType": "Long"
+    },
+    {
       "fieldName": "applicationDate",
       "fieldType": "Instant"
     },
     {
       "fieldName": "status",
       "fieldType": "Status",
-      "fieldValues": "CREATED (Created),DOCUMENT_VERIFIED (Document_Verified),KYC_GENREATED (KYC_Genreated),KMP_GENREATED (KMP_Genreated),LOAN_DEMAND (loan_Demand),LOAN_ACTIVE (Loan_Active)"
-    },
-    {
-      "fieldName": "kmpStatus",
-      "fieldType": "Boolean"
+      "fieldValues": "CREATED (Created),DOCUMENT_VERIFIED (Document_Verified),KYC_GENREATED (KYC_Genreated),KMP_GENREATED (KMP_Genreated),LOAN_DEMAND (loan_Demand),LOAN_ACTIVE (Loan_Active),LOAN_CANCELLED (Loan_cancelled),LOAN_CLOSED (Loan_Closed)"
     },
     {
       "fieldName": "boardResolutionNo",
@@ -103,17 +126,38 @@
       "fieldType": "LocalDate"
     },
     {
+      "fieldName": "highestQualification",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "hasAdharCardVerified",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "hasPanCardVerified",
+      "fieldType": "Boolean"
+    },
+    {
       "fieldName": "loanStatus",
       "fieldType": "LoanStatus",
-      "fieldValues": "APPLIED (Applied),PENDING (Pending),CHART_GENRATED (Chart_Genrated),APPROVED (Approved),DISBURSED (Disbursed),ACTIVE (Active),CLOSED (Closed)"
+      "fieldValues": "RECORDED (Recorded),APPLIED (Applied),PENDING (Pending),AWAITED (Awaited),CHART_GENRATED (Chart_Genrated),APPROVED (Approved),REJECTED (Rejected),CANCELLED (cancelled),DISBURSED (Disbursed),ACTIVE (Active),CLOSED (Closed)"
     },
     {
       "fieldName": "memberType",
       "fieldType": "String"
     },
     {
-      "fieldName": "isactive",
+      "fieldName": "isActive",
       "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "isDeleted",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "profileStepper",
+      "fieldType": "StepperNumber",
+      "fieldValues": "STEP_1 (Step_1),STEP_2 (Step_2),STEP_3 (Step_3),STEP_4 (Step_4),STEP_5 (Step_5),STEP_6 (Step_6)"
     },
     {
       "fieldName": "lastModified",
@@ -141,6 +185,10 @@
     },
     {
       "fieldName": "freeField3",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField4",
       "fieldType": "String"
     }
   ],

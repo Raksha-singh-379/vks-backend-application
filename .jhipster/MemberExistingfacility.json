@@ -1,53 +1,55 @@
 {
   "applications": "*",
-  "changelogDate": "20220819050827",
+  "changelogDate": "20220824074012",
   "dto": "mapstruct",
   "embedded": false,
-  "entityTableName": "member_land_assets",
+  "entityTableName": "member_existingfacility",
   "fields": [
     {
-      "fieldName": "landType",
+      "fieldName": "year",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "facilityName",
       "fieldType": "String"
     },
     {
-      "fieldName": "landGatNo",
+      "fieldName": "facilitatedFrom",
       "fieldType": "String"
     },
     {
-      "fieldName": "landAreaInHector",
+      "fieldName": "nature",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "amtInLac",
       "fieldType": "Double"
     },
     {
-      "fieldName": "jindagiPatrakNo",
+      "fieldName": "purpose",
       "fieldType": "String"
     },
     {
-      "fieldName": "jindagiAmount",
+      "fieldName": "sectionDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "outstandingInLac",
       "fieldType": "Double"
     },
     {
-      "fieldName": "assetLandAddress",
-      "fieldType": "String"
+      "fieldName": "status",
+      "fieldType": "FacilityStatus",
+      "fieldValues": "REGULAR (Regular),OVERDUE (OverDue),NPA (Npa)"
     },
     {
-      "fieldName": "valueOfLand",
-      "fieldType": "Double"
-    },
-    {
-      "fieldName": "assigneeOfLand",
-      "fieldType": "Boolean"
+      "fieldName": "rating",
+      "fieldType": "CreditRating",
+      "fieldValues": "OUTSTANDING (Outstanding),GOOD (Good),FAIR (Fair),POOR (Poor)"
     },
     {
       "fieldName": "isDeleted",
       "fieldType": "Boolean"
-    },
-    {
-      "fieldName": "isInsured",
-      "fieldType": "Boolean"
-    },
-    {
-      "fieldName": "mLLoanNo",
-      "fieldType": "Long"
     },
     {
       "fieldName": "lastModified",
@@ -84,7 +86,7 @@
   ],
   "fluentMethods": true,
   "jpaMetamodelFiltering": true,
-  "name": "MemberLandAssets",
+  "name": "MemberExistingfacility",
   "pagination": "pagination",
   "readOnly": false,
   "relationships": [

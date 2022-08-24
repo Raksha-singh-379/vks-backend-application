@@ -6,7 +6,7 @@
   "entityTableName": "village",
   "fields": [
     {
-      "fieldName": "name",
+      "fieldName": "villageName",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
     },
@@ -20,13 +20,11 @@
     },
     {
       "fieldName": "lastModified",
-      "fieldType": "Instant",
-      "fieldValidateRules": ["required"]
+      "fieldType": "Instant"
     },
     {
       "fieldName": "lastModifiedBy",
-      "fieldType": "String",
-      "fieldValidateRules": ["required"]
+      "fieldType": "String"
     }
   ],
   "fluentMethods": true,
